@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>床头灯左</key>
+	<dict>
+		<key>ValueLength</key>
+		<string>1Bit</string>
+		<key>WriteToGroupAddress</key>
+		<dict>
+			<key>0</key>
+			<string>0/0/9</string>
+		</dict>
+		<key>ReadFromGroupAddress</key>
+		<dict>
+			<key>0</key>
+			<string>0/0/10</string>
+		</dict>
+	</dict>
+	<key>床头灯右</key>
+	<dict>
+		<key>ValueLength</key>
+		<string>1Bit</string>
+		<key>WriteToGroupAddress</key>
+		<dict>
+			<key>0</key>
+			<string>0/0/11</string>
+		</dict>
+		<key>ReadFromGroupAddress</key>
+		<dict>
+			<key>0</key>
+			<string>0/0/12</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
