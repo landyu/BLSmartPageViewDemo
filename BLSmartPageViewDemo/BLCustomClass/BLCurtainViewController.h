@@ -12,7 +12,7 @@
 
 - (void) initCurtainPropertyWithDictionary:(NSMutableDictionary *)curtainPropertyDict buttonName:(NSString *)curtainButtonName;
 
-
+@property (weak) id delegate;
 @property (strong, nonatomic) IBOutlet UIButton *yarnCurtainOpenButton;
 @property (strong, nonatomic) IBOutlet UIButton *yarnCurtainCloseButton;
 @property (strong, nonatomic) IBOutlet UISlider *yarnCurtainSlider;
@@ -30,4 +30,12 @@
 - (IBAction)clothCurtainStopButton:(UIButton *)sender;
 
 
+- (void)yarnCurtainPositionChangedWithValue:(NSUInteger)position;
+- (void)clothCurtainPositionChangedWithValue:(NSUInteger)position;
+
+@end
+
+@protocol CurtainProcessDataDelegate
+@optional
+- (void) blCurtainSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType;
 @end

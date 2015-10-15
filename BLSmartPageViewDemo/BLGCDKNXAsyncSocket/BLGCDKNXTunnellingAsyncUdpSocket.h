@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface BLGCDKNXTunnellingAsyncUdpSocket : NSObject
-
 @property (nonatomic, weak) id delegate;
 + (instancetype)sharedInstance;
 - (void) setTunnellingSocketWithClientBindToPort:(uint16_t)clientPort
                           deviceIpAddress:(NSString *)serverIpAddr
                              deviceIpPort:(uint16_t)serverIpPort
                             delegateQueue:(dispatch_queue_t)dq;
-- (void) tunnellingServeStart;
+- (BOOL) tunnellingServeStart;
 - (void) tunnellingServeStop;
+- (void) tunnellingServeRestart;
+- (NSString *) serverIpAddress;
+- (void) tunnellingSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType;
 @end

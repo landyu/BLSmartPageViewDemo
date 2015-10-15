@@ -9,7 +9,7 @@
 #ifndef GlobalMacro_h
 #define GlobalMacro_h
 
-#if 1
+#if 0
 
 #define LogInfo(frmt, ...)      NSLog(@"%s(%d): " frmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
@@ -33,5 +33,8 @@
 
 
 #define PageJumpNotification @"BL.BLSmartPageViewDemo.PageJumpNotification"
+#define TunnellingSendQueueKeyPath @"tunnellingSendQueue"
+#define TunnellingSendQueueOperateQueue "BL.BLSmartPageViewDemo.TunnellingSendQueueOperateQueue"
+#define TunnellingConnectSuccessNotification @"BL.BLSmartPageViewDemo.TunnellingConnectSuccessNotification"
 
 #endif /* GlobalMacro_h */

@@ -1,18 +1,18 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++81126D7",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "47714CA45FBEBDF1626D538049F3820AB6ADD9D4+++3EBC4F0",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++2413D0F" : 0,
-    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++81126D7" : 0,
-    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++F7CB7A3" : 0
+    "47714CA45FBEBDF1626D538049F3820AB6ADD9D4+++3EBC4F0" : 0,
+    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++AAEE04E" : 0,
+    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++E67E176" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "99549AB6-8009-44D6-AC1C-8D1CD98C6E97",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++2413D0F" : "BLSmartPageViewDemoBLSmartPageViewDemo",
-    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++81126D7" : "BLSmartPageViewDemo\/",
-    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++F7CB7A3" : "BLSmartPageViewDemoBLSmartPageViewDemo"
+    "47714CA45FBEBDF1626D538049F3820AB6ADD9D4+++3EBC4F0" : "BLSmartPageViewDemo\/",
+    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++AAEE04E" : "BLSmartPageViewDemoBLSmartPageViewDemo",
+    "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++E67E176" : "BLSmartPageViewDemoBLSmartPageViewDemo"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "BLSmartPageViewDemo",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -21,17 +21,17 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/landyu\/BLSmartPageViewDemo.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++2413D0F"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "47714CA45FBEBDF1626D538049F3820AB6ADD9D4+++3EBC4F0"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/landyu\/BLSmartPageViewDemo.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++81126D7"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++AAEE04E"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/landyu\/BLSmartPageViewDemo.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++F7CB7A3"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78C9FC69AC76B2C6488D55D9B652BD5A3F23F6BD+++E67E176"
     }
   ]
 }

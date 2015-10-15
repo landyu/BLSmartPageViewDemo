@@ -14,16 +14,7 @@
 		171ED0D91BA918F9006D3BAE /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 171ED0D41BA918F9006D3BAE /* REMenuItemView.m */; };
 		171ED0DB1BA9196D006D3BAE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 171ED0DA1BA9196D006D3BAE /* UIKit.framework */; };
 		171ED0E41BA952AD006D3BAE /* BLRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171ED0E21BA952AD006D3BAE /* BLRootNavigationController.m */; };
-		172167FB1BABBADB0065A213 /* ButleRoom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 172167F21BABBADB0065A213 /* ButleRoom.plist */; settings = {ASSET_TAGS = (); }; };
-		172167FC1BABBADB0065A213 /* ButleRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172167F31BABBADB0065A213 /* ButleRoom.xib */; settings = {ASSET_TAGS = (); }; };
-		172167FD1BABBADB0065A213 /* LivingDiningRoom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 172167F41BABBADB0065A213 /* LivingDiningRoom.plist */; settings = {ASSET_TAGS = (); }; };
-		172167FE1BABBADB0065A213 /* LivingDiningRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172167F51BABBADB0065A213 /* LivingDiningRoom.xib */; settings = {ASSET_TAGS = (); }; };
-		172167FF1BABBADB0065A213 /* NorthMainBedroom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 172167F61BABBADB0065A213 /* NorthMainBedroom.plist */; settings = {ASSET_TAGS = (); }; };
-		172168001BABBADB0065A213 /* NorthMainBedroom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172167F71BABBADB0065A213 /* NorthMainBedroom.xib */; settings = {ASSET_TAGS = (); }; };
 		172168011BABBADB0065A213 /* PropertyConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 172167F81BABBADB0065A213 /* PropertyConfig.plist */; settings = {ASSET_TAGS = (); }; };
-		172168021BABBADB0065A213 /* SecondBedroom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 172167F91BABBADB0065A213 /* SecondBedroom.plist */; settings = {ASSET_TAGS = (); }; };
-		172168031BABBADB0065A213 /* SecondBedroom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172167FA1BABBADB0065A213 /* SecondBedroom.xib */; settings = {ASSET_TAGS = (); }; };
-		172168061BABBCA30065A213 /* 鸟瞰图.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172168051BABBCA30065A213 /* 鸟瞰图.xib */; settings = {ASSET_TAGS = (); }; };
 		172168131BABE6980065A213 /* BLUIPageJumpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1721680C1BABE6980065A213 /* BLUIPageJumpButton.m */; settings = {ASSET_TAGS = (); }; };
 		172168141BABE6980065A213 /* BLUISceneButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1721680E1BABE6980065A213 /* BLUISceneButton.m */; settings = {ASSET_TAGS = (); }; };
 		172168151BABE6980065A213 /* BLUISwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 172168101BABE6980065A213 /* BLUISwitch.m */; settings = {ASSET_TAGS = (); }; };
@@ -34,6 +25,16 @@
 		172168241BABE6EA0065A213 /* BLCurtainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172168201BABE6EA0065A213 /* BLCurtainViewController.m */; settings = {ASSET_TAGS = (); }; };
 		172168251BABE6EA0065A213 /* BLCurtainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172168211BABE6EA0065A213 /* BLCurtainViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		172168261BABE6EA0065A213 /* BLUICurtainButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 172168231BABE6EA0065A213 /* BLUICurtainButton.m */; settings = {ASSET_TAGS = (); }; };
+		1724BEFE1BCF5E640094BF8B /* 鸟瞰图.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEF51BCF5E640094BF8B /* 鸟瞰图.xib */; settings = {ASSET_TAGS = (); }; };
+		1724BEFF1BCF5E640094BF8B /* ButleRoom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEF61BCF5E640094BF8B /* ButleRoom.plist */; settings = {ASSET_TAGS = (); }; };
+		1724BF001BCF5E640094BF8B /* ButleRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEF71BCF5E640094BF8B /* ButleRoom.xib */; settings = {ASSET_TAGS = (); }; };
+		1724BF011BCF5E640094BF8B /* LivingDiningRoom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEF81BCF5E640094BF8B /* LivingDiningRoom.plist */; settings = {ASSET_TAGS = (); }; };
+		1724BF021BCF5E640094BF8B /* LivingDiningRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEF91BCF5E640094BF8B /* LivingDiningRoom.xib */; settings = {ASSET_TAGS = (); }; };
+		1724BF031BCF5E640094BF8B /* NorthMainBedroom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEFA1BCF5E640094BF8B /* NorthMainBedroom.plist */; settings = {ASSET_TAGS = (); }; };
+		1724BF041BCF5E640094BF8B /* NorthMainBedroom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEFB1BCF5E640094BF8B /* NorthMainBedroom.xib */; settings = {ASSET_TAGS = (); }; };
+		1724BF051BCF5E640094BF8B /* SecondBedroom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEFC1BCF5E640094BF8B /* SecondBedroom.plist */; settings = {ASSET_TAGS = (); }; };
+		1724BF061BCF5E640094BF8B /* SecondBedroom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEFD1BCF5E640094BF8B /* SecondBedroom.xib */; settings = {ASSET_TAGS = (); }; };
+		1724BF0B1BCFD8AF0094BF8B /* BLACView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BF0A1BCFD8AF0094BF8B /* BLACView.xib */; settings = {ASSET_TAGS = (); }; };
 		176124C51BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 176124C41BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.m */; settings = {ASSET_TAGS = (); }; };
 		17619CFF1BB295AE00389414 /* Icon_Activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 17619CFD1BB295AD00389414 /* Icon_Activity.png */; settings = {ASSET_TAGS = (); }; };
 		17619D001BB295AE00389414 /* Icon_Activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17619CFE1BB295AD00389414 /* Icon_Activity@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -43,7 +44,7 @@
 		1762F52F1B92D29E00B4EBE7 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762F52E1B92D29E00B4EBE7 /* Utils.m */; };
 		177986821B8D9CEE00AE0BF1 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1779867D1B8D9CEE00AE0BF1 /* GCDAsyncSocket.m */; };
 		177986831B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1779867F1B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m */; };
-		177986841B8D9CEE00AE0BF1 /* TransmitUdp.m in Sources */ = {isa = PBXBuildFile; fileRef = 177986811B8D9CEE00AE0BF1 /* TransmitUdp.m */; };
+		177F6B741BCE38440037BDE0 /* 杰立户型图.png in Resources */ = {isa = PBXBuildFile; fileRef = 177F6B731BCE38440037BDE0 /* 杰立户型图.png */; settings = {ASSET_TAGS = (); }; };
 		17DA5F391B96F19D003532ED /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F381B96F19D003532ED /* click1.mp3 */; };
 		17DBAD081B74B03B00B26A83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DBAD071B74B03B00B26A83 /* main.m */; };
 		17DBAD0B1B74B03B00B26A83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DBAD0A1B74B03B00B26A83 /* AppDelegate.m */; };
@@ -83,16 +84,7 @@
 		171ED0DE1BA91A08006D3BAE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		171ED0E11BA952AD006D3BAE /* BLRootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLRootNavigationController.h; sourceTree = "<group>"; };
 		171ED0E21BA952AD006D3BAE /* BLRootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLRootNavigationController.m; sourceTree = "<group>"; };
-		172167F21BABBADB0065A213 /* ButleRoom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ButleRoom.plist; path = RoomInfo/ButleRoom.plist; sourceTree = "<group>"; };
-		172167F31BABBADB0065A213 /* ButleRoom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ButleRoom.xib; path = RoomInfo/ButleRoom.xib; sourceTree = "<group>"; };
-		172167F41BABBADB0065A213 /* LivingDiningRoom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LivingDiningRoom.plist; path = RoomInfo/LivingDiningRoom.plist; sourceTree = "<group>"; };
-		172167F51BABBADB0065A213 /* LivingDiningRoom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LivingDiningRoom.xib; path = RoomInfo/LivingDiningRoom.xib; sourceTree = "<group>"; };
-		172167F61BABBADB0065A213 /* NorthMainBedroom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NorthMainBedroom.plist; path = RoomInfo/NorthMainBedroom.plist; sourceTree = "<group>"; };
-		172167F71BABBADB0065A213 /* NorthMainBedroom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NorthMainBedroom.xib; path = RoomInfo/NorthMainBedroom.xib; sourceTree = "<group>"; };
 		172167F81BABBADB0065A213 /* PropertyConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PropertyConfig.plist; path = RoomInfo/PropertyConfig.plist; sourceTree = "<group>"; };
-		172167F91BABBADB0065A213 /* SecondBedroom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecondBedroom.plist; path = RoomInfo/SecondBedroom.plist; sourceTree = "<group>"; };
-		172167FA1BABBADB0065A213 /* SecondBedroom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SecondBedroom.xib; path = RoomInfo/SecondBedroom.xib; sourceTree = "<group>"; };
-		172168051BABBCA30065A213 /* 鸟瞰图.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "鸟瞰图.xib"; path = "RoomInfo/鸟瞰图.xib"; sourceTree = "<group>"; };
 		172168071BABDF700065A213 /* GlobalMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalMacro.h; sourceTree = "<group>"; };
 		1721680B1BABE6980065A213 /* BLUIPageJumpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUIPageJumpButton.h; path = BLCustomClass/BLUIPageJumpButton.h; sourceTree = "<group>"; };
 		1721680C1BABE6980065A213 /* BLUIPageJumpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUIPageJumpButton.m; path = BLCustomClass/BLUIPageJumpButton.m; sourceTree = "<group>"; };
@@ -112,6 +104,16 @@
 		172168211BABE6EA0065A213 /* BLCurtainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLCurtainViewController.xib; path = BLCustomClass/BLCurtainViewController.xib; sourceTree = "<group>"; };
 		172168221BABE6EA0065A213 /* BLUICurtainButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUICurtainButton.h; path = BLCustomClass/BLUICurtainButton.h; sourceTree = "<group>"; };
 		172168231BABE6EA0065A213 /* BLUICurtainButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUICurtainButton.m; path = BLCustomClass/BLUICurtainButton.m; sourceTree = "<group>"; };
+		1724BEF51BCF5E640094BF8B /* 鸟瞰图.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "鸟瞰图.xib"; path = "RoomInfo/鸟瞰图.xib"; sourceTree = "<group>"; };
+		1724BEF61BCF5E640094BF8B /* ButleRoom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ButleRoom.plist; path = RoomInfo/ButleRoom.plist; sourceTree = "<group>"; };
+		1724BEF71BCF5E640094BF8B /* ButleRoom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ButleRoom.xib; path = RoomInfo/ButleRoom.xib; sourceTree = "<group>"; };
+		1724BEF81BCF5E640094BF8B /* LivingDiningRoom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = LivingDiningRoom.plist; path = RoomInfo/LivingDiningRoom.plist; sourceTree = "<group>"; };
+		1724BEF91BCF5E640094BF8B /* LivingDiningRoom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LivingDiningRoom.xib; path = RoomInfo/LivingDiningRoom.xib; sourceTree = "<group>"; };
+		1724BEFA1BCF5E640094BF8B /* NorthMainBedroom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NorthMainBedroom.plist; path = RoomInfo/NorthMainBedroom.plist; sourceTree = "<group>"; };
+		1724BEFB1BCF5E640094BF8B /* NorthMainBedroom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NorthMainBedroom.xib; path = RoomInfo/NorthMainBedroom.xib; sourceTree = "<group>"; };
+		1724BEFC1BCF5E640094BF8B /* SecondBedroom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecondBedroom.plist; path = RoomInfo/SecondBedroom.plist; sourceTree = "<group>"; };
+		1724BEFD1BCF5E640094BF8B /* SecondBedroom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SecondBedroom.xib; path = RoomInfo/SecondBedroom.xib; sourceTree = "<group>"; };
+		1724BF0A1BCFD8AF0094BF8B /* BLACView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLACView.xib; path = BLCustomClass/BLACView.xib; sourceTree = "<group>"; };
 		176124C31BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLGCDKNXTunnellingAsyncUdpSocket.h; path = BLGCDKNXAsyncSocket/BLGCDKNXTunnellingAsyncUdpSocket.h; sourceTree = "<group>"; };
 		176124C41BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLGCDKNXTunnellingAsyncUdpSocket.m; path = BLGCDKNXAsyncSocket/BLGCDKNXTunnellingAsyncUdpSocket.m; sourceTree = "<group>"; };
 		17619CFD1BB295AD00389414 /* Icon_Activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_Activity.png; sourceTree = "<group>"; };
@@ -127,8 +129,7 @@
 		1779867D1B8D9CEE00AE0BF1 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		1779867E1B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		1779867F1B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
-		177986801B8D9CEE00AE0BF1 /* TransmitUdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransmitUdp.h; sourceTree = "<group>"; };
-		177986811B8D9CEE00AE0BF1 /* TransmitUdp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransmitUdp.m; sourceTree = "<group>"; };
+		177F6B731BCE38440037BDE0 /* 杰立户型图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "杰立户型图.png"; path = "../../../../../../Downloads/杰立户型图.png"; sourceTree = "<group>"; };
 		17DA5F381B96F19D003532ED /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		17DBAD021B74B03B00B26A83 /* BLSmartPageViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLSmartPageViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DBAD061B74B03B00B26A83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -200,16 +201,16 @@
 		172168041BABBAE80065A213 /* RoomInfo */ = {
 			isa = PBXGroup;
 			children = (
-				172167F21BABBADB0065A213 /* ButleRoom.plist */,
-				172167F31BABBADB0065A213 /* ButleRoom.xib */,
-				172167F41BABBADB0065A213 /* LivingDiningRoom.plist */,
-				172167F51BABBADB0065A213 /* LivingDiningRoom.xib */,
-				172167F61BABBADB0065A213 /* NorthMainBedroom.plist */,
-				172167F71BABBADB0065A213 /* NorthMainBedroom.xib */,
+				1724BEF51BCF5E640094BF8B /* 鸟瞰图.xib */,
+				1724BEF61BCF5E640094BF8B /* ButleRoom.plist */,
+				1724BEF71BCF5E640094BF8B /* ButleRoom.xib */,
+				1724BEF81BCF5E640094BF8B /* LivingDiningRoom.plist */,
+				1724BEF91BCF5E640094BF8B /* LivingDiningRoom.xib */,
+				1724BEFA1BCF5E640094BF8B /* NorthMainBedroom.plist */,
+				1724BEFB1BCF5E640094BF8B /* NorthMainBedroom.xib */,
+				1724BEFC1BCF5E640094BF8B /* SecondBedroom.plist */,
+				1724BEFD1BCF5E640094BF8B /* SecondBedroom.xib */,
 				172167F81BABBADB0065A213 /* PropertyConfig.plist */,
-				172167F91BABBADB0065A213 /* SecondBedroom.plist */,
-				172167FA1BABBADB0065A213 /* SecondBedroom.xib */,
-				172168051BABBCA30065A213 /* 鸟瞰图.xib */,
 			);
 			name = RoomInfo;
 			sourceTree = "<group>";
@@ -252,8 +253,6 @@
 			children = (
 				177986851B8D9E8D00AE0BF1 /* GCDAsyncSocket */,
 				176124C61BB94167006A8A83 /* BLGCDKNXAsyncSocket */,
-				177986801B8D9CEE00AE0BF1 /* TransmitUdp.h */,
-				177986811B8D9CEE00AE0BF1 /* TransmitUdp.m */,
 				17DDCA121B78B6E500AF415B /* PropertyConfigPhrase.h */,
 				17DDCA131B78B6E500AF415B /* PropertyConfigPhrase.m */,
 				1762F52D1B92D29E00B4EBE7 /* Utils.h */,
@@ -309,6 +308,7 @@
 				172168191BABE6D90065A213 /* BLACViewController.xib */,
 				1721681A1BABE6D90065A213 /* BLUIACButton.h */,
 				1721681B1BABE6D90065A213 /* BLUIACButton.m */,
+				1724BF0A1BCFD8AF0094BF8B /* BLACView.xib */,
 			);
 			name = BLACClass;
 			sourceTree = "<group>";
@@ -391,6 +391,7 @@
 		17DD164F1B75ABED00E0858C /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				177F6B731BCE38440037BDE0 /* 杰立户型图.png */,
 				17619CFD1BB295AD00389414 /* Icon_Activity.png */,
 				17619CFE1BB295AD00389414 /* Icon_Activity@2x.png */,
 				17DDCA0B1B787D6800AF415B /* 资源库 */,
@@ -481,25 +482,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				17DA5F391B96F19D003532ED /* click1.mp3 in Resources */,
+				1724BF051BCF5E640094BF8B /* SecondBedroom.plist in Resources */,
+				177F6B741BCE38440037BDE0 /* 杰立户型图.png in Resources */,
+				1724BF001BCF5E640094BF8B /* ButleRoom.xib in Resources */,
+				1724BF061BCF5E640094BF8B /* SecondBedroom.xib in Resources */,
+				1724BEFE1BCF5E640094BF8B /* 鸟瞰图.xib in Resources */,
 				17619CFF1BB295AE00389414 /* Icon_Activity.png in Resources */,
-				172168021BABBADB0065A213 /* SecondBedroom.plist in Resources */,
+				1724BEFF1BCF5E640094BF8B /* ButleRoom.plist in Resources */,
+				1724BF021BCF5E640094BF8B /* LivingDiningRoom.xib in Resources */,
 				172168251BABE6EA0065A213 /* BLCurtainViewController.xib in Resources */,
-				172168061BABBCA30065A213 /* 鸟瞰图.xib in Resources */,
-				172167FD1BABBADB0065A213 /* LivingDiningRoom.plist in Resources */,
+				1724BF041BCF5E640094BF8B /* NorthMainBedroom.xib in Resources */,
 				17DDCA0C1B787D6800AF415B /* 资源库 in Resources */,
+				1724BF0B1BCFD8AF0094BF8B /* BLACView.xib in Resources */,
 				17619D111BB3E62600389414 /* BLPadSettingViewController.xib in Resources */,
-				172167FB1BABBADB0065A213 /* ButleRoom.plist in Resources */,
 				17DD16511B75AC1200E0858C /* homeDemo.png in Resources */,
-				172168031BABBADB0065A213 /* SecondBedroom.xib in Resources */,
 				1721681D1BABE6D90065A213 /* BLACViewController.xib in Resources */,
 				172168011BABBADB0065A213 /* PropertyConfig.plist in Resources */,
 				17DBAD161B74B03B00B26A83 /* LaunchScreen.xib in Resources */,
+				1724BF031BCF5E640094BF8B /* NorthMainBedroom.plist in Resources */,
 				17DBAD131B74B03B00B26A83 /* Images.xcassets in Resources */,
-				172167FF1BABBADB0065A213 /* NorthMainBedroom.plist in Resources */,
 				17619D001BB295AE00389414 /* Icon_Activity@2x.png in Resources */,
-				172167FE1BABBADB0065A213 /* LivingDiningRoom.xib in Resources */,
-				172167FC1BABBADB0065A213 /* ButleRoom.xib in Resources */,
-				172168001BABBADB0065A213 /* NorthMainBedroom.xib in Resources */,
+				1724BF011BCF5E640094BF8B /* LivingDiningRoom.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +537,6 @@
 				172168151BABE6980065A213 /* BLUISwitch.m in Sources */,
 				171ED0D71BA918F9006D3BAE /* REMenuContainerView.m in Sources */,
 				171ED0D61BA918F9006D3BAE /* REMenu.m in Sources */,
-				177986841B8D9CEE00AE0BF1 /* TransmitUdp.m in Sources */,
 				1721681C1BABE6D90065A213 /* BLACViewController.m in Sources */,
 				172168241BABE6EA0065A213 /* BLCurtainViewController.m in Sources */,
 				1721681E1BABE6D90065A213 /* BLUIACButton.m in Sources */,

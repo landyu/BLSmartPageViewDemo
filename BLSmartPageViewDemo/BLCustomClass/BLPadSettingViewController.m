@@ -8,6 +8,8 @@
 
 #import "BLPadSettingViewController.h"
 #import "BLSettingData.h"
+#import "BLGCDKNXTunnellingAsyncUdpSocket.h"
+#import "GlobalMacro.h"
 
 @interface BLPadSettingViewController ()
 //@property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -50,14 +52,21 @@
 #pragma mark - enent response
 - (IBAction)deviceIpAddressChanged:(UITextField *)sender
 {
-    NSLog(@"device ip = %@", sender.text);
+    LogInfo(@"device ip = %@", sender.text);
 }
 
 - (IBAction)deviceIpAddressEditingDidEnd:(UITextField *)sender
 {
     [BLSettingData sharedSettingData].deviceIPAddress = sender.text;
     [[BLSettingData sharedSettingData] save];
-    NSLog(@"Editing Did End device ip = %@", sender.text);
+    LogInfo(@"Editing Did End device ip = %@", sender.text);
+    BLGCDKNXTunnellingAsyncUdpSocket *tunnellingSocketSharedInstance = [BLGCDKNXTunnellingAsyncUdpSocket sharedInstance];
+    if ([[tunnellingSocketSharedInstance serverIpAddress] isEqualToString:sender.text])
+    {
+        return;
+    }
+    [tunnellingSocketSharedInstance setTunnellingSocketWithClientBindToPort:0 deviceIpAddress:sender.text deviceIpPort:3671 delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    [tunnellingSocketSharedInstance tunnellingServeRestart];
 }
 
 #pragma mark - geters and setters

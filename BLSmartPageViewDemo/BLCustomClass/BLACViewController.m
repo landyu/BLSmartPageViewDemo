@@ -7,11 +7,13 @@
 //
 
 #import "BLACViewController.h"
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
 #import "Utils.h"
+#import "GlobalMacro.h"
 
 @interface BLACViewController ()
 {
+    
     NSString *acButtonObjectName;
     
     NSMutableDictionary *EnviromentTemperatureDict;
@@ -20,7 +22,7 @@
     NSMutableDictionary *ModeDict;
     NSMutableDictionary *OnOffDict;
     
-    AppDelegate *appDelegate;
+    //AppDelegate *appDelegate;
     float senttingTemperatureFeedBackValue;
     //NSString *EnviromentTemperatureDictKey;
 }
@@ -29,6 +31,7 @@
 
 
 @implementation BLACViewController
+@synthesize delegate;
 @synthesize acOnOffButtonOutlet;
 @synthesize acOnOffLabel;
 
@@ -52,8 +55,9 @@
     // Do any additional setup after loading the view from its nib.
     //EnviromentTemperatureDictKey = @"EnviromentTemperature";
     
-    appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    //appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     senttingTemperatureFeedBackValue = 15.0;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tunnellingConnectSuccess) name:TunnellingConnectSuccessNotification object:nil];
 
 }
 
@@ -100,10 +104,10 @@
          }
      }];
     
-    dispatch_async([Utils GlobalUserInitiatedQueue],
-                   ^{
-                       [self initReadACPanelWidgetStatus];
-                   });
+//    dispatch_async([Utils GlobalUserInitiatedQueue],
+//                   ^{
+//                       [self initReadACPanelWidgetStatus];
+//                   });
 }
 
 - (IBAction)acModeButton:(UIButton *)sender
@@ -119,7 +123,7 @@
             return;
         }
         
-        [self blUIButtonTransmitActionWithDestGroupAddress:[ModeDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
+        [self blUIButtonTransmitWriteActionWithDestGroupAddress:[ModeDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
     else if([[sender titleForState:UIControlStateNormal] isEqualToString:@"制热"])
     {
@@ -130,7 +134,7 @@
             return;
         }
         
-        [self blUIButtonTransmitActionWithDestGroupAddress:[ModeDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
+        [self blUIButtonTransmitWriteActionWithDestGroupAddress:[ModeDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
     else if([[sender titleForState:UIControlStateNormal] isEqualToString:@"通风"])
     {
@@ -141,7 +145,7 @@
             return;
         }
         
-        [self blUIButtonTransmitActionWithDestGroupAddress:[ModeDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
+        [self blUIButtonTransmitWriteActionWithDestGroupAddress:[ModeDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
     else if([[sender titleForState:UIControlStateNormal] isEqualToString:@"除湿"])
     {
@@ -152,7 +156,7 @@
             return;
         }
         
-        [self blUIButtonTransmitActionWithDestGroupAddress:[ModeDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
+        [self blUIButtonTransmitWriteActionWithDestGroupAddress:[ModeDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
 
 }
@@ -161,14 +165,14 @@
 {
     NSInteger sendSettingTemperature = senttingTemperatureFeedBackValue - 1;
     
-    [self blUIButtonTransmitActionWithDestGroupAddress:[SettingTemperatureDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendSettingTemperature buttonName:acButtonObjectName valueLength:@"2Byte"];
+    [self blUIButtonTransmitWriteActionWithDestGroupAddress:[SettingTemperatureDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendSettingTemperature buttonName:acButtonObjectName valueLength:@"2Byte"];
 }
 
 - (IBAction)acSettingTemperatureUpButton:(UIButton *)sender
 {
     NSInteger sendSettingTemperature = senttingTemperatureFeedBackValue + 1;
     
-    [self blUIButtonTransmitActionWithDestGroupAddress:[SettingTemperatureDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendSettingTemperature buttonName:acButtonObjectName valueLength:@"2Byte"];
+    [self blUIButtonTransmitWriteActionWithDestGroupAddress:[SettingTemperatureDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendSettingTemperature buttonName:acButtonObjectName valueLength:@"2Byte"];
 }
 
 - (IBAction)acOnOffButton:(UIButton *)sender
@@ -184,7 +188,7 @@
         sendValue = 1;
     }
     
-    [self blUIButtonTransmitActionWithDestGroupAddress:[OnOffDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Bit"];
+    [self blUIButtonTransmitWriteActionWithDestGroupAddress:[OnOffDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Bit"];
 }
 
 - (IBAction)acWindSpeedButton:(UIButton *)sender
@@ -200,7 +204,7 @@
             return;
         }
         
-        [self blUIButtonTransmitActionWithDestGroupAddress:[WindSpeedDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
+        [self blUIButtonTransmitWriteActionWithDestGroupAddress:[WindSpeedDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
     else if([[sender titleForState:UIControlStateNormal] isEqualToString:@"中"])
     {
@@ -211,7 +215,7 @@
             return;
         }
         
-        [self blUIButtonTransmitActionWithDestGroupAddress:[WindSpeedDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
+        [self blUIButtonTransmitWriteActionWithDestGroupAddress:[WindSpeedDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
     else if([[sender titleForState:UIControlStateNormal] isEqualToString:@"低"])
     {
@@ -222,7 +226,7 @@
             return;
         }
         
-        [self blUIButtonTransmitActionWithDestGroupAddress:[WindSpeedDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
+        [self blUIButtonTransmitWriteActionWithDestGroupAddress:[WindSpeedDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
     else if([[sender titleForState:UIControlStateNormal] isEqualToString:@"自动"])
     {
@@ -233,7 +237,7 @@
             return;
         }
         
-        [self blUIButtonTransmitActionWithDestGroupAddress:[WindSpeedDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
+        [self blUIButtonTransmitWriteActionWithDestGroupAddress:[WindSpeedDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
 
 }
@@ -333,14 +337,19 @@
 
 - (void)acEnviromentTemperatureUpdateWithValue:(NSInteger)value
 {
-    NSLog(@"aEnviroment Temperature ");
+    LogInfo(@"aEnviroment Temperature ");
 }
 
 - (void)acSettingTemperatureUpdateWithValue:(NSInteger)value
 {
-    NSLog(@"Setting Temperature = %ld", (long)value);
+    LogInfo(@"Setting Temperature = %ld", (long)value);
     senttingTemperatureFeedBackValue = value;
     [acSettingTemperature setText:[[NSString alloc] initWithFormat:@"%ld", (long)value]];
+}
+
+- (void) tunnellingConnectSuccess
+{
+    [self initReadACPanelWidgetStatus];
 }
 
 - (void)initReadACPanelWidgetStatus
@@ -352,10 +361,11 @@
              NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
              [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
               {
-                  NSLog(@"AC OnOff readFromGroupAddressDict[%@] = %@", key, obj);
+                  LogInfo(@"AC OnOff readFromGroupAddressDict[%@] = %@", key, obj);
                   
-                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"1Bit", @"ValueLength", @"Read", @"CommandType", nil];
-                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                  //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"1Bit", @"ValueLength", @"Read", @"CommandType", nil];
+                  //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                  [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"1Bit"];
               }];
          }
      }];
@@ -367,10 +377,11 @@
              NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
              [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
               {
-                  NSLog(@"AC WindSpeed readFromGroupAddressDict[%@] = %@", key, obj);
+                  LogInfo(@"AC WindSpeed readFromGroupAddressDict[%@] = %@", key, obj);
                   
-                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"1Byte", @"ValueLength", @"Read", @"CommandType", nil];
-                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                  //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"1Byte", @"ValueLength", @"Read", @"CommandType", nil];
+                  //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                  [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"1Byte"];
               }];
          }
      }];
@@ -382,10 +393,11 @@
              NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
              [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
               {
-                  NSLog(@"AC Mode readFromGroupAddressDict[%@] = %@", key, obj);
+                  LogInfo(@"AC Mode readFromGroupAddressDict[%@] = %@", key, obj);
                   
-                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"1Byte", @"ValueLength", @"Read", @"CommandType", nil];
-                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                  //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"1Byte", @"ValueLength", @"Read", @"CommandType", nil];
+                  //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                  [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"1Byte"];
               }];
          }
      }];
@@ -397,10 +409,11 @@
              NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
              [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
               {
-                  NSLog(@"Setting TemperatureDict readFromGroupAddressDict[%@] = %@", key, obj);
+                  LogInfo(@"Setting TemperatureDict readFromGroupAddressDict[%@] = %@", key, obj);
                   
-                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"2Byte", @"ValueLength", @"Read", @"CommandType", nil];
-                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                  //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"2Byte", @"ValueLength", @"Read", @"CommandType", nil];
+                  //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                  [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"2Byte"];
               }];
          }
      }];
@@ -412,10 +425,11 @@
              NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
              [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
               {
-                  NSLog(@"Setting TemperatureDict readFromGroupAddressDict[%@] = %@", key, obj);
+                  LogInfo(@"Setting TemperatureDict readFromGroupAddressDict[%@] = %@", key, obj);
                   
-                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"2Byte", @"ValueLength", @"Read", @"CommandType", nil];
-                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+//                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"2Byte", @"ValueLength", @"Read", @"CommandType", nil];
+//                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                  [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"2Byte"];
               }];
          }
      }];
@@ -423,13 +437,43 @@
 
 }
 
-#pragma mark Send Write Command
-- (void) blUIButtonTransmitActionWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength
+#pragma mark Send Write Read Command
+- (void) blUIButtonTransmitWriteActionWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength
 {
+    SEL selector = @selector(blACSendWithDestGroupAddress:value:buttonName:valueLength:commandType:);
     
-    NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:destGroupAddress, @"GroupAddress",  [NSString stringWithFormat: @"%ld", (long)value], @"Value", valueLength, @"ValueLength", @"Write", @"CommandType", nil];
-    [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+    if ([delegate respondsToSelector:selector])
+    {
+        [delegate blACSendWithDestGroupAddress:destGroupAddress value:value buttonName:name valueLength:valueLength commandType:@"Write"];
+    }
+    //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:destGroupAddress, @"GroupAddress",  [NSString stringWithFormat: @"%ld", (long)value], @"Value", valueLength, @"ValueLength", @"Write", @"CommandType", nil];
+    //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+}
+
+- (void) blUIButtonTransmitReadActionWithDestGroupAddress:(NSString *)destGroupAddress  valueLength:(NSString *)valueLength
+{
+    SEL selector = @selector(blACSendWithDestGroupAddress:value:buttonName:valueLength:commandType:);
+    
+    if ([delegate respondsToSelector:selector])
+    {
+        [delegate blACSendWithDestGroupAddress:destGroupAddress value:0 buttonName:nil valueLength:valueLength commandType:@"Read"];
+    }
+    //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:destGroupAddress, @"GroupAddress", valueLength, @"ValueLength", @"Read", @"CommandType", nil];
+    //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+}
+
+- (void) blUIButtonTransmitInitReadActionWithDestGroupAddress:(NSString *)destGroupAddress  valueLength:(NSString *)valueLength
+{
+    SEL selector = @selector(blACInitReadWithDestGroupAddress:value:buttonName:valueLength:);
+    
+    if ([delegate respondsToSelector:selector])
+    {
+        [delegate blACInitReadWithDestGroupAddress:destGroupAddress value:0 buttonName:nil valueLength:valueLength];
+    }
+    //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:destGroupAddress, @"GroupAddress", valueLength, @"ValueLength", @"Read", @"CommandType", nil];
+    //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
 }
 
 @end
+
 

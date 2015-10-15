@@ -10,12 +10,16 @@
 
 @interface BLACViewController : UIViewController
 
+
 - (void) initACPropertyWithDictionary:(NSMutableDictionary *)acPropertyDict buttonName:(NSString *)acButtonName;
+- (void)initReadACPanelWidgetStatus;
 - (BOOL)acOnOffButtonStatusUpdateWithValue:(NSInteger)value;
 - (void)acWindSpeedButtonStatusUpdateWithValue:(NSInteger)value;
 - (void)acModeButtonStatusUpdateWithValue:(NSInteger)value;
 - (void)acEnviromentTemperatureUpdateWithValue:(NSInteger)value;
 - (void)acSettingTemperatureUpdateWithValue:(NSInteger)value;
+
+@property (weak) id delegate;
 
 @property (strong, nonatomic) IBOutlet UILabel *acOnOffLabel;
 @property (strong, nonatomic) IBOutlet UIButton *acOnOffButtonOutlet;
@@ -46,5 +50,10 @@
 - (IBAction)acSettingTemperatureUpButton:(UIButton *)sender;
 
 
+@end
 
+@protocol ACProcessDataDelegate
+@optional
+- (void) blACSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType;
+- (void) blACInitReadWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength;
 @end

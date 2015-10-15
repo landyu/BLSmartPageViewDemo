@@ -22,17 +22,17 @@
 
 +(dispatch_queue_t) GlobalUserInitiatedQueue
 {
-    return dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+    return dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);  //DISPATCH_QUEUE_PRIORITY_HIGH    DISPATCH_QUEUE_PRIORITY_DEFAULT
 }
 
 +(dispatch_queue_t) GlobalUtilityQueue
 {
-    return dispatch_get_global_queue(QOS_CLASS_UTILITY, 0);
+    return dispatch_get_global_queue(QOS_CLASS_UTILITY, 0);  //DISPATCH_QUEUE_PRIORITY_LOW
 }
 
 +(dispatch_queue_t) GlobalBackgroundQueue
 {
-    return dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0);
+    return dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0); //DISPATCH_QUEUE_PRIORITY_BACKGROUND
 }
 
 @end

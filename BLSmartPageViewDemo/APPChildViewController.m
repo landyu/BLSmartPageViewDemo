@@ -7,8 +7,10 @@
 //
 
 #import "APPChildViewController.h"
-#import "ViewController.h"
-#import "AppDelegate.h"
+#import <AVFoundation/AVFoundation.h>
+//#import "ViewController.h"
+//#import "AppDelegate.h"
+#import "BLGCDKNXTunnellingAsyncUdpSocket.h"
 #import "Utils.h"
 #import "BLUISwitch.h"
 #import "BLUISceneButton.h"
@@ -25,7 +27,8 @@
 {
     //dispatch_queue_t transmitActionQueue;
     //NSMutableArray * childTransmitDataFIFO;
-    AppDelegate *appDelegate;
+    //AppDelegate *appDelegate;
+    BLGCDKNXTunnellingAsyncUdpSocket *tunnellingAsyncUdpSocketSharedInstance;
     //NSString *widgetPlistPath;
     NSMutableDictionary *viewNibPlistDict;
     UIViewController  *activeVC;
@@ -53,7 +56,8 @@
     phywidth = size.width;
     phyheight = size.height;
     
-    appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    //appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    tunnellingAsyncUdpSocketSharedInstance = [BLGCDKNXTunnellingAsyncUdpSocket sharedInstance];
     //transmitActionQueue = appDelegate.transmitQueue;
     //childTransmitDataFIFO = appDelegate.transmitDataFIFO;
     
@@ -61,6 +65,7 @@
     viewNibPlistDict = [[NSMutableDictionary alloc]initWithContentsOfFile:widgetPlistPath];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvFromBus:) name:@"BL.BLSmartPageViewDemo.RecvFromBus" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tunnellingConnectSuccess) name:TunnellingConnectSuccessNotification object:nil];
     
     dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, 150ull * NSEC_PER_MSEC);
     
@@ -148,7 +153,7 @@
     
     //__block NSInteger transmitValue;
     
-    NSLog(@"SwitchButtonPressd #%ld, objName = %@", (long)self.index, sender.objName);
+    LogInfo(@"SwitchButtonPressd #%ld, objName = %@", (long)self.index, sender.objName);
     [self playClickSound];
     
     if (activeVC != nil)
@@ -235,7 +240,7 @@
 {
     //__block NSInteger transmitValue;
     
-    NSLog(@"SceneButtonPressd #%ld, objName = %@", (long)self.index, sender.objName);
+    LogInfo(@"SceneButtonPressd #%ld, objName = %@", (long)self.index, sender.objName);
     [self playClickSound];
     
     if (activeVC != nil)
@@ -287,26 +292,34 @@
 {
     [self playClickSound];
     //[self playClickSound];
-    if (sender.acViewController == nil)
-    {
-//        acVC = [[BLACViewController alloc] init];
-//        acVC.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
-//        //acVC.view.backgroundColor = [UIColor clearColor];
-//        [self.view addSubview:acVC.view];
-    }
-    else
+//    if (sender.acViewController == nil)
+//    {
+////        acVC = [[BLACViewController alloc] init];
+////        acVC.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
+////        //acVC.view.backgroundColor = [UIColor clearColor];
+////        [self.view addSubview:acVC.view];
+//    }
+//    else
     {
         if (activeVC != nil)
         {
             [activeVC.view removeFromSuperview];
             activeVC = nil;
+            sender.acViewController.view = nil;
             if (self.pageController.dataSource == nil)
             {
                 self.pageController.dataSource = self.pageControllerDataSource;
             }
         }
+        UIView *acView = [[[NSBundle mainBundle] loadNibNamed:@"BLACView" owner:sender.acViewController options:nil] firstObject];
+        acView.frame = CGRectMake(phywidth/2.0 - 589.0/2.0, phyheight/2.0 - 298.0/2.0, 589, 298);
+        sender.acViewController.view = acView;
+        //dispatch_async([Utils GlobalUserInitiatedQueue],
+                       //^{
+                         [sender.acViewController initReadACPanelWidgetStatus];
+                       //});
         activeVC = sender.acViewController;
-        [self.view addSubview:sender.acViewController.view];
+        [self.view addSubview:activeVC.view];
     }
 
 }
@@ -318,8 +331,9 @@
     //dispatch_async([Utils GlobalUserInteractiveQueue],
                    //^{
                        acButton.acViewController = [[BLACViewController alloc] init];
-                       acButton.acViewController.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
-                       
+                       acButton.acViewController.delegate = self;
+                       //acButton.acViewController.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
+                       //acButton.acViewController.view =
                        if (!nibPlistDict) {
                            return;
                        }
@@ -371,12 +385,22 @@
     
 }
 
+- (void) blACSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType
+{
+    [tunnellingAsyncUdpSocketSharedInstance tunnellingSendWithDestGroupAddress:destGroupAddress value:value buttonName:name valueLength:valueLength commandType:commangType];
+}
+- (void) blACInitReadWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength
+{
+    [tunnellingAsyncUdpSocketSharedInstance tunnellingSendWithDestGroupAddress:destGroupAddress value:value buttonName:name valueLength:valueLength commandType:@"Read"];
+}
+
 #pragma mark Curtain Button
 - (void) initCurtainButtonWithCurtainButtonObject:(BLUICurtainButton *)curtainButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
 {
     //dispatch_sync([Utils GlobalUserInteractiveQueue],
                    //^{
                        curtainButton.curtainViewController = [[BLCurtainViewController alloc] init];
+                       curtainButton.curtainViewController.delegate = self;
                        curtainButton.curtainViewController.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
                        
                        if (!nibPlistDict) {
@@ -423,6 +447,11 @@
     }
 }
 
+- (void) blCurtainSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType
+{
+    [tunnellingAsyncUdpSocketSharedInstance tunnellingSendWithDestGroupAddress:destGroupAddress value:value buttonName:name valueLength:valueLength commandType:commangType];
+}
+
 #pragma mark Page Jump Button
 - (void)pageJumpButtonPressd:(BLUIPageJumpButton *)sender
 {
@@ -435,16 +464,22 @@
 - (void) blUIButtonTransmitActionWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength
 {
 
-    NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:destGroupAddress, @"GroupAddress",  [NSString stringWithFormat: @"%ld", (long)value], @"Value", valueLength, @"ValueLength", @"Write", @"CommandType", nil];
-    [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+    //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:destGroupAddress, @"GroupAddress",  [NSString stringWithFormat: @"%ld", (long)value], @"Value", valueLength, @"ValueLength", @"Write", @"CommandType", nil];
+    //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+    [tunnellingAsyncUdpSocketSharedInstance tunnellingSendWithDestGroupAddress:destGroupAddress value:value buttonName:name valueLength:valueLength commandType:@"Write"];
 }
 
 #pragma mark Receive From Bus
 - (void) recvFromBus: (NSNotification*) notification
 {
     NSDictionary *dict = [notification userInfo];
-    NSLog(@"receive data from bus at NibName = %@ Scene %ld dict = %@", self.nibName,(long)self.index, dict);
+    //NSLog(@"receive data from bus at NibName = %@ Scene %ld dict = %@", self.nibName,(long)self.index, dict);
     [self actionWithGroupAddress:dict[@"Address"] withObjectValue:[dict[@"Value"] intValue]];
+}
+
+- (void) tunnellingConnectSuccess
+{
+    [self getAllWidgetsStatus];
 }
 
 //-(void)dealloc
@@ -488,12 +523,13 @@
                              NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
                              [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
                               {
-                                  NSLog(@"readFromGroupAddressDict[%@] = %@", key, obj);
+                                  //NSLog(@"readFromGroupAddressDict[%@] = %@", key, obj);
                                   if ([readFromGroupAddressDict[key] isEqualToString:groupAddress])
                                   {
-                                      
-                                      [self blUISwitchUpdateActionWithButtonObject:switchButton buttonValue:objectValue buttonName:objectName valueLength:valueLength];
-                                      
+                                      dispatch_async(dispatch_get_main_queue(),
+                                                     ^{
+                                                         [self blUISwitchUpdateActionWithButtonObject:switchButton buttonValue:objectValue buttonName:objectName valueLength:valueLength];
+                                                     });
                                   }
                               }];
                          }
@@ -523,40 +559,43 @@
                                       NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
                                       [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
                                        {
-                                           NSLog(@"readFromGroupAddressDict[%@] = %@", key, obj);
+                                           //NSLog(@"readFromGroupAddressDict[%@] = %@", key, obj);
                                            if ([readFromGroupAddressDict[key] isEqualToString:groupAddress])
                                            {
-                                               if ([acObjectKey isEqualToString:@"OnOff"])
-                                               {
-                                                   BOOL ret = [acButton.acViewController acOnOffButtonStatusUpdateWithValue:objectValue];
-                                                   
-                                                   if (ret == YES)
-                                                   {
-                                                       [acButton setSelected:YES];
-                                                   }
-                                                   else
-                                                   {
-                                                       [acButton setSelected:NO];
-                                                   }
-                                               }
-                                               else if([acObjectKey isEqualToString:@"WindSpeed"])
-                                               {
-                                                   [acButton.acViewController acWindSpeedButtonStatusUpdateWithValue:objectValue];
-                                               }
-                                               else if([acObjectKey isEqualToString:@"Mode"])
-                                               {
-                                                   [acButton.acViewController acModeButtonStatusUpdateWithValue:objectValue];
-
-                                               }
-                                               else if([acObjectKey isEqualToString:@"EnviromentTemperature"])
-                                               {
-                                                   NSString *enviromentTemperatureValue = [[NSString alloc] initWithFormat:@"%ld", (long)objectValue];
-                                                   [acButton.acEnviromentTemperatureLabel setText:enviromentTemperatureValue];
-                                               }
-                                               else if([acObjectKey isEqualToString:@"SettingTemperature"])
-                                               {
-                                                   [acButton.acViewController acSettingTemperatureUpdateWithValue:objectValue];
-                                               }
+                                               dispatch_async(dispatch_get_main_queue(),
+                                                              ^{
+                                                                  if ([acObjectKey isEqualToString:@"OnOff"])
+                                                                  {
+                                                                      BOOL ret = [acButton.acViewController acOnOffButtonStatusUpdateWithValue:objectValue];
+                                                                      
+                                                                      if (ret == YES)
+                                                                      {
+                                                                          [acButton setSelected:YES];
+                                                                      }
+                                                                      else
+                                                                      {
+                                                                          [acButton setSelected:NO];
+                                                                      }
+                                                                  }
+                                                                  else if([acObjectKey isEqualToString:@"WindSpeed"])
+                                                                  {
+                                                                      [acButton.acViewController acWindSpeedButtonStatusUpdateWithValue:objectValue];
+                                                                  }
+                                                                  else if([acObjectKey isEqualToString:@"Mode"])
+                                                                  {
+                                                                      [acButton.acViewController acModeButtonStatusUpdateWithValue:objectValue];
+                                                                      
+                                                                  }
+                                                                  else if([acObjectKey isEqualToString:@"EnviromentTemperature"])
+                                                                  {
+                                                                      NSString *enviromentTemperatureValue = [[NSString alloc] initWithFormat:@"%ld", (long)objectValue];
+                                                                      [acButton.acEnviromentTemperatureLabel setText:enviromentTemperatureValue];
+                                                                  }
+                                                                  else if([acObjectKey isEqualToString:@"SettingTemperature"])
+                                                                  {
+                                                                      [acButton.acViewController acSettingTemperatureUpdateWithValue:objectValue];
+                                                                  }
+                                                              });
                                            }
                                        }];
                                   }
@@ -565,6 +604,55 @@
                      }];
                     
                     break;
+                }
+            }
+            else if([subView isMemberOfClass:[BLUICurtainButton class]])
+            {
+                BLUICurtainButton *curtainButton = (BLUICurtainButton *) subView;
+                if ([curtainButton.objName isEqualToString:objectName])
+                {
+                    [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                     {
+                         NSString *curtainTypetKey = key;
+                         if ([curtainTypetKey isEqualToString:@"YarnCurtain"])
+                         {
+                             NSDictionary *curtainObjectDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                             [curtainObjectDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                              {
+                                  NSString *curtainObjectKey = key;
+                                  if ([curtainObjectKey isEqualToString:@"StatusHeight"])
+                                  {
+                                      if ([groupAddress isEqualToString:obj])
+                                      {
+                                          dispatch_async(dispatch_get_main_queue(),
+                                                         ^{
+                                                            [curtainButton.curtainViewController yarnCurtainPositionChangedWithValue:objectValue];
+                                                         });
+                                      }
+                                  }
+                              }];
+                             
+                         }
+                         else if([curtainTypetKey isEqualToString:@"ClothCurtain"])
+                         {
+                             NSDictionary *curtainObjectDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                             [curtainObjectDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                              {
+                                  NSString *curtainObjectKey = key;
+                                  if ([curtainObjectKey isEqualToString:@"StatusHeight"])
+                                  {
+                                      if ([groupAddress isEqualToString:obj])
+                                      {
+                                          dispatch_async(dispatch_get_main_queue(),
+                                                         ^{
+                                                             [curtainButton.curtainViewController clothCurtainPositionChangedWithValue:objectValue];
+                                                         });
+                                      }
+                                  }
+                              }];
+
+                         }
+                     }];
                 }
             }
 
@@ -617,7 +705,7 @@
     if (!viewNibPlistDict) {
         return;
     }
-    //NSMutableDictionary *nibPlistDict = [[NSMutableDictionary alloc]initWithContentsOfFile:widgetPlistPath];
+    NSMutableDictionary *groupAddressDict = [[NSMutableDictionary alloc]init];
     
     
     //__block NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:temDict[key]];
@@ -633,10 +721,11 @@
                   NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:objectPropertyDict[key]];
                   [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
                    {
-                       NSLog(@"readFromGroupAddressDict[%@] = %@", key, readFromGroupAddressDict[key]);
-
-                       NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", valueLength, @"ValueLength", @"Read", @"CommandType", nil];
-                       [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+                       if ([groupAddressDict objectForKey:readFromGroupAddressDict[key]] == nil)
+                       {
+                           [groupAddressDict setValue:@"ReadFromAddress" forKey:readFromGroupAddressDict[key]];
+                           [tunnellingAsyncUdpSocketSharedInstance tunnellingSendWithDestGroupAddress:readFromGroupAddressDict[key] value:0 buttonName:nil valueLength:valueLength commandType:@"Read"];
+                       }
                    }];
               }
           }];

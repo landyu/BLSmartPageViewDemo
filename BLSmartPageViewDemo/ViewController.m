@@ -75,7 +75,7 @@
     
     [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished)
      {
-         NSLog(@"set View Controllers Done...");
+         LogInfo(@"set View Controllers Done...");
      }];
     
     [self addChildViewController:self.pageController];
@@ -156,7 +156,7 @@
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     // The selected item reflected in the page indicator.
-    NSLog(@"presentation Index For Page View Controller Done...");
+    LogInfo(@"presentation Index For Page View Controller Done...");
     return pageIndicatorIndex;
 }
 
@@ -164,7 +164,7 @@
 - (void)roomSelect:(UIButton *)sender
 {
     CGRect buttonRect = sender.frame;
-    NSLog(@"roomSelect @%f @%f", buttonRect.origin.x, buttonRect.origin.y);
+    LogInfo(@"roomSelect @%f @%f", buttonRect.origin.x, buttonRect.origin.y);
     if (self.menu.isOpen)
         return [self.menu close];
     
@@ -174,7 +174,7 @@
 
 - (void)setBarTintColor:(id)sender
 {
-    NSLog(@"setBarTintColor");
+    LogInfo(@"setBarTintColor");
 }
 
 - (void)pageJump:(NSNotification*) notification
@@ -218,7 +218,7 @@
 }
 - (void)setttingButtonPressed:(UIButton *)sender
 {
-    NSLog(@"setttingButtonPressed");
+    LogInfo(@"setttingButtonPressed");
     [self.navigationController pushViewController:self.settingViewController animated:YES];
     //[self.navigationController addChildViewController:self.settingPageNavigationController];
     //[self.settingPageNavigationController.view show];
@@ -247,7 +247,7 @@
     //NSLog(@"%@", self.sceneListDict);
     //NSLog(@"%@", appDelegate.sceneListDictionarySharedInstance);
     
-    NSLog(@"nib name = %@", [self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)index]]);
+    LogInfo(@"nib name = %@", [self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)index]]);
     //NSLog(@"key = %@", [NSString stringWithFormat: @"%d", index]);
     //NSString *nibName = [self.sceneListDict valueForKey:[NSString stringWithFormat: @"%d", index]];
     
@@ -317,11 +317,11 @@
     
     
     [self.menu setClosePreparationBlock:^{
-        NSLog(@"Menu will close");
+        LogInfo(@"Menu will close");
     }];
     
     [self.menu setCloseCompletionHandler:^{
-        NSLog(@"Menu did close");
+        LogInfo(@"Menu did close");
     }];
 }
 
@@ -365,7 +365,7 @@
                                                                                                                                  pageIndicatorIndex = [key integerValue];
                                                                                                                                  [self.pageController setViewControllers:[NSArray arrayWithObject:[self viewControllerAtIndex:pageIndicatorIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished)
                                                                                                                                   {
-                                                                                                                                      NSLog(@"back to %@...", nibName);
+                                                                                                                                      LogInfo(@"back to %@...", nibName);
                                                                                                                                       weakSelf.title = nibName;
                                                                                                                                   }];
                                                                                                                                  *stop = YES;
@@ -394,7 +394,7 @@
                                                                                     pageIndicatorIndex = [key integerValue];
                                                                                     [self.pageController setViewControllers:[NSArray arrayWithObject:[self viewControllerAtIndex:pageIndicatorIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished)
                                                                                      {
-                                                                                         NSLog(@"back to %@...", nibName);
+                                                                                         LogInfo(@"back to %@...", nibName);
                                                                                          weakSelf.title = nibName;
                                                                                      }];
                                                                                     *stop = YES;

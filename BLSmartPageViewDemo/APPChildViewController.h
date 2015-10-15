@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 
 
-@interface APPChildViewController : UIViewController<AVAudioPlayerDelegate>
+@interface APPChildViewController : UIViewController
 {
 
 }
