@@ -94,6 +94,8 @@ typedef enum TunnellingServeState TunnellingServeState;
     NSInvocationOperation *connectOperation;
     NSInvocationOperation *heartBeatOperation;
     
+    //NSMutableDictionary *overallReceivedKnxDataDict;
+    
     //NSString *connectAndHeartBeatQueueFinishNotification;
     
 }
@@ -242,6 +244,10 @@ withFilterContext:(id)filterContext
         }
         else if((testByte[0] == 0x06) && (testByte[1] == 0x10) && (testByte[2] == 0x02) && (testByte[3] == 0x0A))
         {
+            if (tunnellingConnectState != TunnellingSocketNoError)
+            {
+                return;
+            }
             if (testByte[6] == CID)
             {
                 LogInfo(@"Disconnect  CID : %u", CID);  //CID
@@ -371,6 +377,10 @@ withFilterContext:(id)filterContext
     }
     
     LogInfo(@"Receive Address : %@  Value : %@", groupAddress, value);
+    dispatch_async([Utils GlobalBackgroundQueue],
+                   ^{
+                       [self.overallReceivedKnxDataDict setValue:value forKey:groupAddress];
+                   });
     NSDictionary *eibBusDataDict = [NSDictionary dictionaryWithObjectsAndKeys:groupAddress, @"Address", value, @"Value",nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"BL.BLSmartPageViewDemo.RecvFromBus" object:self userInfo:eibBusDataDict];
     
@@ -1148,6 +1158,20 @@ withFilterContext:(id)filterContext
     return port;
 }
 
+
+#pragma mark - getters and setters
+- (NSMutableDictionary *) overallReceivedKnxDataDict
+{
+    if (!_overallReceivedKnxDataDict)
+    {
+        _overallReceivedKnxDataDict =
+        ({
+            NSMutableDictionary * mutableDictionary = [[NSMutableDictionary alloc] init];
+            mutableDictionary;
+        });
+    }
+    return _overallReceivedKnxDataDict;
+}
 //- (void) tunnellingReconnectTimerStart:(BOOL)start
 //{
 //    if (tunnellingReconnectTimer == nil)

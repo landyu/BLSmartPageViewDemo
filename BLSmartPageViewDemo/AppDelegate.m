@@ -26,6 +26,7 @@
 @synthesize viewControllerNavigationItemSharedInstance;
 @synthesize sceneListDictionarySharedInstance;
 @synthesize transmitDataFIFO;
+@synthesize allReceivedKnxDataDict;
 
 
 
@@ -72,8 +73,6 @@
 //                       }
 //                   });
     //add navigator
-    
-    
     
     
     
@@ -179,6 +178,7 @@
 //{
 //    [[NSNotificationCenter defaultCenter] postNotificationName:TransmitQueueDataUpdateNotification object:nil];
 //}
+
 
 
 @end

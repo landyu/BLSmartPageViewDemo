@@ -49,7 +49,7 @@
 
     self.view.tag = self.index;
     
-    NSLog(@"view count = %lu", (unsigned long)self.view.subviews.count);
+    LogInfo(@"view count = %lu", (unsigned long)self.view.subviews.count);
     
     CGRect rect = [self.view bounds];
     CGSize size = rect.size;
@@ -67,10 +67,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvFromBus:) name:@"BL.BLSmartPageViewDemo.RecvFromBus" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tunnellingConnectSuccess) name:TunnellingConnectSuccessNotification object:nil];
     
-    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, 150ull * NSEC_PER_MSEC);
+    //dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, 150ull * NSEC_PER_MSEC);
     
-    dispatch_after(delayTime, [Utils GlobalMainQueue],
-    //dispatch_async([Utils GlobalMainQueue],
+    //dispatch_after(delayTime, [Utils GlobalMainQueue],
+    dispatch_async([Utils GlobalMainQueue],
                    ^{
                        for (UIView *subView in self.view.subviews)
                        {
@@ -305,19 +305,21 @@
         {
             [activeVC.view removeFromSuperview];
             activeVC = nil;
-            sender.acViewController.view = nil;
+            //sender.acViewController.view = nil;
             if (self.pageController.dataSource == nil)
             {
                 self.pageController.dataSource = self.pageControllerDataSource;
             }
         }
-        UIView *acView = [[[NSBundle mainBundle] loadNibNamed:@"BLACView" owner:sender.acViewController options:nil] firstObject];
-        acView.frame = CGRectMake(phywidth/2.0 - 589.0/2.0, phyheight/2.0 - 298.0/2.0, 589, 298);
-        sender.acViewController.view = acView;
+        //UIView *acView = [[[NSBundle mainBundle] loadNibNamed:@"BLACView" owner:sender.acViewController options:nil] firstObject];
+        //acView.frame = CGRectMake(phywidth/2.0 - 589.0/2.0, phyheight/2.0 - 298.0/2.0, 589, 298);
+        //sender.acViewController.view = acView;
+        [sender.acViewController initACPanelView];
         //dispatch_async([Utils GlobalUserInitiatedQueue],
                        //^{
                          [sender.acViewController initReadACPanelWidgetStatus];
                        //});
+        
         activeVC = sender.acViewController;
         [self.view addSubview:activeVC.view];
     }
@@ -332,6 +334,9 @@
                    //^{
                        acButton.acViewController = [[BLACViewController alloc] init];
                        acButton.acViewController.delegate = self;
+                       acButton.acViewController.overallRecevedKnxDataDict = tunnellingAsyncUdpSocketSharedInstance.overallReceivedKnxDataDict;
+                       //acButton.acViewController.view = nil;
+                        LogInfo(@"acButton.acViewController.view = %@", acButton.acViewController.view);
                        //acButton.acViewController.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
                        //acButton.acViewController.view =
                        if (!nibPlistDict) {
@@ -401,9 +406,10 @@
                    //^{
                        curtainButton.curtainViewController = [[BLCurtainViewController alloc] init];
                        curtainButton.curtainViewController.delegate = self;
-                       curtainButton.curtainViewController.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
+                       curtainButton.curtainViewController.overallRecevedKnxDataDict = tunnellingAsyncUdpSocketSharedInstance.overallReceivedKnxDataDict;
                        
-                       if (!nibPlistDict) {
+                       if (!nibPlistDict)
+                       {
                            return;
                        }
                        
@@ -426,20 +432,25 @@
 {
     [self playClickSound];
     //[self playClickSound];
-    if (sender.curtainViewController == nil)
-    {
-        //        acVC = [[BLACViewController alloc] init];
-        //        acVC.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
-        //        //acVC.view.backgroundColor = [UIColor clearColor];
-        //        [self.view addSubview:acVC.view];
-    }
-    else
+//    if (sender.curtainViewController == nil)
+//    {
+//        //        acVC = [[BLACViewController alloc] init];
+//        //        acVC.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
+//        //        //acVC.view.backgroundColor = [UIColor clearColor];
+//        //        [self.view addSubview:acVC.view];
+//    }
+//    else
     {
         if (activeVC != nil)
         {
             [activeVC.view removeFromSuperview];
             activeVC = nil;
         }
+        [sender.curtainViewController initPanelView];
+        //dispatch_async([Utils GlobalUserInitiatedQueue],
+        //^{
+        [sender.curtainViewController initReadCurtainPanelWidgetStatus];
+        //});
         activeVC = sender.curtainViewController;
         [self.view addSubview:sender.curtainViewController.view];
         //self.parentViewController

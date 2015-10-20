@@ -1,14 +1,14 @@
 //
-//  BLACView.m
+//  BLUIImageView.m
 //  BLSmartPageViewDemo
 //
-//  Created by Landyu on 15/10/15.
+//  Created by Landyu on 15/10/16.
 //  Copyright © 2015年 Landyu. All rights reserved.
 //
 
-#import "BLACView.h"
+#import "BLUIImageView.h"
 
-@implementation BLACView
+@implementation BLUIImageView
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -17,6 +17,5 @@
     // Drawing code
 }
 */
-
 
 @end

@@ -6,16 +6,10 @@
 //  Copyright (c) 2015年 Landyu. All rights reserved.
 //
 
-
 #import "BLACViewController.h"
-#import "GlobalMacro.h"
 //#import "AppDelegate.h"
 #import "Utils.h"
-
-#import "BLACView.h"
-#import "BLUISwitch.h"
-#import "BLUILabel.h"
-#import "BLUIImageView.h"
+#import "GlobalMacro.h"
 
 @interface BLACViewController ()
 {
@@ -27,10 +21,6 @@
     NSMutableDictionary *WindSpeedDict;
     NSMutableDictionary *ModeDict;
     NSMutableDictionary *OnOffDict;
-    
-    NSMutableDictionary *overallRecevedKnxDataDict;
-    
-    UIView *acView;
     
     //AppDelegate *appDelegate;
     float senttingTemperatureFeedBackValue;
@@ -59,18 +49,17 @@
 
 
 @synthesize acSettingTemperature;
-@synthesize overallRecevedKnxDataDict;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    //EnviromentTemperatureDictKey = @"EnviromentTemperature";
-
-    //appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    //senttingTemperatureFeedBackValue = 15.0;
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tunnellingConnectSuccess) name:TunnellingConnectSuccessNotification object:nil];
-
-}
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    // Do any additional setup after loading the view from its nib.
+//    //EnviromentTemperatureDictKey = @"EnviromentTemperature";
+//    
+//    //appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+//    senttingTemperatureFeedBackValue = 15.0;
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tunnellingConnectSuccess) name:TunnellingConnectSuccessNotification object:nil];
+//
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -78,14 +67,14 @@
 }
 
 /*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 - (void) initACPropertyWithDictionary:(NSMutableDictionary *)acPropertyDict buttonName:(NSString *)acButtonName
 {
@@ -122,113 +111,6 @@
                        //[self initReadACPanelWidgetStatus];
                        [self readACPanelTopDisplayStatus];
                    });
-}
-
-- (void) initACPanelView
-{
-    if (acView == nil)
-    {
-        CGRect rect = [self.view bounds];
-        CGSize size = rect.size;
-        CGFloat phywidth = size.width;
-        CGFloat phyheight = size.height;
-        acView = [[[NSBundle mainBundle] loadNibNamed:@"BLACPanelView" owner:self options:nil] firstObject];
-        acView.frame = CGRectMake(phywidth/2.0 - 589.0/2.0, phyheight/2.0 - 298.0/2.0, 589, 298);
-        self.view = acView;
-        for (UIView *subView in self.view.subviews)
-        {
-            if ([subView isMemberOfClass:[BLUISwitch class]])
-            {
-                BLUISwitch *switchButton = (BLUISwitch *) subView;
-                if ([switchButton.objName isEqualToString:@"开关"])
-                {
-                    [switchButton addTarget:self action:@selector(acOnOffButton:) forControlEvents:UIControlEventTouchUpInside];
-                    acOnOffButtonOutlet = switchButton;
-                }
-                else if([switchButton.objName isEqualToString:@"高"])
-                {
-                    [switchButton addTarget:self action:@selector(acWindSpeedButton:) forControlEvents:UIControlEventTouchUpInside];
-                    acWindSpeedHighButton = switchButton;
-                }
-                else if([switchButton.objName isEqualToString:@"中"])
-                {
-                    [switchButton addTarget:self action:@selector(acWindSpeedButton:) forControlEvents:UIControlEventTouchUpInside];
-                    acWindSpeedMidButton = switchButton;
-                }
-                else if([switchButton.objName isEqualToString:@"低"])
-                {
-                    [switchButton addTarget:self action:@selector(acWindSpeedButton:) forControlEvents:UIControlEventTouchUpInside];
-                    acWindSpeedLowButton = switchButton;
-                }
-                else if([switchButton.objName isEqualToString:@"自动"])
-                {
-                    [switchButton addTarget:self action:@selector(acWindSpeedButton:) forControlEvents:UIControlEventTouchUpInside];
-                    acWindSpeedAutoButton = switchButton;
-                }
-                else if([switchButton.objName isEqualToString:@"制冷"])
-                {
-                    [switchButton addTarget:self action:@selector(acModeButton:) forControlEvents:UIControlEventTouchUpInside];
-                    acModeCoolButton = switchButton;
-                }
-                else if([switchButton.objName isEqualToString:@"制热"])
-                {
-                    [switchButton addTarget:self action:@selector(acModeButton:) forControlEvents:UIControlEventTouchUpInside];
-                    acModHeatButton = switchButton;
-                }
-                else if([switchButton.objName isEqualToString:@"通风"])
-                {
-                    [switchButton addTarget:self action:@selector(acModeButton:) forControlEvents:UIControlEventTouchUpInside];
-                    acModeVentButton = switchButton;
-                }
-                else if([switchButton.objName isEqualToString:@"除湿"])
-                {
-                    [switchButton addTarget:self action:@selector(acModeButton:) forControlEvents:UIControlEventTouchUpInside];
-                    acModDesiccationButton = switchButton;
-                }
-                else if([switchButton.objName isEqualToString:@"减"])
-                {
-                    [switchButton addTarget:self action:@selector(acSettingTemperatureDownButton:) forControlEvents:UIControlEventTouchUpInside];
-                }
-                else if([switchButton.objName isEqualToString:@"加"])
-                {
-                    [switchButton addTarget:self action:@selector(acSettingTemperatureUpButton:) forControlEvents:UIControlEventTouchUpInside];
-                }
-            }
-            else if([subView isMemberOfClass:[BLUILabel class]])
-            {
-                BLUILabel *acLabel = (BLUILabel *) subView;
-                if ([acLabel.objName isEqualToString:@"风速"])
-                {
-                    acWindSpeedLabel = acLabel;
-                }
-                else if([acLabel.objName isEqualToString:@"开关"])
-                {
-                    acOnOffLabel = acLabel;
-                }
-                else if([acLabel.objName isEqualToString:@"模式"])
-                {
-                    acModeLabel = acLabel;
-                }
-                else if([acLabel.objName isEqualToString:@"设定温度"])
-                {
-                    acSettingTemperature = acLabel;
-                }
-            }
-        }
-    }
-    
-    if (overallRecevedKnxDataDict != nil)
-    {
-        NSString *objectValue = [overallRecevedKnxDataDict objectForKey:[OnOffDict[@"ReadFromGroupAddress"] objectForKey:@"0"]];
-        [self acOnOffButtonStatusUpdateWithValue:[objectValue integerValue]];
-        objectValue = [overallRecevedKnxDataDict objectForKey:[WindSpeedDict[@"ReadFromGroupAddress"] objectForKey:@"0"]];
-        [self acWindSpeedButtonStatusUpdateWithValue:[objectValue integerValue]];
-        objectValue = [overallRecevedKnxDataDict objectForKey:[ModeDict[@"ReadFromGroupAddress"] objectForKey:@"0"]];
-        [self acModeButtonStatusUpdateWithValue:[objectValue integerValue]];
-        objectValue = [overallRecevedKnxDataDict objectForKey:[SettingTemperatureDict[@"ReadFromGroupAddress"] objectForKey:@"0"]];
-        [self acSettingTemperatureUpdateWithValue:[objectValue integerValue]];
-    }
-    
 }
 
 - (IBAction)acModeButton:(UIButton *)sender
@@ -279,7 +161,7 @@
         
         [self blUIButtonTransmitWriteActionWithDestGroupAddress:[ModeDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
-    
+
 }
 
 - (IBAction)acSettingTemperatureDownButton:(UIButton *)sender
@@ -315,7 +197,7 @@
 - (IBAction)acWindSpeedButton:(UIButton *)sender
 {
     NSInteger sendValue;
-    
+
     if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"高"])
     {
         sendValue = [WindSpeedDict[@"High"] integerValue];
@@ -360,7 +242,7 @@
         
         [self blUIButtonTransmitWriteActionWithDestGroupAddress:[WindSpeedDict[@"WriteToGroupAddress"] objectForKey:@"0"] value:sendValue buttonName:acButtonObjectName valueLength:@"1Byte"];
     }
-    
+
 }
 
 - (BOOL)acOnOffButtonStatusUpdateWithValue:(NSInteger)value
@@ -381,7 +263,7 @@
     }
     
     return ret;
-    
+
 }
 
 - (void)acWindSpeedButtonStatusUpdateWithValue:(NSInteger)value
@@ -470,30 +352,16 @@
 
 - (void) tunnellingConnectSuccess
 {
-    if (self.view.superview == nil)
+    if (self.view == nil)
     {
+        LogInfo(@"self.view = %@", self.view);
         [self readACPanelTopDisplayStatus];
     }
     else
     {
-        //[self readACPanelTopDisplayStatus];
+        LogInfo(@"self.view = %@", self.view);
+        [self readACPanelTopDisplayStatus];
         [self initReadACPanelWidgetStatus];
-        
-        [EnviromentTemperatureDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-         {
-             if ([key isEqualToString:@"ReadFromGroupAddress"])
-             {
-                 NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
-                 [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                  {
-                      LogInfo(@"Enviroment TemperatureDict readFromGroupAddressDict[%@] = %@", key, obj);
-                      
-                      //                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"2Byte", @"ValueLength", @"Read", @"CommandType", nil];
-                      //                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
-                      [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"2Byte"];
-                  }];
-             }
-         }];
     }
 }
 
@@ -522,7 +390,7 @@
              NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
              [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
               {
-                  LogInfo(@"Enviroment TemperatureDict readFromGroupAddressDict[%@] = %@", key, obj);
+                  LogInfo(@"Setting TemperatureDict readFromGroupAddressDict[%@] = %@", key, obj);
                   
                   //                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"2Byte", @"ValueLength", @"Read", @"CommandType", nil];
                   //                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
@@ -534,21 +402,21 @@
 
 - (void)initReadACPanelWidgetStatus
 {
-        [OnOffDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-         {
-             if ([key isEqualToString:@"ReadFromGroupAddress"])
-             {
-                 NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
-                 [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                  {
-                      LogInfo(@"AC OnOff readFromGroupAddressDict[%@] = %@", key, obj);
-    
-                      //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"1Bit", @"ValueLength", @"Read", @"CommandType", nil];
-                      //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
-                      [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"1Bit"];
-                  }];
-             }
-         }];
+//    [OnOffDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+//     {
+//         if ([key isEqualToString:@"ReadFromGroupAddress"])
+//         {
+//             NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
+//             [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+//              {
+//                  LogInfo(@"AC OnOff readFromGroupAddressDict[%@] = %@", key, obj);
+//                  
+//                  //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"1Bit", @"ValueLength", @"Read", @"CommandType", nil];
+//                  //[appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+//                  [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"1Bit"];
+//              }];
+//         }
+//     }];
     
     [WindSpeedDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
      {
@@ -598,23 +466,23 @@
          }
      }];
     
-    //    [EnviromentTemperatureDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-    //     {
-    //         if ([key isEqualToString:@"ReadFromGroupAddress"])
-    //         {
-    //             NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
-    //             [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-    //              {
-    //                  LogInfo(@"Setting TemperatureDict readFromGroupAddressDict[%@] = %@", key, obj);
-    //
-    ////                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"2Byte", @"ValueLength", @"Read", @"CommandType", nil];
-    ////                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
-    //                  [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"2Byte"];
-    //              }];
-    //         }
-    //     }];
-    
-    
+//    [EnviromentTemperatureDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+//     {
+//         if ([key isEqualToString:@"ReadFromGroupAddress"])
+//         {
+//             NSDictionary *readFromGroupAddressDict = [[NSDictionary alloc] initWithDictionary:obj];
+//             [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+//              {
+//                  LogInfo(@"Setting TemperatureDict readFromGroupAddressDict[%@] = %@", key, obj);
+//                  
+////                  NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:readFromGroupAddressDict[key], @"GroupAddress", @"2Byte", @"ValueLength", @"Read", @"CommandType", nil];
+////                  [appDelegate pushDataToFIFOThreadSaveAndSendNotificationAsync:transmitDataDict];
+//                  [self blUIButtonTransmitInitReadActionWithDestGroupAddress:readFromGroupAddressDict[key] valueLength:@"2Byte"];
+//              }];
+//         }
+//     }];
+
+
 }
 
 #pragma mark Send Write Read Command

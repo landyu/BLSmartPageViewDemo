@@ -19,11 +19,8 @@
 		172168141BABE6980065A213 /* BLUISceneButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1721680E1BABE6980065A213 /* BLUISceneButton.m */; settings = {ASSET_TAGS = (); }; };
 		172168151BABE6980065A213 /* BLUISwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 172168101BABE6980065A213 /* BLUISwitch.m */; settings = {ASSET_TAGS = (); }; };
 		172168161BABE6980065A213 /* NSMutableArray+QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 172168121BABE6980065A213 /* NSMutableArray+QueueStack.m */; settings = {ASSET_TAGS = (); }; };
-		1721681C1BABE6D90065A213 /* BLACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172168181BABE6D90065A213 /* BLACViewController.m */; settings = {ASSET_TAGS = (); }; };
-		1721681D1BABE6D90065A213 /* BLACViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172168191BABE6D90065A213 /* BLACViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		1721681E1BABE6D90065A213 /* BLUIACButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1721681B1BABE6D90065A213 /* BLUIACButton.m */; settings = {ASSET_TAGS = (); }; };
 		172168241BABE6EA0065A213 /* BLCurtainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172168201BABE6EA0065A213 /* BLCurtainViewController.m */; settings = {ASSET_TAGS = (); }; };
-		172168251BABE6EA0065A213 /* BLCurtainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172168211BABE6EA0065A213 /* BLCurtainViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		172168261BABE6EA0065A213 /* BLUICurtainButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 172168231BABE6EA0065A213 /* BLUICurtainButton.m */; settings = {ASSET_TAGS = (); }; };
 		1724BEFE1BCF5E640094BF8B /* 鸟瞰图.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEF51BCF5E640094BF8B /* 鸟瞰图.xib */; settings = {ASSET_TAGS = (); }; };
 		1724BEFF1BCF5E640094BF8B /* ButleRoom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEF61BCF5E640094BF8B /* ButleRoom.plist */; settings = {ASSET_TAGS = (); }; };
@@ -34,7 +31,11 @@
 		1724BF041BCF5E640094BF8B /* NorthMainBedroom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEFB1BCF5E640094BF8B /* NorthMainBedroom.xib */; settings = {ASSET_TAGS = (); }; };
 		1724BF051BCF5E640094BF8B /* SecondBedroom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEFC1BCF5E640094BF8B /* SecondBedroom.plist */; settings = {ASSET_TAGS = (); }; };
 		1724BF061BCF5E640094BF8B /* SecondBedroom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BEFD1BCF5E640094BF8B /* SecondBedroom.xib */; settings = {ASSET_TAGS = (); }; };
-		1724BF0B1BCFD8AF0094BF8B /* BLACView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1724BF0A1BCFD8AF0094BF8B /* BLACView.xib */; settings = {ASSET_TAGS = (); }; };
+		172A19661BD0BD820099C97E /* BLACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172A19651BD0BD820099C97E /* BLACViewController.m */; settings = {ASSET_TAGS = (); }; };
+		172A19711BD0CBCE0099C97E /* BLACView.m in Sources */ = {isa = PBXBuildFile; fileRef = 172A19701BD0CBCE0099C97E /* BLACView.m */; settings = {ASSET_TAGS = (); }; };
+		172A19751BD0EC8B0099C97E /* BLACPanelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172A19741BD0EC8B0099C97E /* BLACPanelView.xib */; settings = {ASSET_TAGS = (); }; };
+		172A19781BD0F9B50099C97E /* BLUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 172A19771BD0F9B50099C97E /* BLUILabel.m */; settings = {ASSET_TAGS = (); }; };
+		172A197B1BD0FB950099C97E /* BLUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 172A197A1BD0FB950099C97E /* BLUIImageView.m */; settings = {ASSET_TAGS = (); }; };
 		176124C51BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 176124C41BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.m */; settings = {ASSET_TAGS = (); }; };
 		17619CFF1BB295AE00389414 /* Icon_Activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 17619CFD1BB295AD00389414 /* Icon_Activity.png */; settings = {ASSET_TAGS = (); }; };
 		17619D001BB295AE00389414 /* Icon_Activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17619CFE1BB295AD00389414 /* Icon_Activity@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -45,6 +46,8 @@
 		177986821B8D9CEE00AE0BF1 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1779867D1B8D9CEE00AE0BF1 /* GCDAsyncSocket.m */; };
 		177986831B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1779867F1B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m */; };
 		177F6B741BCE38440037BDE0 /* 杰立户型图.png in Resources */ = {isa = PBXBuildFile; fileRef = 177F6B731BCE38440037BDE0 /* 杰立户型图.png */; settings = {ASSET_TAGS = (); }; };
+		178CA9291BD48A160079EAFE /* BLCurtainPanelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178CA9281BD48A160079EAFE /* BLCurtainPanelView.xib */; settings = {ASSET_TAGS = (); }; };
+		178CA92C1BD4986C0079EAFE /* BLUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 178CA92B1BD4986C0079EAFE /* BLUISlider.m */; settings = {ASSET_TAGS = (); }; };
 		17DA5F391B96F19D003532ED /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F381B96F19D003532ED /* click1.mp3 */; };
 		17DBAD081B74B03B00B26A83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DBAD071B74B03B00B26A83 /* main.m */; };
 		17DBAD0B1B74B03B00B26A83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DBAD0A1B74B03B00B26A83 /* AppDelegate.m */; };
@@ -94,14 +97,10 @@
 		172168101BABE6980065A213 /* BLUISwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUISwitch.m; path = BLCustomClass/BLUISwitch.m; sourceTree = "<group>"; };
 		172168111BABE6980065A213 /* NSMutableArray+QueueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+QueueStack.h"; path = "BLCustomClass/NSMutableArray+QueueStack.h"; sourceTree = "<group>"; };
 		172168121BABE6980065A213 /* NSMutableArray+QueueStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+QueueStack.m"; path = "BLCustomClass/NSMutableArray+QueueStack.m"; sourceTree = "<group>"; };
-		172168171BABE6D90065A213 /* BLACViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLACViewController.h; path = BLCustomClass/BLACViewController.h; sourceTree = "<group>"; };
-		172168181BABE6D90065A213 /* BLACViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLACViewController.m; path = BLCustomClass/BLACViewController.m; sourceTree = "<group>"; };
-		172168191BABE6D90065A213 /* BLACViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLACViewController.xib; path = BLCustomClass/BLACViewController.xib; sourceTree = "<group>"; };
 		1721681A1BABE6D90065A213 /* BLUIACButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUIACButton.h; path = BLCustomClass/BLUIACButton.h; sourceTree = "<group>"; };
 		1721681B1BABE6D90065A213 /* BLUIACButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUIACButton.m; path = BLCustomClass/BLUIACButton.m; sourceTree = "<group>"; };
 		1721681F1BABE6EA0065A213 /* BLCurtainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLCurtainViewController.h; path = BLCustomClass/BLCurtainViewController.h; sourceTree = "<group>"; };
 		172168201BABE6EA0065A213 /* BLCurtainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLCurtainViewController.m; path = BLCustomClass/BLCurtainViewController.m; sourceTree = "<group>"; };
-		172168211BABE6EA0065A213 /* BLCurtainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLCurtainViewController.xib; path = BLCustomClass/BLCurtainViewController.xib; sourceTree = "<group>"; };
 		172168221BABE6EA0065A213 /* BLUICurtainButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUICurtainButton.h; path = BLCustomClass/BLUICurtainButton.h; sourceTree = "<group>"; };
 		172168231BABE6EA0065A213 /* BLUICurtainButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUICurtainButton.m; path = BLCustomClass/BLUICurtainButton.m; sourceTree = "<group>"; };
 		1724BEF51BCF5E640094BF8B /* 鸟瞰图.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "鸟瞰图.xib"; path = "RoomInfo/鸟瞰图.xib"; sourceTree = "<group>"; };
@@ -113,7 +112,15 @@
 		1724BEFB1BCF5E640094BF8B /* NorthMainBedroom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NorthMainBedroom.xib; path = RoomInfo/NorthMainBedroom.xib; sourceTree = "<group>"; };
 		1724BEFC1BCF5E640094BF8B /* SecondBedroom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SecondBedroom.plist; path = RoomInfo/SecondBedroom.plist; sourceTree = "<group>"; };
 		1724BEFD1BCF5E640094BF8B /* SecondBedroom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SecondBedroom.xib; path = RoomInfo/SecondBedroom.xib; sourceTree = "<group>"; };
-		1724BF0A1BCFD8AF0094BF8B /* BLACView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLACView.xib; path = BLCustomClass/BLACView.xib; sourceTree = "<group>"; };
+		172A19641BD0BD820099C97E /* BLACViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLACViewController.h; path = BLCustomClass/BLACViewController.h; sourceTree = "<group>"; };
+		172A19651BD0BD820099C97E /* BLACViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLACViewController.m; path = BLCustomClass/BLACViewController.m; sourceTree = "<group>"; };
+		172A196F1BD0CBCE0099C97E /* BLACView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLACView.h; path = BLCustomClass/BLACView.h; sourceTree = "<group>"; };
+		172A19701BD0CBCE0099C97E /* BLACView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLACView.m; path = BLCustomClass/BLACView.m; sourceTree = "<group>"; };
+		172A19741BD0EC8B0099C97E /* BLACPanelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLACPanelView.xib; path = BLCustomClass/BLACPanelView.xib; sourceTree = "<group>"; };
+		172A19761BD0F9B50099C97E /* BLUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUILabel.h; path = BLCustomClass/BLUILabel.h; sourceTree = "<group>"; };
+		172A19771BD0F9B50099C97E /* BLUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUILabel.m; path = BLCustomClass/BLUILabel.m; sourceTree = "<group>"; };
+		172A19791BD0FB950099C97E /* BLUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUIImageView.h; path = BLCustomClass/BLUIImageView.h; sourceTree = "<group>"; };
+		172A197A1BD0FB950099C97E /* BLUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUIImageView.m; path = BLCustomClass/BLUIImageView.m; sourceTree = "<group>"; };
 		176124C31BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLGCDKNXTunnellingAsyncUdpSocket.h; path = BLGCDKNXAsyncSocket/BLGCDKNXTunnellingAsyncUdpSocket.h; sourceTree = "<group>"; };
 		176124C41BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLGCDKNXTunnellingAsyncUdpSocket.m; path = BLGCDKNXAsyncSocket/BLGCDKNXTunnellingAsyncUdpSocket.m; sourceTree = "<group>"; };
 		17619CFD1BB295AD00389414 /* Icon_Activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_Activity.png; sourceTree = "<group>"; };
@@ -130,6 +137,9 @@
 		1779867E1B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		1779867F1B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		177F6B731BCE38440037BDE0 /* 杰立户型图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "杰立户型图.png"; path = "../../../../../../Downloads/杰立户型图.png"; sourceTree = "<group>"; };
+		178CA9281BD48A160079EAFE /* BLCurtainPanelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLCurtainPanelView.xib; path = BLCustomClass/BLCurtainPanelView.xib; sourceTree = "<group>"; };
+		178CA92A1BD4986C0079EAFE /* BLUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUISlider.h; path = BLCustomClass/BLUISlider.h; sourceTree = "<group>"; };
+		178CA92B1BD4986C0079EAFE /* BLUISlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUISlider.m; path = BLCustomClass/BLUISlider.m; sourceTree = "<group>"; };
 		17DA5F381B96F19D003532ED /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		17DBAD021B74B03B00B26A83 /* BLSmartPageViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLSmartPageViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DBAD061B74B03B00B26A83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -281,6 +291,12 @@
 				17619D0B1BB3CD8400389414 /* BLPadSettingViewController.h */,
 				17619D0C1BB3CD8400389414 /* BLPadSettingViewController.m */,
 				17619D101BB3E62600389414 /* BLPadSettingViewController.xib */,
+				172A19761BD0F9B50099C97E /* BLUILabel.h */,
+				172A19771BD0F9B50099C97E /* BLUILabel.m */,
+				172A19791BD0FB950099C97E /* BLUIImageView.h */,
+				172A197A1BD0FB950099C97E /* BLUIImageView.m */,
+				178CA92A1BD4986C0079EAFE /* BLUISlider.h */,
+				178CA92B1BD4986C0079EAFE /* BLUISlider.m */,
 			);
 			name = BLCustomClass;
 			sourceTree = "<group>";
@@ -303,12 +319,13 @@
 		17DA5F3A1B97F6DA003532ED /* BLACClass */ = {
 			isa = PBXGroup;
 			children = (
-				172168171BABE6D90065A213 /* BLACViewController.h */,
-				172168181BABE6D90065A213 /* BLACViewController.m */,
-				172168191BABE6D90065A213 /* BLACViewController.xib */,
 				1721681A1BABE6D90065A213 /* BLUIACButton.h */,
 				1721681B1BABE6D90065A213 /* BLUIACButton.m */,
-				1724BF0A1BCFD8AF0094BF8B /* BLACView.xib */,
+				172A19641BD0BD820099C97E /* BLACViewController.h */,
+				172A19651BD0BD820099C97E /* BLACViewController.m */,
+				172A196F1BD0CBCE0099C97E /* BLACView.h */,
+				172A19701BD0CBCE0099C97E /* BLACView.m */,
+				172A19741BD0EC8B0099C97E /* BLACPanelView.xib */,
 			);
 			name = BLACClass;
 			sourceTree = "<group>";
@@ -318,9 +335,9 @@
 			children = (
 				1721681F1BABE6EA0065A213 /* BLCurtainViewController.h */,
 				172168201BABE6EA0065A213 /* BLCurtainViewController.m */,
-				172168211BABE6EA0065A213 /* BLCurtainViewController.xib */,
 				172168221BABE6EA0065A213 /* BLUICurtainButton.h */,
 				172168231BABE6EA0065A213 /* BLUICurtainButton.m */,
+				178CA9281BD48A160079EAFE /* BLCurtainPanelView.xib */,
 			);
 			name = BLCurtainClass;
 			sourceTree = "<group>";
@@ -483,6 +500,7 @@
 			files = (
 				17DA5F391B96F19D003532ED /* click1.mp3 in Resources */,
 				1724BF051BCF5E640094BF8B /* SecondBedroom.plist in Resources */,
+				178CA9291BD48A160079EAFE /* BLCurtainPanelView.xib in Resources */,
 				177F6B741BCE38440037BDE0 /* 杰立户型图.png in Resources */,
 				1724BF001BCF5E640094BF8B /* ButleRoom.xib in Resources */,
 				1724BF061BCF5E640094BF8B /* SecondBedroom.xib in Resources */,
@@ -490,13 +508,11 @@
 				17619CFF1BB295AE00389414 /* Icon_Activity.png in Resources */,
 				1724BEFF1BCF5E640094BF8B /* ButleRoom.plist in Resources */,
 				1724BF021BCF5E640094BF8B /* LivingDiningRoom.xib in Resources */,
-				172168251BABE6EA0065A213 /* BLCurtainViewController.xib in Resources */,
 				1724BF041BCF5E640094BF8B /* NorthMainBedroom.xib in Resources */,
+				172A19751BD0EC8B0099C97E /* BLACPanelView.xib in Resources */,
 				17DDCA0C1B787D6800AF415B /* 资源库 in Resources */,
-				1724BF0B1BCFD8AF0094BF8B /* BLACView.xib in Resources */,
 				17619D111BB3E62600389414 /* BLPadSettingViewController.xib in Resources */,
 				17DD16511B75AC1200E0858C /* homeDemo.png in Resources */,
-				1721681D1BABE6D90065A213 /* BLACViewController.xib in Resources */,
 				172168011BABBADB0065A213 /* PropertyConfig.plist in Resources */,
 				17DBAD161B74B03B00B26A83 /* LaunchScreen.xib in Resources */,
 				1724BF031BCF5E640094BF8B /* NorthMainBedroom.plist in Resources */,
@@ -526,22 +542,26 @@
 				1762F52F1B92D29E00B4EBE7 /* Utils.m in Sources */,
 				171ED0D81BA918F9006D3BAE /* REMenuItem.m in Sources */,
 				171ED0E41BA952AD006D3BAE /* BLRootNavigationController.m in Sources */,
+				172A19661BD0BD820099C97E /* BLACViewController.m in Sources */,
 				172168141BABE6980065A213 /* BLUISceneButton.m in Sources */,
 				177986831B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m in Sources */,
 				17DBAD0E1B74B03B00B26A83 /* ViewController.m in Sources */,
 				17DBAD0B1B74B03B00B26A83 /* AppDelegate.m in Sources */,
 				171ED0D51BA918F9006D3BAE /* RECommonFunctions.m in Sources */,
 				172168261BABE6EA0065A213 /* BLUICurtainButton.m in Sources */,
+				172A19781BD0F9B50099C97E /* BLUILabel.m in Sources */,
 				17DBAD081B74B03B00B26A83 /* main.m in Sources */,
+				172A19711BD0CBCE0099C97E /* BLACView.m in Sources */,
 				172168161BABE6980065A213 /* NSMutableArray+QueueStack.m in Sources */,
 				172168151BABE6980065A213 /* BLUISwitch.m in Sources */,
 				171ED0D71BA918F9006D3BAE /* REMenuContainerView.m in Sources */,
 				171ED0D61BA918F9006D3BAE /* REMenu.m in Sources */,
-				1721681C1BABE6D90065A213 /* BLACViewController.m in Sources */,
+				172A197B1BD0FB950099C97E /* BLUIImageView.m in Sources */,
 				172168241BABE6EA0065A213 /* BLCurtainViewController.m in Sources */,
 				1721681E1BABE6D90065A213 /* BLUIACButton.m in Sources */,
 				171ED0D91BA918F9006D3BAE /* REMenuItemView.m in Sources */,
 				17DBAD371B74B81000B26A83 /* APPChildViewController.m in Sources */,
+				178CA92C1BD4986C0079EAFE /* BLUISlider.m in Sources */,
 				17DDCA141B78B6E500AF415B /* PropertyConfigPhrase.m in Sources */,
 				176124C51BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.m in Sources */,
 				17619D0E1BB3CD8400389414 /* BLPadSettingViewController.m in Sources */,

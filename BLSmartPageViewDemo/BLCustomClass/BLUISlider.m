@@ -1,14 +1,14 @@
 //
-//  BLACView.m
+//  BLUISlider.m
 //  BLSmartPageViewDemo
 //
-//  Created by Landyu on 15/10/15.
+//  Created by Landyu on 15/10/19.
 //  Copyright © 2015年 Landyu. All rights reserved.
 //
 
-#import "BLACView.h"
+#import "BLUISlider.h"
 
-@implementation BLACView
+@implementation BLUISlider
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -17,6 +17,5 @@
     // Drawing code
 }
 */
-
 
 @end

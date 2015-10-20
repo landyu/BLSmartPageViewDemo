@@ -52,7 +52,6 @@
     
     
     
-    
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     //appDelegate.viewControllerNavigationItemSharedInstance = self.viewControllerNavigationItem;
     
@@ -205,7 +204,7 @@
              pageIndicatorIndex = [key integerValue];
              [self.pageController setViewControllers:[NSArray arrayWithObject:[self viewControllerAtIndex:pageIndicatorIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished)
               {
-                  NSLog(@"back to %@...", nibName);
+                  LogInfo(@"back to %@...", nibName);
                   weakSelf.title = nibName;
                   //NSDictionary *pageJumpDict = [NSDictionary dictionaryWithObjectsAndKeys:roomName, @"PageName",nil];
                   //[[NSNotificationCenter defaultCenter] postNotificationName:PageJumpNotification object:nil userInfo:pageJumpDict];
@@ -478,5 +477,7 @@
     }
     return _settingViewController;
 }
+
+
 
 @end

@@ -8,6 +8,8 @@
 
 #import "BLCurtainViewController.h"
 //#import "AppDelegate.h"
+#import "BLUISwitch.h"
+#import "BLUISlider.h"
 #import "Utils.h"
 #import "GlobalMacro.h"
 
@@ -36,6 +38,8 @@
     Curtain *clothCurtain;
     NSTimer *yarnCurtainPositionChangeTimer;
     NSTimer *clothCurtainPositionChangeTimer;
+    
+    UIView *curtainView;
     //AppDelegate *appDelegate;
 }
 - (IBAction)yarnCurtainTouchUpInside:(UISlider *)sender;
@@ -45,22 +49,19 @@
 
 @implementation BLCurtainViewController
 @synthesize delegate;
+@synthesize overallRecevedKnxDataDict;
+@synthesize yarnCurtainOpenButton;
+@synthesize yarnCurtainCloseButton;
 @synthesize yarnCurtainSlider;
+@synthesize clothCurtainOpenButton;
+@synthesize clothCurtainCloseButton;
 @synthesize clothCurtainSlider;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    yarnCurtain = [Curtain alloc];
-    clothCurtain = [Curtain alloc];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tunnellingConnectSuccess) name:TunnellingConnectSuccessNotification object:nil];
-    
-    yarnCurtainPositionChangeTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(yarnCurtainPositionChangeTimerFired) userInfo:nil repeats:YES];
-    [self yarnCurtainPositionChangeTimerStart:NO];
-    
-    clothCurtainPositionChangeTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clothCurtainPositionChangeTimerFired) userInfo:nil repeats:YES];
-    [self clothCurtainPositionChangeTimerStart:NO];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,9 +80,109 @@
 }
 */
 
+- (void) initPanelView
+{
+    if (curtainView == nil)
+    {
+        CGRect rect = [self.view bounds];
+        CGSize size = rect.size;
+        CGFloat phywidth = size.width;
+        CGFloat phyheight = size.height;
+        curtainView = [[[NSBundle mainBundle] loadNibNamed:@"BLCurtainPanelView" owner:self options:nil] firstObject];
+        curtainView.frame = CGRectMake(phywidth/2.0 - 589.0/2.0, phyheight/2.0 - 298.0/2.0, 589, 298);
+        self.view = curtainView;
+        
+        for (UIView *subView in self.view.subviews)
+        {
+            if ([subView isMemberOfClass:[BLUISwitch class]])
+            {
+                BLUISwitch *switchButton = (BLUISwitch *) subView;
+                if ([switchButton.objName isEqualToString:@"纱帘开"])
+                {
+                    [switchButton addTarget:self action:@selector(yarnCurtainOpenButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                    yarnCurtainOpenButton = switchButton;
+                }
+                else if ([switchButton.objName isEqualToString:@"纱帘闭"])
+                {
+                    [switchButton addTarget:self action:@selector(yarnCurtainCloseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                    yarnCurtainCloseButton = switchButton;
+                }
+                else if ([switchButton.objName isEqualToString:@"纱帘停"])
+                {
+                    [switchButton addTarget:self action:@selector(yarnCurtainStopButton:) forControlEvents:UIControlEventTouchUpInside];
+                    //yarnCurtainCloseButton = switchButton;
+                }
+                else if ([switchButton.objName isEqualToString:@"布帘开"])
+                {
+                    [switchButton addTarget:self action:@selector(clothCurtainOpenButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                    clothCurtainOpenButton = switchButton;
+                }
+                else if ([switchButton.objName isEqualToString:@"布帘闭"])
+                {
+                    [switchButton addTarget:self action:@selector(clothCurtainCloseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                    clothCurtainCloseButton = switchButton;
+                }
+                else if ([switchButton.objName isEqualToString:@"布帘停"])
+                {
+                    [switchButton addTarget:self action:@selector(clothCurtainStopButton:) forControlEvents:UIControlEventTouchUpInside];
+                    //yarnCurtainCloseButton = switchButton;
+                }
+                else if ([switchButton.objName isEqualToString:@"全开"])
+                {
+
+                }
+                else if ([switchButton.objName isEqualToString:@"全闭"])
+                {
+
+                }
+                else if ([switchButton.objName isEqualToString:@"全停"])
+                {
+                    
+                }
+            }
+            else if([subView isMemberOfClass:[BLUISlider class]])
+            {
+                BLUISlider *slider = (BLUISlider *) subView;
+                if ([slider.objName isEqualToString:@"纱帘"])
+                {
+                    [slider addTarget:self action:@selector(yarnCurtainTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+                    yarnCurtainSlider = slider;
+                }
+                else if ([slider.objName isEqualToString:@"布帘"])
+                {
+                    [slider addTarget:self action:@selector(clothCurtainTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+                    clothCurtainSlider = slider;
+                }
+            }
+
+        }
+    }
+    
+    if (overallRecevedKnxDataDict != nil)
+    {
+        NSString *objectValue = [overallRecevedKnxDataDict objectForKey:yarnCurtain->positionStatusReadFromGroupAddress];
+        yarnCurtain->curtainPosition = [objectValue integerValue];
+        [yarnCurtainSlider setValue:yarnCurtain->curtainPosition animated:YES];
+        
+        objectValue = [overallRecevedKnxDataDict objectForKey:clothCurtain->positionStatusReadFromGroupAddress];
+        clothCurtain->curtainPosition = [objectValue integerValue];
+        [clothCurtainSlider setValue:clothCurtain->curtainPosition animated:YES];
+    }
+}
+
 - (void) initCurtainPropertyWithDictionary:(NSMutableDictionary *)curtainPropertyDict buttonName:(NSString *)curtainButtonName
 {
     curtainButtonObjectName = curtainButtonName;
+    yarnCurtain = [Curtain alloc];
+    clothCurtain = [Curtain alloc];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tunnellingConnectSuccess) name:TunnellingConnectSuccessNotification object:nil];
+    
+    yarnCurtainPositionChangeTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(yarnCurtainPositionChangeTimerFired) userInfo:nil repeats:YES];
+    [self yarnCurtainPositionChangeTimerStart:NO];
+    
+    clothCurtainPositionChangeTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clothCurtainPositionChangeTimerFired) userInfo:nil repeats:YES];
+    [self clothCurtainPositionChangeTimerStart:NO];
     
     [curtainPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
      {

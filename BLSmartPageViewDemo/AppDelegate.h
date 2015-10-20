@@ -24,10 +24,11 @@
 @property(strong, nonatomic) NSMutableDictionary *sceneListDictionarySharedInstance;
 //@property(strong, nonatomic) dispatch_queue_t transmitQueue;
 @property(strong, atomic) NSMutableArray *transmitDataFIFO;
+@property(strong, atomic) NSMutableDictionary *allReceivedKnxDataDict;
 @property(strong, nonatomic) UIWindow *window;
 
 -(void)pushDataToFIFOThreadSaveAndSendNotificationAsync:(id)value;
--(id)popDataFromFIFOThreadSave;
+//-(id)popDataFromFIFOThreadSave;
 
 
 @end

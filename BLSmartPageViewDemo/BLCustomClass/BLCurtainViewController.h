@@ -11,8 +11,11 @@
 @interface BLCurtainViewController : UIViewController
 
 - (void) initCurtainPropertyWithDictionary:(NSMutableDictionary *)curtainPropertyDict buttonName:(NSString *)curtainButtonName;
+- (void) initReadCurtainPanelWidgetStatus;
+- (void) initPanelView;
 
 @property (weak) id delegate;
+@property (strong, nonatomic) NSMutableDictionary *overallRecevedKnxDataDict;
 @property (strong, nonatomic) IBOutlet UIButton *yarnCurtainOpenButton;
 @property (strong, nonatomic) IBOutlet UIButton *yarnCurtainCloseButton;
 @property (strong, nonatomic) IBOutlet UISlider *yarnCurtainSlider;

@@ -10,6 +10,7 @@
 
 @interface BLGCDKNXTunnellingAsyncUdpSocket : NSObject
 @property (nonatomic, weak) id delegate;
+@property (strong, nonatomic) NSMutableDictionary *overallReceivedKnxDataDict;
 + (instancetype)sharedInstance;
 - (void) setTunnellingSocketWithClientBindToPort:(uint16_t)clientPort
                           deviceIpAddress:(NSString *)serverIpAddr
@@ -20,4 +21,5 @@
 - (void) tunnellingServeRestart;
 - (NSString *) serverIpAddress;
 - (void) tunnellingSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType;
+//- (NSMutableDictionary *)getOverallReceivedKnxDataDict;
 @end
