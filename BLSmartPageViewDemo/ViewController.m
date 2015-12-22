@@ -15,6 +15,7 @@
 #import "BLPadSettingViewController.h"
 //#import <objc/runtime.h>
 //@import CoreData;
+#import "EmptyViewController.h"
 
 @interface ViewController ()
 {
@@ -30,6 +31,7 @@
 @implementation ViewController
 
 #pragma mark - life cycle
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -64,18 +66,59 @@
     self.sceneListDict = appDelegate.sceneListDictionarySharedInstance;
     sceneListCount = [self.sceneListDict count];
     
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [documentPaths objectAtIndex:0];
+    NSString* roomInfoDirPath = [documentPath stringByAppendingPathComponent:@"RoomInfo"];
+    NSString *nibFilePath = [roomInfoDirPath stringByAppendingPathComponent:[self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)0]]];;
+    NSBundle *bundle = [NSBundle bundleWithPath:nibFilePath];
+    //[bundle load];
+    
+    BOOL isDir = YES;
+    BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:roomInfoDirPath isDirectory:&isDir];
+    if ((isDir == YES && existed == YES))
+    {
+        isDir = NO;
+        existed = [[NSFileManager defaultManager] fileExistsAtPath:roomInfoDirPath isDirectory:&isDir];
+        if (existed == NO)
+        {
+            return;
+        }
+    }
+    else
+    {
+        return;
+    }
+    
+    [NSBundle bundleWithPath:roomInfoDirPath];
+    
+    
     //self.viewControllerNavigationItem.title = [self.sceneListDict objectForKey:@"0"];
     self.title = [self.sceneListDict objectForKey:@"0"];
     
     pageIndicatorIndex = 0;
     APPChildViewController *initialViewController = [self viewControllerAtIndex:pageIndicatorIndex];
     
-    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
     
-    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished)
-     {
-         LogInfo(@"set View Controllers Done...");
-     }];
+    
+    if (initialViewController != nil)
+    {
+        NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+        [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished)
+         {
+             LogInfo(@"set View Controllers Done...");
+         }];
+    }
+    else
+    {
+        EmptyViewController *emptyViewController = [self emptyViewControllerAtIndex:pageIndicatorIndex];
+        NSArray *viewControllers = [NSArray arrayWithObject:emptyViewController];
+        [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished)
+         {
+             LogInfo(@"set Empty View Controllers Done...");
+         }];
+    }
+    
     
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
@@ -120,7 +163,9 @@
 #pragma mark - UIPageViewControllerDataSource
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
+    
     NSUInteger index = [(APPChildViewController *)viewController index];
+    EmptyViewController *emptyViewControler = [self emptyViewControllerAtIndex:index];
     
     if (index == 0) {
         return nil;
@@ -128,7 +173,13 @@
     
     index--;
     
-    return [self viewControllerAtIndex:index];
+    APPChildViewController *childViewController = [self viewControllerAtIndex:index];
+    if (childViewController == nil)
+    {
+        return  emptyViewControler;
+    }
+    
+    return childViewController;
     
 }
 
@@ -138,12 +189,19 @@
     
     
     index++;
+    EmptyViewController *emptyViewControler = [self emptyViewControllerAtIndex:index];
     //NSLog(@"scene list count = %d", sceneListCount);
-    if (index == sceneListCount) {
+    if (index == sceneListCount)
+    {
         return nil;
     }
+    APPChildViewController *childViewController = [self viewControllerAtIndex:index];
     
-    return [self viewControllerAtIndex:index];
+    if (childViewController == nil)
+    {
+        return  emptyViewControler;
+    }
+    return childViewController;
     
 }
 
@@ -189,10 +247,32 @@
     __typeof (self) __weak weakSelf = self;
     if (self.sceneListDict == nil)
     {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"PropertyConfig" ofType:@"plist"];
-        NSDictionary *temDict = [[NSDictionary alloc]initWithContentsOfFile:path];
+        //NSString *path = [[NSBundle mainBundle] pathForResource:@"PropertyConfig" ofType:@"plist"];
         
-        self.sceneListDict = [[NSDictionary alloc] initWithDictionary:[temDict objectForKey:@"SceneList"]];
+        NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentPath = [documentPaths objectAtIndex:0];
+        NSString* roomInfoDirPath = [documentPath stringByAppendingPathComponent:@"RoomInfo"];
+        NSString *propertyConfigPath = [roomInfoDirPath stringByAppendingPathComponent:@"PropertyConfig.plist"];;
+        
+        BOOL isDir = YES;
+        BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:roomInfoDirPath isDirectory:&isDir];
+        if ((isDir == YES && existed == YES))
+        {
+            isDir = NO;
+            existed = [[NSFileManager defaultManager] fileExistsAtPath:propertyConfigPath isDirectory:&isDir];
+            if (existed == NO)
+            {
+                return;
+            }
+        }
+        else
+        {
+            return;
+        }
+        
+        NSDictionary *temDict = [[NSDictionary alloc]initWithContentsOfFile:propertyConfigPath];
+        
+        self.sceneListDict = [[NSDictionary alloc] initWithDictionary:[temDict objectForKey:@"RoomList"]];
     }
     
     
@@ -250,9 +330,25 @@
     //NSLog(@"key = %@", [NSString stringWithFormat: @"%d", index]);
     //NSString *nibName = [self.sceneListDict valueForKey:[NSString stringWithFormat: @"%d", index]];
     
-    APPChildViewController *childViewController = [[APPChildViewController alloc] initWithNibName:[self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)index]] bundle:nil];
+    //APPChildViewController *childViewController = [[APPChildViewController alloc] initWithNibName:[self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)index]] bundle:nil];
     
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [documentPaths objectAtIndex:0];
+    NSString* roomInfoDirPath = [documentPath stringByAppendingPathComponent:@"RoomInfo"];
+    NSString *nibFilePath = [roomInfoDirPath stringByAppendingPathComponent:[self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)index]]];;
+    
+    NSBundle* bundle = [NSBundle bundleWithPath:nibFilePath];
+    
+    //[bundle load];
+    
+    APPChildViewController *childViewController = [[APPChildViewController alloc] initWithNibName:[self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)index]] bundle:bundle];
+    //UIViewController* vc = [[[MyViewController alloc] initWithNibName:@"mycustomnib" bundle:bundle] autorelease];
     //self.viewControllerNavigationItem.title = [NSString stringWithFormat:@"Screen #%ld", (long)index];
+    if (childViewController == nil)
+    {
+        return nil;
+    }
     childViewController.index = index;
     childViewController.nibName = [self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)index]];
     childViewController.pageController = self.pageController;
@@ -260,6 +356,24 @@
     //[childViewController addChildViewController:self.pageController];
     
     return childViewController;
+    
+}
+
+- (EmptyViewController *)emptyViewControllerAtIndex:(NSUInteger)index
+{
+    
+    
+    //[bundle load];
+    
+    EmptyViewController *emptyViewController = [[EmptyViewController alloc] init];
+    //UIViewController* vc = [[[MyViewController alloc] initWithNibName:@"mycustomnib" bundle:bundle] autorelease];
+    //self.viewControllerNavigationItem.title = [NSString stringWithFormat:@"Screen #%ld", (long)index];
+    emptyViewController.index = index;
+    emptyViewController.pageController = self.pageController;
+    emptyViewController.pageControllerDataSource = self;
+    //[childViewController addChildViewController:self.pageController];
+    
+    return emptyViewController;
     
 }
 
@@ -331,10 +445,32 @@
     NSMutableArray *items = [[NSMutableArray alloc] init];
     
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"PropertyConfig" ofType:@"plist"];
-    NSDictionary *temDict = [[NSDictionary alloc]initWithContentsOfFile:path];
+    //NSString *path = [[NSBundle mainBundle] pathForResource:@"PropertyConfig" ofType:@"plist"];
     
-    NSDictionary * sceneListDic = [[NSDictionary alloc] initWithDictionary:[temDict objectForKey:@"SceneList"]];
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [documentPaths objectAtIndex:0];
+    NSString* roomInfoDirPath = [documentPath stringByAppendingPathComponent:@"RoomInfo"];
+    NSString *propertyConfigPath = [roomInfoDirPath stringByAppendingPathComponent:@"PropertyConfig.plist"];;
+    
+    BOOL isDir = YES;
+    BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:roomInfoDirPath isDirectory:&isDir];
+    if ((isDir == YES && existed == YES))
+    {
+        isDir = NO;
+        existed = [[NSFileManager defaultManager] fileExistsAtPath:propertyConfigPath isDirectory:&isDir];
+        if (existed == NO)
+        {
+            return nil;
+        }
+    }
+    else
+    {
+        return nil;
+    }
+    
+    NSDictionary *temDict = [[NSDictionary alloc]initWithContentsOfFile:propertyConfigPath];
+    
+    NSDictionary * sceneListDic = [[NSDictionary alloc] initWithDictionary:[temDict objectForKey:@"RoomList"]];
     NSDictionary * roomSelectButtonListDict = [[NSDictionary alloc] initWithDictionary:[temDict objectForKey:@"RoomSelectButtonList"]];
     NSDictionary * ButtonListLevel1Dict = [[NSDictionary alloc] initWithDictionary:[roomSelectButtonListDict objectForKey:@"ButtonListLevel1"]];
     NSDictionary * ButtonListDetailDict = [[NSDictionary alloc] initWithDictionary:[roomSelectButtonListDict objectForKey:@"ButtonListDetail"]];

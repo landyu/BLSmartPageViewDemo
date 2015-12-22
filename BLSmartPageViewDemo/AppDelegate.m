@@ -12,11 +12,13 @@
 #import "Utils.h"
 #import "BLRootNavigationController.h"
 #import "ViewController.h"
+#import "ConfigFileProcess.h"
 
 @interface AppDelegate ()
 {
     //TransmitUdp *transmitUdpHandle;
     BLGCDKNXTunnellingAsyncUdpSocket *tunnellingShareInstance;
+    ConfigFileProcess *configFileProcess;
 }
 @end
 
@@ -75,7 +77,7 @@
     //add navigator
     
     
-    
+    configFileProcess = [[ConfigFileProcess alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[BLRootNavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
     self.window.backgroundColor = [UIColor blackColor];
@@ -88,7 +90,9 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 //    [transmitUdpHandle connectDeviceTaskSuspend];
 //    [transmitUdpHandle disconnectDevice];
-    [tunnellingShareInstance tunnellingServeStop];
+    
+    
+    //[tunnellingShareInstance tunnellingServeStop];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -114,9 +118,11 @@
 //        [transmitUdpHandle connectDeviceTaskResume];
 //    }
     
-    tunnellingShareInstance = [BLGCDKNXTunnellingAsyncUdpSocket sharedInstance];
-    [tunnellingShareInstance setTunnellingSocketWithClientBindToPort:0 deviceIpAddress:@"192.168.10.193" deviceIpPort:3671 delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-    [tunnellingShareInstance tunnellingServeStart];
+    
+    
+//    tunnellingShareInstance = [BLGCDKNXTunnellingAsyncUdpSocket sharedInstance];
+//    [tunnellingShareInstance setTunnellingSocketWithClientBindToPort:0 deviceIpAddress:@"192.168.10.193" deviceIpPort:3671 delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+//    [tunnellingShareInstance tunnellingServeStart];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -23,6 +23,7 @@
 
 
 
+
 @interface APPChildViewController ()
 {
     //dispatch_queue_t transmitActionQueue;
@@ -34,12 +35,59 @@
     UIViewController  *activeVC;
     CGFloat phywidth;
     CGFloat phyheight;
+    NSString *nibName;
 }
 
 @end
 
 @implementation APPChildViewController
 @synthesize nibName;
+
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+//    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentPath = [documentPaths objectAtIndex:0];
+//    NSString* roomInfoDirPath = [documentPath stringByAppendingPathComponent:@"RoomInfo"];
+//    NSString *nibFilePath = [roomInfoDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%s.xib.bin", nibNameOrNil]];
+//    NSBundle *bundle = [NSBundle bundleWithPath:nibFilePath];
+    
+    
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [documentPaths objectAtIndex:0];
+    NSString* roomInfoDirPath = [documentPath stringByAppendingPathComponent:@"RoomInfo"];
+    NSString *nibFilePath = [roomInfoDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.xib.bin", nibNameOrNil]];
+    //NSBundle *bundle = [NSBundle bundleWithPath:nibFilePath];
+    [NSBundle bundleWithPath:roomInfoDirPath];
+    NSData *data = [NSData dataWithContentsOfFile:nibFilePath];
+    if (data == nil)
+    {
+        return nil;
+    }
+    
+    nibName = [NSString stringWithFormat:@"%@", nibNameOrNil];
+    
+    return [super initWithNibName:nil  bundle:nil];
+    
+}
+
+- (void)loadView
+{
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [documentPaths objectAtIndex:0];
+    NSString* roomInfoDirPath = [documentPath stringByAppendingPathComponent:@"RoomInfo"];
+    NSString *nibFilePath = [roomInfoDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.xib.bin", nibName]];
+    NSBundle *bundle = [NSBundle bundleWithPath:nibFilePath];
+    //[bundle load];
+    
+    [NSBundle bundleWithPath:roomInfoDirPath];
+    NSData *data = [NSData dataWithContentsOfFile:nibFilePath];
+    
+    UINib *nib = [UINib nibWithData:data bundle:bundle];
+    [nib instantiateWithOwner:self options:nil];
+    //[super loadView];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,9 +109,33 @@
     //transmitActionQueue = appDelegate.transmitQueue;
     //childTransmitDataFIFO = appDelegate.transmitDataFIFO;
     
-    NSString *widgetPlistPath = [[NSBundle mainBundle] pathForResource:self.nibName ofType:@"plist"];
-    viewNibPlistDict = [[NSMutableDictionary alloc]initWithContentsOfFile:widgetPlistPath];
+    //NSString *widgetPlistPath = [[NSBundle mainBundle] pathForResource:self.nibName ofType:@"plist"];
+    //viewNibPlistDict = [[NSMutableDictionary alloc]initWithContentsOfFile:widgetPlistPath];
     
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [documentPaths objectAtIndex:0];
+    NSString* roomInfoDirPath = [documentPath stringByAppendingPathComponent:@"RoomInfo"];
+    NSString *propertyConfigPath = [roomInfoDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", self.nibName]];
+    
+    BOOL isDir = YES;
+    BOOL existed = [[NSFileManager defaultManager] fileExistsAtPath:roomInfoDirPath isDirectory:&isDir];
+    if ((isDir == YES && existed == YES))
+    {
+        isDir = NO;
+        existed = [[NSFileManager defaultManager] fileExistsAtPath:propertyConfigPath isDirectory:&isDir];
+        if (existed == NO)
+        {
+            return;
+        }
+    }
+    else
+    {
+        return;
+    }
+    
+    
+    viewNibPlistDict = [[NSMutableDictionary alloc]initWithContentsOfFile:propertyConfigPath];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvFromBus:) name:@"BL.BLSmartPageViewDemo.RecvFromBus" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tunnellingConnectSuccess) name:TunnellingConnectSuccessNotification object:nil];
     
@@ -176,28 +248,32 @@
     
     
     //__block NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:temDict[key]];
-    [viewNibPlistDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-     {
-         
-         //NSLog(@"dict[%@] = %@", key, temDict[key]);
-         //NSString *objectName = (NSString *)key;
-         if ([key isEqualToString:sender.objName])
+    for (NSUInteger itemIndex = 0; itemIndex < [viewNibPlistDict count]; itemIndex++)
+    {
+        NSDictionary *itemDict = [viewNibPlistDict objectForKey:[NSString stringWithFormat:@"%ld", (long)itemIndex]];
+        [itemDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
          {
-             NSMutableDictionary *objectPropertyDict = [[NSMutableDictionary alloc] initWithDictionary:viewNibPlistDict[key]];
-             [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-              {
-                  if ([key isEqualToString:@"WriteToGroupAddress"])
+             
+             //NSLog(@"dict[%@] = %@", key, temDict[key]);
+             //NSString *objectName = (NSString *)key;
+             if ([key isEqualToString:sender.objName])
+             {
+                 NSMutableDictionary *objectPropertyDict = [[NSMutableDictionary alloc] initWithDictionary:viewNibPlistDict[key]];
+                 [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
                   {
-                      NSString *valueLength = [[NSString alloc]initWithString:objectPropertyDict[@"ValueLength"]];
-                      NSMutableDictionary *writeToGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:objectPropertyDict[key]];
-                      [writeToGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                       {
-                           [self parseDataForPreTransmitWithObject:sender destGroupAddress:writeToGroupAddressDict[key] buttonName:sender.objName valueLength:valueLength objectPropertyDictionay:objectPropertyDict];
-                       }];
-                  }
-              }];
-         }
-     }];
+                      if ([key isEqualToString:@"WriteToGroupAddress"])
+                      {
+                          NSString *valueLength = [[NSString alloc]initWithString:objectPropertyDict[@"ValueLength"]];
+                          NSMutableDictionary *writeToGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:objectPropertyDict[key]];
+                          [writeToGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                           {
+                               [self parseDataForPreTransmitWithObject:sender destGroupAddress:writeToGroupAddressDict[key] buttonName:sender.objName valueLength:valueLength objectPropertyDictionay:objectPropertyDict];
+                           }];
+                      }
+                  }];
+             }
+         }];
+    }
 }
 
 - (void) parseDataForPreTransmitWithObject:(BLUISwitch *)obj destGroupAddress:(NSString *)destGroupAddress buttonName:(NSString *)buttonName valueLength:(NSString *)valueLength objectPropertyDictionay:(NSMutableDictionary *)objectPropertyDict
@@ -273,17 +349,21 @@
         return;
     }
 
-    [nibPlistDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-     {
-         
-         if ([key isEqualToString:sceneButton.objName])
+    for (NSUInteger itemIndex = 0; itemIndex < [viewNibPlistDict count]; itemIndex++)
+    {
+        NSDictionary *itemDict = [viewNibPlistDict objectForKey:[NSString stringWithFormat:@"%ld", (long)itemIndex]];
+        [itemDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
          {
-             NSMutableDictionary *objectPropertyDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
-             sceneButton.sceneDelayDuration = [NSNumber numberWithFloat:[objectPropertyDict[@"SceneDelayDuration"] floatValue]];
-             sceneButton.sceneSequenceMutableDict = [[NSMutableDictionary alloc] initWithDictionary:objectPropertyDict[@"Scene"]];
-             //sceneButton.sceneCount = [sceneButton.sceneSequenceMutableDict count];
-         }
-     }];
+             
+             if ([key isEqualToString:sceneButton.objName])
+             {
+                 NSMutableDictionary *objectPropertyDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                 sceneButton.sceneDelayDuration = [NSNumber numberWithFloat:[objectPropertyDict[@"SceneDelayDuration"] floatValue]];
+                 sceneButton.sceneSequenceMutableDict = [[NSMutableDictionary alloc] initWithDictionary:objectPropertyDict[@"Scene"]];
+                 //sceneButton.sceneCount = [sceneButton.sceneSequenceMutableDict count];
+             }
+         }];
+    }
 
 }
 
@@ -342,16 +422,22 @@
                        if (!nibPlistDict) {
                            return;
                        }
-                       
-                       [nibPlistDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                        {
-                            
-                            if ([key isEqualToString:acButton.objName])
-                            {
-                                [acButton.acViewController initACPropertyWithDictionary:obj buttonName:acButton.objName];
-                                *stop = YES;
-                            }
-                        }];
+    
+    for (NSUInteger itemIndex = 0; itemIndex < [nibPlistDict count]; itemIndex++)
+    {
+        NSDictionary *itemDitc = [nibPlistDict objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)itemIndex]];
+        
+        [itemDitc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+         {
+             
+             if ([key isEqualToString:acButton.objName])
+             {
+                 [acButton.acViewController initACPropertyWithDictionary:obj buttonName:acButton.objName];
+                 *stop = YES;
+             }
+         }];
+    }
+    
 
                    //});
     
@@ -412,18 +498,23 @@
                        {
                            return;
                        }
-                       
-                       [nibPlistDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                        {
-                            
-                            if ([key isEqualToString:curtainButton.objName])
-                            {
-                                [curtainButton.curtainViewController initCurtainPropertyWithDictionary:obj buttonName:curtainButton.objName];
-                                *stop = YES;
-                            }
-                        }];
-                       
-                       
+    
+    for (NSUInteger itemIndex = 0; itemIndex < [nibPlistDict count]; itemIndex++)
+    {
+        NSDictionary *itemDitc = [nibPlistDict objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)itemIndex]];
+        
+        [itemDitc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+         {
+             
+             if ([key isEqualToString:curtainButton.objName])
+             {
+                 [curtainButton.curtainViewController initCurtainPropertyWithDictionary:obj buttonName:curtainButton.objName];
+                 *stop = YES;
+             }
+         }];
+    }
+    
+    
                    //});
 
 }
@@ -510,167 +601,172 @@
     
     
     //__block NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:temDict[key]];
-    [viewNibPlistDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+    for (NSUInteger itemIndex = 0; itemIndex < [viewNibPlistDict count]; itemIndex++)
     {
+        NSDictionary *itemDitc = [viewNibPlistDict objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)itemIndex]];
         
-        //NSLog(@"dict[%@] = %@", key, temDict[key]);
-        NSString *objectName = (NSString *)key;
-        
-        NSMutableDictionary *objectPropertyDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
-        
-        for (UIView *subView in self.view.subviews)
-        {
-            if ([subView isMemberOfClass:[BLUISwitch class]])
-            {
-                BLUISwitch *switchButton = (BLUISwitch *) subView;
-                
-                if ([switchButton.objName isEqualToString:objectName])
-                {
-                    [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+        [itemDitc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+         {
+             
+             //NSLog(@"dict[%@] = %@", key, temDict[key]);
+             NSString *objectName = (NSString *)key;
+             
+             NSMutableDictionary *objectPropertyDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+             
+             for (UIView *subView in self.view.subviews)
+             {
+                 if ([subView isMemberOfClass:[BLUISwitch class]])
+                 {
+                     BLUISwitch *switchButton = (BLUISwitch *) subView;
+                     
+                     if ([switchButton.objName isEqualToString:objectName])
                      {
-                         if ([key isEqualToString:@"ReadFromGroupAddress"])
-                         {
-                             NSString *valueLength = [[NSString alloc]initWithString:objectPropertyDict[@"ValueLength"]];
-                             NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
-                             [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                         [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                          {
+                              if ([key isEqualToString:@"ReadFromGroupAddress"])
                               {
-                                  //NSLog(@"readFromGroupAddressDict[%@] = %@", key, obj);
-                                  if ([readFromGroupAddressDict[key] isEqualToString:groupAddress])
-                                  {
-                                      dispatch_async(dispatch_get_main_queue(),
-                                                     ^{
-                                                         [self blUISwitchUpdateActionWithButtonObject:switchButton buttonValue:objectValue buttonName:objectName valueLength:valueLength];
-                                                     });
-                                  }
-                              }];
-                         }
-                     }];
-                    
-                    break;
-                }
-            }
-            else if([subView isMemberOfClass:[BLUIACButton class]])
-            {
-                BLUIACButton *acButton = (BLUIACButton *) subView;
-                
-                if ([acButton.objName isEqualToString:objectName])
-                {
-                    [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                     {
-                         NSString *acObjectKey = key;
-                         
-                         //if ([key isEqualToString:@"OnOff"])
-                         {
-                             //NSString *valueLength = [[NSString alloc]initWithString:objectPropertyDict[@"ValueLength"]];
-                             NSDictionary *acObjectDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
-                             [acObjectDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                              {
-                                  if ([key isEqualToString:@"ReadFromGroupAddress"])
-                                  {
-                                      NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
-                                      [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                                  NSString *valueLength = [[NSString alloc]initWithString:objectPropertyDict[@"ValueLength"]];
+                                  NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                                  [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                                   {
+                                       //NSLog(@"readFromGroupAddressDict[%@] = %@", key, obj);
+                                       if ([readFromGroupAddressDict[key] isEqualToString:groupAddress])
                                        {
-                                           //NSLog(@"readFromGroupAddressDict[%@] = %@", key, obj);
-                                           if ([readFromGroupAddressDict[key] isEqualToString:groupAddress])
+                                           dispatch_async(dispatch_get_main_queue(),
+                                                          ^{
+                                                              [self blUISwitchUpdateActionWithButtonObject:switchButton buttonValue:objectValue buttonName:objectName valueLength:valueLength];
+                                                          });
+                                       }
+                                   }];
+                              }
+                          }];
+                         
+                         break;
+                     }
+                 }
+                 else if([subView isMemberOfClass:[BLUIACButton class]])
+                 {
+                     BLUIACButton *acButton = (BLUIACButton *) subView;
+                     
+                     if ([acButton.objName isEqualToString:objectName])
+                     {
+                         [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                          {
+                              NSString *acObjectKey = key;
+                              
+                              //if ([key isEqualToString:@"OnOff"])
+                              {
+                                  //NSString *valueLength = [[NSString alloc]initWithString:objectPropertyDict[@"ValueLength"]];
+                                  NSDictionary *acObjectDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                                  [acObjectDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                                   {
+                                       if ([key isEqualToString:@"ReadFromGroupAddress"])
+                                       {
+                                           NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                                           [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                                            {
+                                                //NSLog(@"readFromGroupAddressDict[%@] = %@", key, obj);
+                                                if ([readFromGroupAddressDict[key] isEqualToString:groupAddress])
+                                                {
+                                                    dispatch_async(dispatch_get_main_queue(),
+                                                                   ^{
+                                                                       if ([acObjectKey isEqualToString:@"OnOff"])
+                                                                       {
+                                                                           BOOL ret = [acButton.acViewController acOnOffButtonStatusUpdateWithValue:objectValue];
+                                                                           
+                                                                           if (ret == YES)
+                                                                           {
+                                                                               [acButton setSelected:YES];
+                                                                           }
+                                                                           else
+                                                                           {
+                                                                               [acButton setSelected:NO];
+                                                                           }
+                                                                       }
+                                                                       else if([acObjectKey isEqualToString:@"WindSpeed"])
+                                                                       {
+                                                                           [acButton.acViewController acWindSpeedButtonStatusUpdateWithValue:objectValue];
+                                                                       }
+                                                                       else if([acObjectKey isEqualToString:@"Mode"])
+                                                                       {
+                                                                           [acButton.acViewController acModeButtonStatusUpdateWithValue:objectValue];
+                                                                           
+                                                                       }
+                                                                       else if([acObjectKey isEqualToString:@"EnviromentTemperature"])
+                                                                       {
+                                                                           NSString *enviromentTemperatureValue = [[NSString alloc] initWithFormat:@"%ld", (long)objectValue];
+                                                                           [acButton.acEnviromentTemperatureLabel setText:enviromentTemperatureValue];
+                                                                       }
+                                                                       else if([acObjectKey isEqualToString:@"SettingTemperature"])
+                                                                       {
+                                                                           [acButton.acViewController acSettingTemperatureUpdateWithValue:objectValue];
+                                                                       }
+                                                                   });
+                                                }
+                                            }];
+                                       }
+                                   }];
+                              }
+                          }];
+                         
+                         break;
+                     }
+                 }
+                 else if([subView isMemberOfClass:[BLUICurtainButton class]])
+                 {
+                     BLUICurtainButton *curtainButton = (BLUICurtainButton *) subView;
+                     if ([curtainButton.objName isEqualToString:objectName])
+                     {
+                         [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                          {
+                              NSString *curtainTypetKey = key;
+                              if ([curtainTypetKey isEqualToString:@"YarnCurtain"])
+                              {
+                                  NSDictionary *curtainObjectDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                                  [curtainObjectDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                                   {
+                                       NSString *curtainObjectKey = key;
+                                       if ([curtainObjectKey isEqualToString:@"StatusHeight"])
+                                       {
+                                           if ([groupAddress isEqualToString:obj])
                                            {
                                                dispatch_async(dispatch_get_main_queue(),
                                                               ^{
-                                                                  if ([acObjectKey isEqualToString:@"OnOff"])
-                                                                  {
-                                                                      BOOL ret = [acButton.acViewController acOnOffButtonStatusUpdateWithValue:objectValue];
-                                                                      
-                                                                      if (ret == YES)
-                                                                      {
-                                                                          [acButton setSelected:YES];
-                                                                      }
-                                                                      else
-                                                                      {
-                                                                          [acButton setSelected:NO];
-                                                                      }
-                                                                  }
-                                                                  else if([acObjectKey isEqualToString:@"WindSpeed"])
-                                                                  {
-                                                                      [acButton.acViewController acWindSpeedButtonStatusUpdateWithValue:objectValue];
-                                                                  }
-                                                                  else if([acObjectKey isEqualToString:@"Mode"])
-                                                                  {
-                                                                      [acButton.acViewController acModeButtonStatusUpdateWithValue:objectValue];
-                                                                      
-                                                                  }
-                                                                  else if([acObjectKey isEqualToString:@"EnviromentTemperature"])
-                                                                  {
-                                                                      NSString *enviromentTemperatureValue = [[NSString alloc] initWithFormat:@"%ld", (long)objectValue];
-                                                                      [acButton.acEnviromentTemperatureLabel setText:enviromentTemperatureValue];
-                                                                  }
-                                                                  else if([acObjectKey isEqualToString:@"SettingTemperature"])
-                                                                  {
-                                                                      [acButton.acViewController acSettingTemperatureUpdateWithValue:objectValue];
-                                                                  }
+                                                                  [curtainButton.curtainViewController yarnCurtainPositionChangedWithValue:objectValue];
                                                               });
                                            }
-                                       }];
-                                  }
-                              }];
-                         }
-                     }];
-                    
-                    break;
-                }
-            }
-            else if([subView isMemberOfClass:[BLUICurtainButton class]])
-            {
-                BLUICurtainButton *curtainButton = (BLUICurtainButton *) subView;
-                if ([curtainButton.objName isEqualToString:objectName])
-                {
-                    [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                     {
-                         NSString *curtainTypetKey = key;
-                         if ([curtainTypetKey isEqualToString:@"YarnCurtain"])
-                         {
-                             NSDictionary *curtainObjectDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
-                             [curtainObjectDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                                       }
+                                   }];
+                                  
+                              }
+                              else if([curtainTypetKey isEqualToString:@"ClothCurtain"])
                               {
-                                  NSString *curtainObjectKey = key;
-                                  if ([curtainObjectKey isEqualToString:@"StatusHeight"])
-                                  {
-                                      if ([groupAddress isEqualToString:obj])
-                                      {
-                                          dispatch_async(dispatch_get_main_queue(),
-                                                         ^{
-                                                            [curtainButton.curtainViewController yarnCurtainPositionChangedWithValue:objectValue];
-                                                         });
-                                      }
-                                  }
-                              }];
-                             
-                         }
-                         else if([curtainTypetKey isEqualToString:@"ClothCurtain"])
-                         {
-                             NSDictionary *curtainObjectDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
-                             [curtainObjectDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                              {
-                                  NSString *curtainObjectKey = key;
-                                  if ([curtainObjectKey isEqualToString:@"StatusHeight"])
-                                  {
-                                      if ([groupAddress isEqualToString:obj])
-                                      {
-                                          dispatch_async(dispatch_get_main_queue(),
-                                                         ^{
-                                                             [curtainButton.curtainViewController clothCurtainPositionChangedWithValue:objectValue];
-                                                         });
-                                      }
-                                  }
-                              }];
-
-                         }
-                     }];
-                }
-            }
-
-        }
-        
-
-    }];
+                                  NSDictionary *curtainObjectDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                                  [curtainObjectDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                                   {
+                                       NSString *curtainObjectKey = key;
+                                       if ([curtainObjectKey isEqualToString:@"StatusHeight"])
+                                       {
+                                           if ([groupAddress isEqualToString:obj])
+                                           {
+                                               dispatch_async(dispatch_get_main_queue(),
+                                                              ^{
+                                                                  [curtainButton.curtainViewController clothCurtainPositionChangedWithValue:objectValue];
+                                                              });
+                                           }
+                                       }
+                                   }];
+                                  
+                              }
+                          }];
+                     }
+                 }
+                 
+             }
+             
+             
+         }];
+    }
     
 }
 
@@ -720,27 +816,31 @@
     
     
     //__block NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:temDict[key]];
-    [viewNibPlistDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-     {
-         
-         NSMutableDictionary *objectPropertyDict = [[NSMutableDictionary alloc] initWithDictionary:viewNibPlistDict[key]];
-         [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-          {
-              if ([key isEqualToString:@"ReadFromGroupAddress"])
+    for (NSUInteger itemIndex = 0; itemIndex < [viewNibPlistDict count]; itemIndex++)
+    {
+        NSDictionary *itemDitc = [viewNibPlistDict objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)itemIndex]];
+        [itemDitc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+         {
+             
+             NSMutableDictionary *objectPropertyDict = [[NSMutableDictionary alloc] initWithDictionary:viewNibPlistDict[key]];
+             [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
               {
-                  NSString *valueLength = [[NSString alloc]initWithString:objectPropertyDict[@"ValueLength"]];
-                  NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:objectPropertyDict[key]];
-                  [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-                   {
-                       if ([groupAddressDict objectForKey:readFromGroupAddressDict[key]] == nil)
+                  if ([key isEqualToString:@"ReadFromGroupAddress"])
+                  {
+                      NSString *valueLength = [[NSString alloc]initWithString:objectPropertyDict[@"ValueLength"]];
+                      NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:objectPropertyDict[key]];
+                      [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
                        {
-                           [groupAddressDict setValue:@"ReadFromAddress" forKey:readFromGroupAddressDict[key]];
-                           [tunnellingAsyncUdpSocketSharedInstance tunnellingSendWithDestGroupAddress:readFromGroupAddressDict[key] value:0 buttonName:nil valueLength:valueLength commandType:@"Read"];
-                       }
-                   }];
-              }
-          }];
-     }];
+                           if ([groupAddressDict objectForKey:readFromGroupAddressDict[key]] == nil)
+                           {
+                               [groupAddressDict setValue:@"ReadFromAddress" forKey:readFromGroupAddressDict[key]];
+                               [tunnellingAsyncUdpSocketSharedInstance tunnellingSendWithDestGroupAddress:readFromGroupAddressDict[key] value:0 buttonName:nil valueLength:valueLength commandType:@"Read"];
+                           }
+                       }];
+                  }
+              }];
+         }];
+    }
 }
 
 #pragma mark Private Method

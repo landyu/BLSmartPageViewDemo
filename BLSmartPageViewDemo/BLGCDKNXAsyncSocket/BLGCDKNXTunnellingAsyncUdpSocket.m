@@ -303,7 +303,10 @@ withFilterContext:(id)filterContext
             [self tunnellingUdpSocketSend:ackData];
             LogInfo(@"SENT (%i): Request ACK CID %u  SC %u", (int)tunnellingSocketTag, CID, testByte[8]);
             
-            [self resortDataAndPostReceiveNotification:data];
+            if (testByte[10] == 0x29)  //L_Data.ind
+            {
+                [self resortDataAndPostReceiveNotification:data];
+            }
             
         }
         else if((testByte[0] == 0x06) && (testByte[1] == 0x10) && (testByte[2] == 0x04) && (testByte[3] == 0x21))//ack
