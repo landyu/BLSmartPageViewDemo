@@ -13,6 +13,7 @@
 #import "BLRootNavigationController.h"
 #import "ViewController.h"
 #import "ConfigFileProcess.h"
+#import "ViewControllerContainer.h"
 
 @interface AppDelegate ()
 {
@@ -78,6 +79,7 @@
     
     
     configFileProcess = [[ConfigFileProcess alloc] init];
+    [ViewControllerContainer sharedInstance];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[BLRootNavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
     self.window.backgroundColor = [UIColor blackColor];
@@ -92,7 +94,7 @@
 //    [transmitUdpHandle disconnectDevice];
     
     
-    //[tunnellingShareInstance tunnellingServeStop];
+    [tunnellingShareInstance tunnellingServeStop];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -120,9 +122,9 @@
     
     
     
-//    tunnellingShareInstance = [BLGCDKNXTunnellingAsyncUdpSocket sharedInstance];
-//    [tunnellingShareInstance setTunnellingSocketWithClientBindToPort:0 deviceIpAddress:@"192.168.10.193" deviceIpPort:3671 delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-//    [tunnellingShareInstance tunnellingServeStart];
+    tunnellingShareInstance = [BLGCDKNXTunnellingAsyncUdpSocket sharedInstance];
+    [tunnellingShareInstance setTunnellingSocketWithClientBindToPort:0 deviceIpAddress:@"192.168.10.193" deviceIpPort:3671 delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    [tunnellingShareInstance tunnellingServeStart];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

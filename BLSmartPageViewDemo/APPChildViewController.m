@@ -15,12 +15,18 @@
 #import "BLUISwitch.h"
 #import "BLUISceneButton.h"
 #import "BLUIACButton.h"
+#import "BLUIHeatingButton.h"
+#import "BLHeating.h"
 #import "BLACViewController.h"
+#import "BLUICurtain2Button.h"
+#import "BLCurtain2ViewController.h"
+#import "BLDimmingButton.h"
+#import "BLDimming.h"
 #import "BLUICurtainButton.h"
-#import "BLCurtainViewController.h"
+#import "BLCurtain.h"
 #import "BLUIPageJumpButton.h"
 #import "GlobalMacro.h"
-
+#import "ViewControllerContainer.h"
 
 
 
@@ -172,14 +178,44 @@
                                               //});
                                
                            }
-                           else if([subView isMemberOfClass:[BLUICurtainButton class]])
+                           else if([subView isMemberOfClass:[BLUIHeatingButton class]])
+                           {
+                               BLUIHeatingButton *heatingButton = (BLUIHeatingButton *) subView;
+                               
+                               //dispatch_async([Utils GlobalBackgroundQueue], ^(void)
+                               //{
+                               [heatingButton addEnviromentTemperatureLabelWithParentController:self];
+                               [self initHeatingButtonWithHeatingButtonObject:heatingButton nibPlistDict:viewNibPlistDict];
+                               [heatingButton addTarget:self action:@selector(heatingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                               //});
+                               
+                           }
+                           else if([subView isMemberOfClass:[BLUICurtain2Button class]])
                            {
                                //dispatch_async([Utils GlobalBackgroundQueue], ^(void)
                                               //{
-                                                  BLUICurtainButton *curtainButton = (BLUICurtainButton *) subView;
-                                                  [self initCurtainButtonWithCurtainButtonObject:curtainButton nibPlistDict:viewNibPlistDict];
-                                                  [curtainButton addTarget:self action:@selector(curtainButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                                                  BLUICurtain2Button *curtain2Button = (BLUICurtain2Button *) subView;
+                                                  [self initCurtain2ButtonWithCurtainButtonObject:curtain2Button nibPlistDict:viewNibPlistDict];
+                                                  [curtain2Button addTarget:self action:@selector(curtain2ButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
                                               //});
+                           }
+                           else if([subView isMemberOfClass:[BLUICurtainButton class]])
+                           {
+                               //dispatch_async([Utils GlobalBackgroundQueue], ^(void)
+                               //{
+                               BLUICurtainButton *curtainButton = (BLUICurtainButton *) subView;
+                               [self initCurtainButtonWithCurtainButtonObject:curtainButton nibPlistDict:viewNibPlistDict];
+                               [curtainButton addTarget:self action:@selector(curtainButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                               //});
+                           }
+                           else if([subView isMemberOfClass:[BLDimmingButton class]])
+                           {
+                               //dispatch_async([Utils GlobalBackgroundQueue], ^(void)
+                               //{
+                               BLDimmingButton *dimmingButton = (BLDimmingButton *) subView;
+                               [self initDimmingButtonWithHeatingButtonObject:dimmingButton nibPlistDict:viewNibPlistDict];
+                               [dimmingButton addTarget:self action:@selector(dimmingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                               //});
                            }
                            else if([subView isMemberOfClass:[BLUIPageJumpButton class]])
                            {
@@ -444,6 +480,74 @@
     
 }
 
+
+#pragma mark Heating Button
+- (void) heatingButtonPressed:(BLUIHeatingButton *)sender
+{
+    [self playClickSound];
+    if (activeVC != nil)
+    {
+        [activeVC.view removeFromSuperview];
+        activeVC = nil;
+        //sender.acViewController.view = nil;
+        if (self.pageController.dataSource == nil)
+        {
+            self.pageController.dataSource = self.pageControllerDataSource;
+        }
+    }
+    ViewControllerContainer *viewControllerCotainerSharedInstance = [ViewControllerContainer sharedInstance];
+    if (viewControllerCotainerSharedInstance.heatingViewController == nil)
+    {
+        NSLog(@"ERROR heatingViewController == NILL");
+        return;
+    }
+    BLHeating *heatingSharedInstance = [BLHeating sharedInstance];
+    [heatingSharedInstance updateItemsDict:sender.heatingPropertyDict];
+    
+    [heatingSharedInstance setHeatingPanelViewFromOldData];
+    [heatingSharedInstance readHeatingPanelStatus];
+    
+    //[sender.acViewController initACPanelView];
+    activeVC = viewControllerCotainerSharedInstance.heatingViewController;
+    [self.view addSubview:activeVC.view];
+}
+
+
+- (void) initHeatingButtonWithHeatingButtonObject:(BLUIHeatingButton *)heatingButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
+{
+    
+    //acButton.acViewController.delegate = self;
+    //acButton.acViewController.overallRecevedKnxDataDict = tunnellingAsyncUdpSocketSharedInstance.overallReceivedKnxDataDict;
+    //LogInfo(@"acButton.acViewController.view = %@", acButton.acViewController.view);
+    //acButton.acViewController.view.frame = CGRectMake(phywidth/2.0 - 298.0/2.0, phyheight/2.0 - 589.0/2.0, 589, 298);
+    //acButton.acViewController.view =
+    if (!nibPlistDict) {
+        return;
+    }
+    
+    for (NSUInteger itemIndex = 0; itemIndex < [nibPlistDict count]; itemIndex++)
+    {
+        NSDictionary *itemDitc = [nibPlistDict objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)itemIndex]];
+        
+        [itemDitc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+         {
+             
+             if ([key isEqualToString:heatingButton.objName])
+             {
+                 heatingButton.heatingPropertyDict = obj;
+                 *stop = YES;
+             }
+         }];
+    }
+    
+    
+    //});
+    
+    
+}
+
+
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
@@ -485,12 +589,12 @@
     [tunnellingAsyncUdpSocketSharedInstance tunnellingSendWithDestGroupAddress:destGroupAddress value:value buttonName:name valueLength:valueLength commandType:@"Read"];
 }
 
-#pragma mark Curtain Button
-- (void) initCurtainButtonWithCurtainButtonObject:(BLUICurtainButton *)curtainButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
+#pragma mark Curtain2 Button
+- (void) initCurtain2ButtonWithCurtainButtonObject:(BLUICurtain2Button *)curtainButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
 {
     //dispatch_sync([Utils GlobalUserInteractiveQueue],
                    //^{
-                       curtainButton.curtainViewController = [[BLCurtainViewController alloc] init];
+                       curtainButton.curtainViewController = [[BLCurtain2ViewController alloc] init];
                        curtainButton.curtainViewController.delegate = self;
                        curtainButton.curtainViewController.overallRecevedKnxDataDict = tunnellingAsyncUdpSocketSharedInstance.overallReceivedKnxDataDict;
                        
@@ -519,7 +623,7 @@
 
 }
 
-- (void) curtainButtonPressed:(BLUICurtainButton *)sender
+- (void) curtain2ButtonPressed:(BLUICurtain2Button *)sender
 {
     [self playClickSound];
     //[self playClickSound];
@@ -549,9 +653,109 @@
     }
 }
 
+
+
+
 - (void) blCurtainSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType
 {
     [tunnellingAsyncUdpSocketSharedInstance tunnellingSendWithDestGroupAddress:destGroupAddress value:value buttonName:name valueLength:valueLength commandType:commangType];
+}
+
+#pragma mark Curtain Button
+- (void) initCurtainButtonWithCurtainButtonObject:(BLUICurtainButton *)curtainButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
+{
+    if (!nibPlistDict) {
+        return;
+    }
+    
+    for (NSUInteger itemIndex = 0; itemIndex < [nibPlistDict count]; itemIndex++)
+    {
+        NSDictionary *itemDitc = [nibPlistDict objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)itemIndex]];
+        
+        [itemDitc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+         {
+             
+             if ([key isEqualToString:curtainButton.objName])
+             {
+                 curtainButton.curtainPropertyDict = obj;
+                 *stop = YES;
+             }
+         }];
+    }
+}
+- (void) curtainButtonPressed:(BLUICurtainButton *)sender
+{
+    [self playClickSound];
+    
+    if (activeVC != nil)
+    {
+        [activeVC.view removeFromSuperview];
+        activeVC = nil;
+    }
+    
+    ViewControllerContainer *viewControllerCotainerSharedInstance = [ViewControllerContainer sharedInstance];
+    if (viewControllerCotainerSharedInstance.curtainViewController == nil)
+    {
+        NSLog(@"ERROR curtainViewController == NILL");
+        return;
+    }
+    BLCurtain *curtainSharedInstance = [BLCurtain sharedInstance];
+    [curtainSharedInstance updateItemsDict:sender.curtainPropertyDict];
+    
+    //[sender.acViewController initACPanelView];
+    activeVC = viewControllerCotainerSharedInstance.curtainViewController;
+    [self.view addSubview:activeVC.view];
+    self.pageController.dataSource = nil; //avoid move the slider to change the page view
+}
+
+#pragma mark Dimming Button
+- (void)dimmingButtonPressed:(BLDimmingButton *)sender
+{
+    [self playClickSound];
+    
+    if (activeVC != nil)
+    {
+        [activeVC.view removeFromSuperview];
+        activeVC = nil;
+    }
+    
+    ViewControllerContainer *viewControllerCotainerSharedInstance = [ViewControllerContainer sharedInstance];
+    if (viewControllerCotainerSharedInstance.dimmingViewController == nil)
+    {
+        NSLog(@"ERROR dimmingViewController == NILL");
+        return;
+    }
+    BLDimming *dimmingSharedInstance = [BLDimming sharedInstance];
+    [dimmingSharedInstance updateItemsDict:sender.dimmingPropertyDict];
+    
+    //[sender.acViewController initACPanelView];
+    activeVC = viewControllerCotainerSharedInstance.dimmingViewController;
+    [self.view addSubview:activeVC.view];
+    self.pageController.dataSource = nil; //avoid move the slider to change the page view
+}
+
+- (void) initDimmingButtonWithHeatingButtonObject:(BLDimmingButton *)dimmingButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
+{
+    if (!nibPlistDict) {
+        return;
+    }
+    
+    for (NSUInteger itemIndex = 0; itemIndex < [nibPlistDict count]; itemIndex++)
+    {
+        NSDictionary *itemDitc = [nibPlistDict objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)itemIndex]];
+        
+        [itemDitc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+         {
+             
+             if ([key isEqualToString:dimmingButton.objName])
+             {
+                 dimmingButton.dimmingPropertyDict = obj;
+                 *stop = YES;
+             }
+         }];
+    }
+    
+    
 }
 
 #pragma mark Page Jump Button
@@ -712,9 +916,64 @@
                          break;
                      }
                  }
-                 else if([subView isMemberOfClass:[BLUICurtainButton class]])
+                 else if([subView isMemberOfClass:[BLUIHeatingButton class]])
                  {
-                     BLUICurtainButton *curtainButton = (BLUICurtainButton *) subView;
+                     BLUIHeatingButton *heatingButton = (BLUIHeatingButton *) subView;
+                     
+                     if ([heatingButton.objName isEqualToString:objectName])
+                     {
+                         [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                          {
+                              NSString *acObjectKey = key;
+                              
+                              //if ([key isEqualToString:@"OnOff"])
+                              {
+                                  //NSString *valueLength = [[NSString alloc]initWithString:objectPropertyDict[@"ValueLength"]];
+                                  NSDictionary *heatingObjectDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                                  [heatingObjectDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                                   {
+                                       if ([key isEqualToString:@"ReadFromGroupAddress"])
+                                       {
+                                           NSMutableDictionary *readFromGroupAddressDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+                                           [readFromGroupAddressDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+                                            {
+                                                //NSLog(@"readFromGroupAddressDict[%@] = %@", key, obj);
+                                                if ([readFromGroupAddressDict[key] isEqualToString:groupAddress])
+                                                {
+                                                    dispatch_async(dispatch_get_main_queue(),
+                                                                   ^{
+                                                                       if ([acObjectKey isEqualToString:@"OnOff"])
+                                                                       {
+                                                                           //BOOL ret = [[BLHeating sharedInstance] heatingOnOffStatusUpdateWithValue:objectValue];
+                                                                           
+                                                                           if(objectValue)
+                                                                           {
+                                                                               [heatingButton setSelected:YES];
+                                                                           }
+                                                                           else
+                                                                           {
+                                                                               [heatingButton setSelected:NO];
+                                                                           }
+                                                                       }
+                                                                       else if([acObjectKey isEqualToString:@"EnviromentTemperature"])
+                                                                       {
+                                                                           NSString *enviromentTemperatureValue = [[NSString alloc] initWithFormat:@"%ld", (long)objectValue];
+                                                                           [heatingButton.heatingEnviromentTemperatureLabel setText:enviromentTemperatureValue];
+                                                                       }
+                                                                   });
+                                                }
+                                            }];
+                                       }
+                                   }];
+                              }
+                          }];
+                         
+                         break;
+                     }
+                 }
+                 else if([subView isMemberOfClass:[BLUICurtain2Button class]])
+                 {
+                     BLUICurtain2Button *curtainButton = (BLUICurtain2Button *) subView;
                      if ([curtainButton.objName isEqualToString:objectName])
                      {
                          [objectPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)

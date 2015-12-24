@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="digital-7-italic.ttf">
+            <string>Digital-7Italic</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLHeatingViewController">
+            <connections>
+                <outlet property="heatingOnOffButtonOutlet" destination="wes-jl-Q6y" id="PI5-SL-CFh"/>
+                <outlet property="heatingOnOffLabel" destination="l3W-Wn-hET" id="n57-P2-9z4"/>
+                <outlet property="heatingSettingTemperatureLabel" destination="z3v-6V-ds7" id="8Pi-Gh-BtJ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="589" height="298"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NewAC" translatesAutoresizingMaskIntoConstraints="NO" id="Z8V-Oq-8tw">
+                    <rect key="frame" x="0.0" y="0.0" width="589" height="298"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qna-SD-31Q" customClass="BLUISwitch">
+                    <rect key="frame" x="225" y="227" width="47" height="47"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="down" image="AC_Temp-.png" backgroundImage="导航中心按键.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="AC_Temp-.png" backgroundImage="导航中心按键_选中.png"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="减"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="heatingSettingTemperatureDownButtonPressed:" destination="-1" eventType="touchUpInside" id="oe5-cr-zUL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BK4-p3-ft9" customClass="BLUISwitch">
+                    <rect key="frame" x="317" y="227" width="47" height="47"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="up" image="AC_Temp+.png" backgroundImage="导航中心按键.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="AC_Temp+.png" backgroundImage="导航中心按键_选中.png"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="加"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="heatingSettingTemperatureUpButtonPressed:" destination="-1" eventType="touchUpInside" id="K2f-3a-LeM"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Celsiusdegree_Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hx5-1O-QVX" userLabel="摄氏度">
+                    <rect key="frame" x="319" y="140" width="46" height="37"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3v-6V-ds7" customClass="BLUILabel">
+                    <rect key="frame" x="245" y="129" width="79" height="60"/>
+                    <fontDescription key="fontDescription" name="Digital-7Italic" family="Digital-7" pointSize="71"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" red="0.77854859830000001" green="0.41554809660000003" blue="0.099700652809999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="设定温度"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ON" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-Wn-hET" customClass="BLUILabel">
+                    <rect key="frame" x="254" y="74" width="79" height="40"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="开关"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="制热" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-oG-aeQ" customClass="BLUILabel">
+                    <rect key="frame" x="353" y="74" width="60" height="40"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="模式"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AC-Heat.png" highlightedImage="制冷_ECNet_Rotate.png" translatesAutoresizingMaskIntoConstraints="NO" id="syV-fv-Gw4" customClass="BLUIImageView">
+                    <rect key="frame" x="360" y="141" width="53" height="48"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="模式"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wes-jl-Q6y" customClass="BLUISwitch">
+                    <rect key="frame" x="48" y="48" width="61" height="42"/>
+                    <state key="normal" image="B-OnOff.png" backgroundImage="CustomButton.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="B-OnOff.png" backgroundImage="CustomButtonSelected.png"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="开关"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="heatingOnOffButtonPressed:" destination="-1" eventType="touchUpInside" id="tsm-0R-0tf"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AC-Heat.png" width="38" height="38"/>
+        <image name="AC_Temp+.png" width="53" height="53"/>
+        <image name="AC_Temp-.png" width="53" height="53"/>
+        <image name="B-OnOff.png" width="19" height="21"/>
+        <image name="Celsiusdegree_Icon.png" width="21" height="26"/>
+        <image name="CustomButton.png" width="61" height="42"/>
+        <image name="CustomButtonSelected.png" width="61" height="42"/>
+        <image name="NewAC" width="589" height="298"/>
+        <image name="制冷_ECNet_Rotate.png" width="22" height="22"/>
+        <image name="导航中心按键.png" width="90" height="90"/>
+        <image name="导航中心按键_选中.png" width="90" height="90"/>
+    </resources>
+</document>

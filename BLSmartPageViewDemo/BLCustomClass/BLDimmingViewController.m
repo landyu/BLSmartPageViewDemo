@@ -1,33 +1,34 @@
 //
-//  BLCurtainViewController.m
+//  BLDimmingViewController.m
 //  BLSmartPageViewDemo
 //
 //  Created by Landyu on 15/12/23.
 //  Copyright © 2015年 Landyu. All rights reserved.
 //
 
-#import "BLCurtainViewController.h"
-#import "BLCurtain.h"
+#import "BLDimmingViewController.h"
+#import "BLDimming.h"
 
-@interface BLCurtainViewController ()
+@interface BLDimmingViewController ()
 {
-    BLCurtain *blCurtainSharedInstance;
+    BLDimming *blDimmingSharedInstance;
 }
 
 @end
 
-@implementation BLCurtainViewController
+@implementation BLDimmingViewController
+
 + (instancetype)sharedInstance
 {
     // 1
-    static BLCurtainViewController *_sharedInstance = nil;
+    static BLDimmingViewController *_sharedInstance = nil;
     
     // 2
     static dispatch_once_t oncePredicate;
     
     // 3
     dispatch_once(&oncePredicate, ^{
-        _sharedInstance = [[BLCurtainViewController alloc] init];
+        _sharedInstance = [[BLDimmingViewController alloc] init];
     });
     return _sharedInstance;
 }
@@ -37,11 +38,10 @@
     self = [super init];
     if (self)
     {
-        blCurtainSharedInstance = [BLCurtain sharedInstance];
+        blDimmingSharedInstance = [BLDimming sharedInstance];
     }
     return self;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,23 +68,29 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (IBAction)curtainOpenButtonPressed:(UIButton *)sender
+- (IBAction)dimmingSliderValueChanged:(UISlider *)sender
 {
-    [blCurtainSharedInstance curtainDidOpen];
+//    SEL selector = @selector(dimmingValueChangedWithValue:);
+//    
+//    if ([_dimmingModeDelegate respondsToSelector:selector])
+//    {
+//        [_dimmingModeDelegate dimmingValueChangedWithValue:sender.value];
+//    }
+    
+    [blDimmingSharedInstance dimmingValueChangedWithValue:sender.value];
+
 }
 
-- (IBAction)curtainCloseButtonPressed:(UIButton *)sender
+- (IBAction)dimmingOnOffButtonPressed:(UIButton *)sender
 {
-    [blCurtainSharedInstance curtainDidClose];
+//    SEL selector = @selector(dimmingOnOffChangedWithState:);
+//    
+//    if ([_dimmingModeDelegate respondsToSelector:selector])
+//    {
+//        [_dimmingModeDelegate dimmingOnOffChangedWithState:[sender isSelected]];
+//    }
+    [blDimmingSharedInstance dimmingOnOffChangedWithState:[sender isSelected]];
 }
 
-- (IBAction)curtainStopButtonPressed:(UIButton *)sender
-{
-    [blCurtainSharedInstance curtainDidStop];
-}
 
-- (IBAction)curtainPositionChanged:(UISlider *)sender
-{
-    [blCurtainSharedInstance curtainPositionChangedWithValue:sender.value];
-}
 @end

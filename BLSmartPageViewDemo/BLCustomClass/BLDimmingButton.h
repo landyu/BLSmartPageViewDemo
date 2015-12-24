@@ -1,5 +1,5 @@
 //
-//  BLCurtainButton.h
+//  BLDimmingButton.h
 //  BLSmartPageViewDemo
 //
 //  Created by Landyu on 15/12/23.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BLUICurtainButton : UIButton
+@interface BLDimmingButton : UIButton
 @property (nonatomic, copy)NSString *objName;
-@property (nonatomic, retain)NSDictionary *curtainPropertyDict;
+@property (nonatomic, retain)NSDictionary *dimmingPropertyDict;
 @end

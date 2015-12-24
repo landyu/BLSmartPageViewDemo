@@ -9,7 +9,7 @@
 #ifndef GlobalMacro_h
 #define GlobalMacro_h
 
-#if 0
+#if 1
 
 #define LogInfo(frmt, ...)      NSLog(@"%s(%d): " frmt, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
