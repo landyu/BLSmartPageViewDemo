@@ -54,6 +54,14 @@
     self.view.frame = CGRectMake(phywidth/2.0 - 589.0/2.0, phyheight/2.0 - 298.0/2.0, 589, 298);
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [blCurtainSharedInstance setCurtainPanelViewFromOldData];
+    [blCurtainSharedInstance readCurtainPanelStatus];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -70,21 +78,21 @@
 */
 - (IBAction)curtainOpenButtonPressed:(UIButton *)sender
 {
-    [blCurtainSharedInstance curtainDidOpen];
+    [blCurtainSharedInstance curtainToOpen];
 }
 
 - (IBAction)curtainCloseButtonPressed:(UIButton *)sender
 {
-    [blCurtainSharedInstance curtainDidClose];
+    [blCurtainSharedInstance curtainToClose];
 }
 
 - (IBAction)curtainStopButtonPressed:(UIButton *)sender
 {
-    [blCurtainSharedInstance curtainDidStop];
+    [blCurtainSharedInstance curtainToStop];
 }
 
 - (IBAction)curtainPositionChanged:(UISlider *)sender
 {
-    [blCurtainSharedInstance curtainPositionChangedWithValue:sender.value];
+    [blCurtainSharedInstance curtainPositionToChangeWithValue:sender.value];
 }
 @end

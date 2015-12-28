@@ -10,20 +10,37 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLACViewController">
+            <connections>
+                <outlet property="acModeCoolingButtonOutlet" destination="E3O-Ny-ASs" id="g6g-R2-2xv"/>
+                <outlet property="acModeDehumidificationButtonOutlet" destination="JCh-Co-VFB" id="5tI-Sf-a6P"/>
+                <outlet property="acModeHeatingButtonOutlet" destination="ikE-0o-AL7" id="QK3-vK-JG0"/>
+                <outlet property="acModeLabel" destination="ti5-zE-1RP" id="y5D-Dj-7hS"/>
+                <outlet property="acModeVentingButtonOutlet" destination="Q7C-Y1-NFs" id="5fl-gd-aaO"/>
+                <outlet property="acOnOffButtonOutlet" destination="9kl-rk-Ydb" id="jGV-hf-kF5"/>
+                <outlet property="acOnOffLabel" destination="JU7-hc-dnp" id="OkK-IJ-ZQx"/>
+                <outlet property="acSettingTempratureLabel" destination="hbq-uQ-01f" id="eAE-ju-AbY"/>
+                <outlet property="acWindSpeedAutoButtonOutlet" destination="VPQ-Yi-agM" id="xEe-LH-JBD"/>
+                <outlet property="acWindSpeedHighButtonOutlet" destination="uYL-43-8xA" id="89d-hj-dBZ"/>
+                <outlet property="acWindSpeedLabel" destination="mue-Ig-XSB" id="jNB-5p-yHB"/>
+                <outlet property="acWindSpeedLowButtonOutlet" destination="Yvs-l1-aun" id="7eV-FW-0se"/>
+                <outlet property="acWindSpeedMidButtonOutlet" destination="fgK-jq-MVO" id="Dzl-3J-MUn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="center" id="I6c-Ca-Y84">
-            <rect key="frame" x="0.0" y="0.0" width="589" height="298"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="586" height="298"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NewAC" translatesAutoresizingMaskIntoConstraints="NO" id="Ncd-AX-xf2">
-                    <rect key="frame" x="0.0" y="0.0" width="589" height="298"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NewAC" translatesAutoresizingMaskIntoConstraints="NO" id="uGW-Ax-dGT">
+                    <rect key="frame" x="-1" y="0.0" width="589" height="298"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Celsiusdegree_Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="gKk-ui-hSQ" userLabel="摄氏度">
-                    <rect key="frame" x="320" y="130" width="46" height="37"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Celsiusdegree_Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="B0a-TR-SeD" userLabel="摄氏度">
+                    <rect key="frame" x="319" y="130" width="46" height="37"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ik-SV-Rgk" customClass="BLUILabel">
-                    <rect key="frame" x="246" y="119" width="79" height="60"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbq-uQ-01f" customClass="BLUILabel">
+                    <rect key="frame" x="245" y="119" width="79" height="60"/>
                     <fontDescription key="fontDescription" name="Digital-7Italic" family="Digital-7" pointSize="71"/>
                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="highlightedColor" red="0.77854859830000001" green="0.41554809660000003" blue="0.099700652809999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -31,8 +48,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="设定温度"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1d-wc-Egn" customClass="BLUISwitch">
-                    <rect key="frame" x="485" y="112" width="61" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ikE-0o-AL7" customClass="BLUISwitch">
+                    <rect key="frame" x="484" y="112" width="61" height="42"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="制热" backgroundImage="CustomButton.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,9 +59,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="制热"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acModeButton:" destination="-1" eventType="touchUpInside" id="w4J-yU-hMD"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRc-2i-97h" customClass="BLUISwitch">
-                    <rect key="frame" x="485" y="172" width="61" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7C-Y1-NFs" customClass="BLUISwitch">
+                    <rect key="frame" x="484" y="172" width="61" height="42"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="通风" backgroundImage="CustomButton.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,9 +74,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="通风"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acModeButton:" destination="-1" eventType="touchUpInside" id="kjN-m5-N6o"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyf-76-487" customClass="BLUISwitch">
-                    <rect key="frame" x="485" y="234" width="61" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCh-Co-VFB" customClass="BLUISwitch">
+                    <rect key="frame" x="484" y="234" width="61" height="42"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="除湿" backgroundImage="CustomButton.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -66,9 +89,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="除湿"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acModeButton:" destination="-1" eventType="touchUpInside" id="8u0-6x-kct"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdK-bP-mFn" customClass="BLUISwitch">
-                    <rect key="frame" x="485" y="49" width="61" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3O-Ny-ASs" customClass="BLUISwitch">
+                    <rect key="frame" x="484" y="49" width="61" height="42"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="制冷" backgroundImage="CustomButton.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -78,9 +104,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="制冷"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acModeButton:" destination="-1" eventType="touchUpInside" id="qx6-mK-3ty"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcT-Qv-xwK" customClass="BLUISwitch">
-                    <rect key="frame" x="48" y="49" width="61" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kl-rk-Ydb" customClass="BLUISwitch">
+                    <rect key="frame" x="47" y="49" width="61" height="42"/>
                     <state key="normal" image="B-OnOff.png" backgroundImage="CustomButton.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -88,9 +117,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="开关"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acOnOffButton:" destination="-1" eventType="touchUpInside" id="nh4-Nf-JT6"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGN-iI-scA" customClass="BLUISwitch">
-                    <rect key="frame" x="225" y="228" width="47" height="47"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3I-sx-dfk" customClass="BLUISwitch">
+                    <rect key="frame" x="224" y="228" width="47" height="47"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <state key="normal" title="down" image="AC_Temp-.png" backgroundImage="导航中心按键.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -99,9 +131,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="减"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acSettingTemperatureDownButton:" destination="-1" eventType="touchUpInside" id="pTn-c8-cNY"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qif-LC-QPb" customClass="BLUISwitch">
-                    <rect key="frame" x="317" y="228" width="47" height="47"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IY2-hQ-qyY" customClass="BLUISwitch">
+                    <rect key="frame" x="316" y="228" width="47" height="47"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <state key="normal" title="up" image="AC_Temp+.png" backgroundImage="导航中心按键.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -110,9 +145,13 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="加"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acSettingTemperatureUpButton:" destination="-1" eventType="touchUpInside" id="GgI-Tv-XVm"/>
+                    </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ON" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMa-AJ-ekB" customClass="BLUILabel">
-                    <rect key="frame" x="255" y="64" width="79" height="40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ON" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JU7-hc-dnp" customClass="BLUILabel">
+                    <rect key="frame" x="254" y="64" width="79" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -120,8 +159,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="开关"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="制热" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unA-eV-veU" customClass="BLUILabel">
-                    <rect key="frame" x="354" y="64" width="60" height="40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="制热" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ti5-zE-1RP" customClass="BLUILabel">
+                    <rect key="frame" x="353" y="64" width="60" height="40"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -129,8 +168,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="模式"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIH-08-1Rx" customClass="BLUISwitch">
-                    <rect key="frame" x="48" y="234" width="61" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvs-l1-aun" customClass="BLUISwitch">
+                    <rect key="frame" x="47" y="234" width="61" height="42"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="低" backgroundImage="CustomButton.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -140,9 +179,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="低"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acWindSpeedButton:" destination="-1" eventType="touchUpInside" id="Nnn-zX-FIo"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSk-DS-Ewi" customClass="BLUISwitch">
-                    <rect key="frame" x="135" y="234" width="61" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPQ-Yi-agM" customClass="BLUISwitch">
+                    <rect key="frame" x="134" y="234" width="61" height="42"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="自动" backgroundImage="CustomButton.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -152,21 +194,24 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="自动"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acWindSpeedButton:" destination="-1" eventType="touchUpInside" id="eY9-cs-zlZ"/>
+                    </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AC-Auto.png" translatesAutoresizingMaskIntoConstraints="NO" id="ag4-3g-fjr" customClass="BLUIImageView">
-                    <rect key="frame" x="183" y="130" width="55" height="47"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AC-Auto.png" translatesAutoresizingMaskIntoConstraints="NO" id="h0L-c4-zyk" customClass="BLUIImageView">
+                    <rect key="frame" x="182" y="130" width="55" height="47"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="风速"/>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AC-Heat.png" highlightedImage="制冷_ECNet_Rotate.png" translatesAutoresizingMaskIntoConstraints="NO" id="QGa-dm-fwR" customClass="BLUIImageView">
-                    <rect key="frame" x="361" y="131" width="53" height="48"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AC-Heat.png" highlightedImage="制冷_ECNet_Rotate.png" translatesAutoresizingMaskIntoConstraints="NO" id="fcQ-1G-GBH" customClass="BLUIImageView">
+                    <rect key="frame" x="360" y="131" width="53" height="48"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="模式"/>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvg-5j-Ug2" customClass="BLUISwitch">
-                    <rect key="frame" x="48" y="172" width="61" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgK-jq-MVO" customClass="BLUISwitch">
+                    <rect key="frame" x="47" y="172" width="61" height="42"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="中" backgroundImage="CustomButton.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -176,9 +221,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="中"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acWindSpeedButton:" destination="-1" eventType="touchUpInside" id="O8r-2F-CcI"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhS-y7-glK" customClass="BLUISwitch">
-                    <rect key="frame" x="48" y="112" width="61" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYL-43-8xA" customClass="BLUISwitch">
+                    <rect key="frame" x="47" y="112" width="61" height="42"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="高" backgroundImage="CustomButton.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -188,9 +236,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="高"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="acWindSpeedButton:" destination="-1" eventType="touchUpInside" id="DQ9-HF-Fu7"/>
+                    </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="自动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAY-zH-LsW" customClass="BLUILabel">
-                    <rect key="frame" x="178" y="64" width="60" height="40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="自动" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mue-Ig-XSB" customClass="BLUILabel">
+                    <rect key="frame" x="177" y="64" width="60" height="40"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -200,12 +251,8 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="553.5" y="389"/>
         </view>
     </objects>
     <resources>

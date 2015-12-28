@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface BLHeating : NSObject
-{
-    
-}
 @property (readwrite) float settingEnvironmentTemperature;
 
 + (instancetype)sharedInstance;

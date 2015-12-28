@@ -436,7 +436,7 @@ withFilterContext:(id)filterContext
                                NSDictionary *sendData = [tunnellingSendQueue queuePop];
                                [NSThread sleepForTimeInterval:0.05];
                                //NSLog(@"PageView课程被改变了  count = %lu", (unsigned long)[tunnellingSendQueue count]);@"GroupAddress", valueLength, @"ValueLength", commangType, @"CommandType", value, @"Value"
-                               LogInfo(@"GroupAddress = %@  Length = %@   CommandType = %@  Value = %@", [sendData objectForKey:@"GroupAddress"], [sendData objectForKey:@"ValueLength"],[sendData objectForKey:@"CommandType"],[sendData objectForKey:@"Value"]);
+                               LogInfo(@"-----------------------GroupAddress = %@  Length = %@   CommandType = %@  Value = %@", [sendData objectForKey:@"GroupAddress"], [sendData objectForKey:@"ValueLength"],[sendData objectForKey:@"CommandType"],[sendData objectForKey:@"Value"]);
                                
                                if (tunnellingConnectState != TunnellingSocketNoError)
                                {

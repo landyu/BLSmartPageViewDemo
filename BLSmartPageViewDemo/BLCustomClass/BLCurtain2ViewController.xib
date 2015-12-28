@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLCurtain2ViewController">
+            <connections>
+                <outlet property="clothCurtainSliderOutlet" destination="1qO-IO-Jcd" id="hq3-Zv-25t"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="yarnCurtainSliderOutlet" destination="Kec-kZ-Y2z" id="oAo-9j-2XZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="589" height="297"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-1m-vip" customClass="BLUISwitch">
+                    <rect key="frame" x="457" y="74" width="30" height="30"/>
+                    <state key="normal" title="闭">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="纱帘闭"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="yarnCurtainCloseButtonPressed:" destination="-1" eventType="touchUpInside" id="7r7-dS-XHg"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQe-YS-kgB" customClass="BLUISwitch">
+                    <rect key="frame" x="52" y="176" width="30" height="30"/>
+                    <state key="normal" title="开">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="布帘开"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="clothCurtainOpenButtonPressed:" destination="-1" eventType="touchUpInside" id="U7u-VQ-Btl"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjQ-AW-jod" customClass="BLUISwitch">
+                    <rect key="frame" x="457" y="176" width="30" height="30"/>
+                    <state key="normal" title="闭">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="布帘闭"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="clothCurtainCloseButtonPressed:" destination="-1" eventType="touchUpInside" id="F45-7w-E6f"/>
+                    </connections>
+                </button>
+                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Kec-kZ-Y2z" customClass="BLUISlider">
+                    <rect key="frame" x="137" y="75" width="291" height="31"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="纱帘"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="yarnCurtainSliderValueChanged:" destination="-1" eventType="touchUpInside" id="PDp-YR-zcH"/>
+                    </connections>
+                </slider>
+                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="1qO-IO-Jcd" customClass="BLUISlider">
+                    <rect key="frame" x="137" y="177" width="291" height="31"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="布帘"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="clothCurtainSliderValueChanged:" destination="-1" eventType="touchUpInside" id="ntH-2N-Md3"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="布帘" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tq-YN-n40">
+                    <rect key="frame" x="265" y="135" width="34" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tba-Jv-hIh" customClass="BLUISwitch">
+                    <rect key="frame" x="52" y="238" width="30" height="30"/>
+                    <state key="normal" title="全开">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="全开"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="allCurtainOpenButtonPressed:" destination="-1" eventType="touchUpInside" id="KcF-NN-TX8"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Raj-Ie-uSx" customClass="BLUISwitch">
+                    <rect key="frame" x="457" y="238" width="30" height="30"/>
+                    <state key="normal" title="全闭">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="全闭"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="allCurtainCloseButtonPressed:" destination="-1" eventType="touchUpInside" id="w0P-HK-Xa7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjC-UR-YNy" customClass="BLUISwitch">
+                    <rect key="frame" x="507" y="74" width="30" height="30"/>
+                    <state key="normal" title="停">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="纱帘停"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="yarnCurtainStopButton:" destination="-1" eventType="touchUpInside" id="McZ-Pd-9bz"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyZ-SL-KfU" customClass="BLUISwitch">
+                    <rect key="frame" x="507" y="176" width="30" height="30"/>
+                    <state key="normal" title="停">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="布帘停"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="clothCurtainStopButton:" destination="-1" eventType="touchUpInside" id="W41-6l-6ZF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ek3-wn-VoJ" customClass="BLUISwitch">
+                    <rect key="frame" x="507" y="238" width="30" height="30"/>
+                    <state key="normal" title="全停">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="全停"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="allCurtainStopButtonPressed:" destination="-1" eventType="touchUpInside" id="gYZ-aC-0mX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvZ-Qp-nws" customClass="BLUISwitch">
+                    <rect key="frame" x="52" y="74" width="30" height="30"/>
+                    <state key="normal" title="开">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="objName" value="纱帘开"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="yarnCurtainOpenButtonPressed:" destination="-1" eventType="touchUpInside" id="seE-93-sEp"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="纱帘" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwd-ho-kXb">
+                    <rect key="frame" x="265" y="28" width="34" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BLACViewController.h"
 #import "BLHeatingViewController.h"
 #import "BLDimmingViewController.h"
 #import "BLCurtainViewController.h"
+#import "BLCurtain2ViewController.h"
 
 @interface ViewControllerContainer : NSObject
 + (instancetype)sharedInstance;
-//- (BLHeatingViewController *)heatingViewController;
+- (BLACViewController *)acViewController;
 - (BLHeatingViewController *) heatingViewController;
 - (BLDimmingViewController *) dimmingViewController;
 - (BLCurtainViewController *) curtainViewController;
+- (BLCurtain2ViewController *) curtain2ViewController;
 @end

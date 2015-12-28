@@ -8,11 +8,19 @@
 
 #import "BLCurtain.h"
 #import "BLCurtainViewController.h"
-#define dimmingViewControllerSharedInstance [BLDimmingViewController sharedInstance]
+#import "Curtain.h"
+#import "BLGCDKNXTunnellingAsyncUdpSocket.h"
+#import "GlobalMacro.h"
+#define curtainViewControllerSharedInstance [BLCurtainViewController sharedInstance]
+
+
 @interface BLCurtain()
 {
-    NSDictionary *dimmingPropertyDict;
-    //BLDimmingViewController *dimmingViewControllerSharedInstance;
+    NSDictionary *curtainPropertyDict;
+    Curtain *singleCurtain;
+    
+    BLGCDKNXTunnellingAsyncUdpSocket *tunnellingShareInstance;
+    NSMutableDictionary *overallRecevedKnxDataDict;
 }
 @end
 
@@ -32,28 +40,111 @@
     return _sharedInstance;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        singleCurtain = [[Curtain alloc] init];
+        
+        tunnellingShareInstance  = [BLGCDKNXTunnellingAsyncUdpSocket sharedInstance];
+        overallRecevedKnxDataDict = tunnellingShareInstance.overallReceivedKnxDataDict;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvFromBus:) name:@"BL.BLSmartPageViewDemo.RecvFromBus" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tunnellingConnectSuccess) name:TunnellingConnectSuccessNotification object:nil];
+    }
+    return self;
+}
+
 - (void)updateItemsDict:(NSDictionary *)dict
 {
-    dimmingPropertyDict = dict;
+    curtainPropertyDict = dict;
+    [curtainPropertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+     {
+         if ([key isEqualToString:@"Curtain"])
+         {
+             singleCurtain.openCloseWriteToGroupAddress = [obj objectForKey:@"OpenClose"];
+             singleCurtain.stopWriteToGroupAddress = [obj objectForKey:@"Stop"];
+             singleCurtain.moveToPositionWriteToGroupAddress = [obj objectForKey:@"MoveToPosition"];
+             singleCurtain.positionStatusReadFromGroupAddress = [obj objectForKey:@"StatusHeight"];
+         }
+     }];
 }
 
-- (void)curtainPositionChangedWithValue:(float)value
+- (void)curtainPositionToChangeWithValue:(float)value
 {
+    [tunnellingShareInstance tunnellingSendWithDestGroupAddress:singleCurtain.moveToPositionWriteToGroupAddress value:value buttonName:nil valueLength:@"1Byte" commandType:@"Write"];
+}
+
+- (void)curtainToOpen
+{
+    [tunnellingShareInstance tunnellingSendWithDestGroupAddress:singleCurtain.openCloseWriteToGroupAddress value:0 buttonName:nil valueLength:@"1Bit" commandType:@"Write"];
+}
+
+- (void)curtainToClose
+{
+    [tunnellingShareInstance tunnellingSendWithDestGroupAddress:singleCurtain.openCloseWriteToGroupAddress value:1 buttonName:nil valueLength:@"1Bit" commandType:@"Write"];
+}
+
+- (void)curtainToStop
+{
+        [tunnellingShareInstance tunnellingSendWithDestGroupAddress:singleCurtain.stopWriteToGroupAddress value:1 buttonName:nil valueLength:@"1Bit" commandType:@"Write"];
+}
+
+
+#pragma mark Receive From Bus
+- (void) recvFromBus: (NSNotification*) notification
+{
+    if (curtainViewControllerSharedInstance.view.superview == nil)
+    {
+        return;
+    }
+    
+    NSDictionary *dict = [notification userInfo];
+    if ([dict[@"Address"] isEqualToString:singleCurtain.positionStatusReadFromGroupAddress])
+    {
+        NSInteger value = [dict[@"Value"] intValue];
+        [self curtainPositionUpdateWithValue:value];
+    }
+}
+
+- (void) tunnellingConnectSuccess
+{
+    if (curtainViewControllerSharedInstance.view.superview == nil)
+    {
+        return;
+    }
+    [self setCurtainPanelViewFromOldData];
+    [self readCurtainPanelStatus];
+}
+
+- (void)setCurtainPanelViewFromOldData
+{
+    
+    if (overallRecevedKnxDataDict != nil)
+    {
+        NSString *objectValue = [overallRecevedKnxDataDict objectForKey:singleCurtain.positionStatusReadFromGroupAddress];
+        [self curtainPositionUpdateWithValue:[objectValue integerValue]];
+    }
+}
+
+- (void)readCurtainPanelStatus
+{
+    if (singleCurtain.positionStatusReadFromGroupAddress == nil)
+    {
+        return;
+    }
+    [tunnellingShareInstance tunnellingSendWithDestGroupAddress:singleCurtain.positionStatusReadFromGroupAddress value:0 buttonName:nil valueLength:@"1Byte" commandType:@"Read"];
+    
     
 }
 
-- (void)curtainDidOpen
-{
-    
-}
 
-- (void)curtainDidClose
+- (void)curtainPositionUpdateWithValue:(NSInteger)value
 {
-    
-}
-
-- (void)curtainDidStop
-{
-    
+    dispatch_async(dispatch_get_main_queue(),
+                   ^{
+                       [curtainViewControllerSharedInstance.curtainSliderOutlet setValue:value animated:YES];
+                   });
 }
 @end

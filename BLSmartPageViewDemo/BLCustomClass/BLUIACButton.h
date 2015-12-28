@@ -13,8 +13,8 @@
 @interface BLUIACButton : UIButton
 
 @property (nonatomic, copy)NSString *objName;
-@property (nonatomic, retain)NSMutableDictionary *acPropertyMutableDict;
-@property (nonatomic, retain)BLACViewController *acViewController;
+@property (nonatomic, retain)NSMutableDictionary *acPropertyDict;
+//@property (nonatomic, retain)BLACViewController *acViewController;
 @property (strong, nonatomic)UILabel *acEnviromentTemperatureLabel;
 
 

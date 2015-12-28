@@ -17,9 +17,11 @@
 
 
 @implementation ViewControllerContainer
+static BLACViewController *_acViewController =  nil;
 static BLHeatingViewController *_heatingViewController =  nil;
 static BLDimmingViewController *_dimmingViewController =  nil;
 static BLCurtainViewController *_curtainViewController =  nil;
+static BLCurtain2ViewController *_curtain2ViewController =  nil;
 
 + (instancetype)sharedInstance
 {
@@ -42,23 +44,28 @@ static BLCurtainViewController *_curtainViewController =  nil;
     if (self)
     {
         //BLHeatingViewController *hVC = self.heatingViewController;
+        self.acViewController.view;
         self.heatingViewController.view;
         self.dimmingViewController.view;
         self.curtainViewController.view;
+        self.curtain2ViewController.view;
     }
     return self;
 }
 
-//- (BLHeatingViewController *)heatingViewController
-//{
-//    if (_heatingViewController123 == nil)
-//    {
-//        _heatingViewController123 = [[BLHeatingViewController alloc] init];
-//    }
-//    return _heatingViewController123;
-//}
-//+ (void) setHeatingViewController:(int)val
-//{ @synchronized(self) { value = val; } }
+- (BLACViewController *) acViewController
+{
+    if (!_acViewController)
+    {
+        _acViewController =
+        ({
+            BLACViewController *viewController = [BLACViewController sharedInstance];
+            viewController;
+        });
+    }
+    return _acViewController;
+}
+
 - (BLHeatingViewController *) heatingViewController
 {
     if (!_heatingViewController)
@@ -96,6 +103,19 @@ static BLCurtainViewController *_curtainViewController =  nil;
         });
     }
     return _curtainViewController;
+}
+
+- (BLCurtain2ViewController *) curtain2ViewController
+{
+    if (!_curtain2ViewController)
+    {
+        _curtain2ViewController =
+        ({
+            BLCurtain2ViewController *viewController = [BLCurtain2ViewController sharedInstance];
+            viewController;
+        });
+    }
+    return _curtain2ViewController;
 }
 
 @end

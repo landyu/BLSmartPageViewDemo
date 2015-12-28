@@ -12,7 +12,7 @@
 #import "GlobalMacro.h"
 #define heatingViewControllerSharedInstance [BLHeatingViewController sharedInstance]
 
-enum ReadFromGroupAddressObject
+enum HeatingReadFromGroupAddressObject
 {
     kOnOff = 0,
     kSettingTemperature,
@@ -23,9 +23,9 @@ enum ReadFromGroupAddressObject
 @interface BLHeating()
 {
     
-    NSMutableDictionary *EnviromentTemperatureDict;
-    NSMutableDictionary *SettingTemperatureDict;
-    NSMutableDictionary *OnOffDict;
+    NSDictionary *EnviromentTemperatureDict;
+    NSDictionary *SettingTemperatureDict;
+    NSDictionary *OnOffDict;
     
     NSDictionary *heatingPropertyDict;
     //BLHeatingViewController *heatingViewControllerSharedInstance;
@@ -92,7 +92,7 @@ enum ReadFromGroupAddressObject
      {
          if ([key isEqualToString:@"EnviromentTemperature"])
          {
-             EnviromentTemperatureDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+             EnviromentTemperatureDict = [[NSDictionary alloc] initWithDictionary:obj];
              [ReadFromGroupAddressArray replaceObjectAtIndex:kEnviromentTemperature withObject:[EnviromentTemperatureDict[@"ReadFromGroupAddress"] objectForKey:@"0"]];
              //[WriteToGroupAddressArray replaceObjectAtIndex:kEnviromentTemperature withObject:[EnviromentTemperatureDict[@"WriteToGroupAddress"] objectForKey:@"0"]];
              //ReadFromGroupAddressArray[kEnviromentTemperature] = [EnviromentTemperatureDict[@"ReadFromGroupAddress"] objectForKey:@"0"];
@@ -100,7 +100,7 @@ enum ReadFromGroupAddressObject
          }
          else if([key isEqualToString:@"SettingTemperature"])
          {
-             SettingTemperatureDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+             SettingTemperatureDict = [[NSDictionary alloc] initWithDictionary:obj];
              [ReadFromGroupAddressArray replaceObjectAtIndex:kSettingTemperature withObject:[SettingTemperatureDict[@"ReadFromGroupAddress"] objectForKey:@"0"]];
              [WriteToGroupAddressArray replaceObjectAtIndex:kSettingTemperature withObject:[SettingTemperatureDict[@"WriteToGroupAddress"] objectForKey:@"0"]];
              //ReadFromGroupAddressArray[kSettingTemperature] = [SettingTemperatureDict[@"ReadFromGroupAddress"] objectForKey:@"0"];
@@ -108,7 +108,7 @@ enum ReadFromGroupAddressObject
          }
          else if([key isEqualToString:@"OnOff"])
          {
-             OnOffDict = [[NSMutableDictionary alloc] initWithDictionary:obj];
+             OnOffDict = [[NSDictionary alloc] initWithDictionary:obj];
              [ReadFromGroupAddressArray replaceObjectAtIndex:kOnOff withObject:[OnOffDict[@"ReadFromGroupAddress"] objectForKey:@"0"]];
              [WriteToGroupAddressArray replaceObjectAtIndex:kOnOff withObject:[OnOffDict[@"WriteToGroupAddress"] objectForKey:@"0"]];
              //ReadFromGroupAddressArray[kOnOff] = [OnOffDict[@"ReadFromGroupAddress"] objectForKey:@"0"];
@@ -183,6 +183,12 @@ enum ReadFromGroupAddressObject
 #pragma mark Receive From Bus
 - (void)recvFromBus:(NSNotification*) notification
 {
+    
+    if (heatingViewControllerSharedInstance.view.superview == nil)
+    {
+        return;
+    }
+    
     NSDictionary *dict = [notification userInfo];
     
     for (NSUInteger index = 0; index < [ReadFromGroupAddressArray count]; index++)
@@ -204,10 +210,6 @@ enum ReadFromGroupAddressObject
             {
                 [self heatingSettingTemperatureUpdateWithValue:value];
             }
-//            else if (index == kEnviromentTemperature)
-//            {
-//                [self heatingEnvironmentTemperatureStatusUpdateWithValue:value];
-//            }
         }
     }
 }

@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface BLCurtain : NSObject
-@property (strong, nonatomic) NSMutableDictionary *overallRecevedKnxDataDict;
 - (void)updateItemsDict:(NSDictionary *)curtainPropertyDict;
-- (void)curtainPositionChangedWithValue:(float)value;
-- (void)curtainDidOpen;
-- (void)curtainDidClose;
-- (void)curtainDidStop;
+- (void)curtainPositionToChangeWithValue:(float)value;
+- (void)curtainToOpen;
+- (void)curtainToClose;
+- (void)curtainToStop;
 + (instancetype)sharedInstance;
+- (void)setCurtainPanelViewFromOldData;
+- (void)readCurtainPanelStatus;
 @end

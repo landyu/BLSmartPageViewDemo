@@ -9,16 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface BLDimming : NSObject
-@property (strong, nonatomic) NSMutableDictionary *overallRecevedKnxDataDict;
+
++ (instancetype)sharedInstance;
 - (void)updateItemsDict:(NSDictionary *)dimmingPropertyDict;
 - (void)dimmingValueChangedWithValue:(float)value;
-- (void)dimmingOnOffChangedWithState:(BOOL)isSelected;
-+ (instancetype)sharedInstance;
-@end
+- (void)dimmingOnOffChangedWithState:(BOOL)isOn;
 
-
-@protocol DimmingProcessDataDelegate
-@optional
-- (void) blDimmingSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType;
-- (void) blDimmingInitReadWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength;
+- (void)setDimmingPanelViewFromOldData;
+- (void)readDimmingPanelStatus;
 @end

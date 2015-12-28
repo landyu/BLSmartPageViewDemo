@@ -20,9 +20,10 @@
     return self;
 }
 
+
 - (void)initialize
 {
-    self.acViewController = nil;
+    //self.acViewController = nil;
 }
 
 - (void)addEnviromentTemperatureLabelWithParentController:(APPChildViewController *)parentController
