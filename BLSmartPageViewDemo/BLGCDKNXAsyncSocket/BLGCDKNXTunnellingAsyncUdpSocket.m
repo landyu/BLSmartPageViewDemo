@@ -13,6 +13,8 @@
 #import "GCDAsyncUdpSocket.h"
 #import "Utils.h"
 #import "NSMutableArray+QueueStack.h"
+#import "BLKNXNetworkGateEMIExtend.h"
+#import "KNXCommandType.h"
 
 enum TunnellingSocketError
 {
@@ -94,6 +96,8 @@ typedef enum TunnellingServeState TunnellingServeState;
     NSInvocationOperation *connectOperation;
     NSInvocationOperation *heartBeatOperation;
     
+    BLKNXNetworkGateEMIExtend *networkGateEMIExtend;
+    
     //NSMutableDictionary *overallReceivedKnxDataDict;
     
     //NSString *connectAndHeartBeatQueueFinishNotification;
@@ -134,6 +138,7 @@ typedef enum TunnellingServeState TunnellingServeState;
         
         //connectAndHeartBeatQueueFinishNotification = @"BL.BLSmartPageViewDemo.connectAndHeartBeatQueueFinish";
         //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectAndHeartBeatQueueFinish) name:connectAndHeartBeatQueueFinishNotification object:nil];
+        networkGateEMIExtend = [[BLKNXNetworkGateEMIExtend alloc] init];
         tunnellingServeState = TunnellingServeStop;
         
         tunnellingConnectState = TunnellingSocketConnectResponseNoConnectionError;
@@ -307,6 +312,46 @@ withFilterContext:(id)filterContext
             {
                 [self resortDataAndPostReceiveNotification:data];
             }
+            else if(testByte[10] == 0x2e) //L_Data.con
+            {
+                if(testByte[12] == 0x83)  //read all timming setting data response
+                {
+                    //NSLog(@"testByte[11] = %d", testByte[11]);
+//                    NSLog(@"read all timming setting data response $$$$$$$$$$$$");
+//                    int additionalDataLength = testByte[11] - 1;
+//                    int index = 0;
+//                    if (additionalDataLength > 0)
+//                    {
+//                        int timmingItemLength = testByte[13];
+//                        do
+//                        {
+//                            NSLog(@"timming item index = %d  item length = %d", index++, timmingItemLength);
+//                            additionalDataLength = additionalDataLength - timmingItemLength - 1;
+//                            if (additionalDataLength <= 0)
+//                            {
+//                                break;
+//                            }
+//                            timmingItemLength = testByte[13 + timmingItemLength + 1 + 1];
+//                            
+//                            
+//                        }while (1);
+//                        
+//                    }
+//                    else
+//                    {
+//                        NSLog(@"timming item count = 0, additionalDataLength = %d", additionalDataLength);
+//                    }
+                    NSUInteger additionalDataLength = testByte[11] + 1;
+                    NSData *timmingItemsdata = [[NSData alloc] initWithBytes:(testByte + 11) length:additionalDataLength];
+                    [networkGateEMIExtend postTimmingItemsGetAllNotificationWithBytes:timmingItemsdata];
+                    
+                }
+                else if(testByte[12] == 0x88)//read  timming setting total count response
+                {
+                    //NSLog(@"response read  timming setting total count = %d  $$$$$$$$$$$$", testByte[14]);
+                    [networkGateEMIExtend postTimmingItemsTotalCountNotificationWithCount:testByte[14]];
+                }
+            }
             
         }
         else if((testByte[0] == 0x06) && (testByte[1] == 0x10) && (testByte[2] == 0x04) && (testByte[3] == 0x21))//ack
@@ -429,9 +474,17 @@ withFilterContext:(id)filterContext
                        ^{
                            while ([tunnellingSendQueue count])
                            {
+                               Byte standardTPData[11] = {0xbc,0xd0,0x00,0x00,0x18,0x00,0x01,0x00,0x00,0x00,0x00};
+                               // 0    1   2    3    4     5    6   7   8   9   10    11  12   13   14    15   16  17    18   19   20  21    22
                                Byte sendByte[23] = {0x06,0x10,0x04,0x20,0x00,0x15,0x04,CID,SC,0x00,0x11,0x00,0xbc,0xd0,0x00,0x00,0x18,0x00,0x01,0x00,0x00,0x00,0x00};
+                               // 0    1   2    3    4     5    6   7   8   9   10    11  12   13   14    15   16  17    18   19   20  21    22
+                               Byte sendByteWithAdditionalData[12] = {0x06,0x10,0x04,0x20,0x00,0x15,0x04,CID,SC,0x00,0x11,0x00};
+                               
                                NSMutableData *data = [[NSMutableData alloc] init];
                                data = [NSMutableData dataWithBytes:sendByte length:21];
+                               
+                               NSMutableData *dataWithAdditionalData = [[NSMutableData alloc] init];
+                               dataWithAdditionalData = [NSMutableData dataWithBytes:sendByteWithAdditionalData length:12];
 
                                NSDictionary *sendData = [tunnellingSendQueue queuePop];
                                [NSThread sleepForTimeInterval:0.05];
@@ -516,6 +569,77 @@ withFilterContext:(id)filterContext
                                        dataLength = 21;
                                    }
                                }
+                               else if([commandType isEqualToString:@"TimmingItemSet"])
+                               {
+//                                   value = 35;//package length
+//                                   [dataWithAdditionalData replaceBytesInRange:NSMakeRange(5, 1) withBytes:&value];
+//                                   value = 0x0E;//additional package length
+//                                   [dataWithAdditionalData replaceBytesInRange:NSMakeRange(11, 1) withBytes:&value];
+//                                   value = 0x86;//timming set flag     12
+//                                   [dataWithAdditionalData appendBytes:&value length:1];
+//                                   value = 0x0C;//additional data length     13
+//                                   [dataWithAdditionalData appendBytes:&value length:1];
+//                                   value = 0x01;//week repeat enable      14
+//                                   [dataWithAdditionalData appendBytes:&value length:1];
+//                                   
+//                                   Byte dateByte[6] = {15, 12, 11, 9, 30, 10};//set yy-mm-dd-hh-mm-ss      15-20
+//                                   [dataWithAdditionalData appendBytes:dateByte length:6];
+//                                   
+//                                   Byte destAddress[2] = {0x11, 0x22};// set target address    21-22
+//                                   [dataWithAdditionalData appendBytes:destAddress length:2];
+//                                   
+//                                   Byte actionByte[3] = {0x01, 0x00, 0x81};//set action      23-
+//                                   [dataWithAdditionalData appendBytes:actionByte length:3];
+//                                   
+//                                   [dataWithAdditionalData appendBytes:standardTPData length:9];
+//                                   
+//                                   //                                       value = 0x00 | ([sendValue integerValue] & 0x01);
+//                                   //                                       [data replaceBytesInRange:NSMakeRange(20, 1) withBytes:&value];
+//                                   dataLength = 35;
+//                                   data = [NSMutableData dataWithData:dataWithAdditionalData];
+                                   
+                                   NSDictionary *timmingItemDict = [sendData objectForKey:@"AdditionInfo"];
+                                   data = [networkGateEMIExtend setTimmingItemWithChannelID:CID squenceCount:SC timmingItem:timmingItemDict];
+                                   dataLength = [data length];
+                                   
+                               }
+                               else if([commandType isEqualToString:@"TimmingItemDelete"])
+                               {
+                                   
+                               }
+                               else if([commandType isEqualToString:KNXCommandTimmingItemsItemsGetAll])
+                               {
+                                   
+//                                   value = 0x01;//additional package length
+//                                   [dataWithAdditionalData replaceBytesInRange:NSMakeRange(11, 1) withBytes:&value];
+//                                   value = 0x83;//timming read all flag     12
+//                                   [dataWithAdditionalData appendBytes:&value length:1];
+//                                   [dataWithAdditionalData appendBytes:standardTPData length:9];
+//                                   dataLength = 22;
+//                                   value = dataLength;//package length
+//                                   [dataWithAdditionalData replaceBytesInRange:NSMakeRange(5, 1) withBytes:&value];
+//                                   data = [NSMutableData dataWithData:dataWithAdditionalData];
+                                   data = [networkGateEMIExtend getAllTimmingItemsWithChannelID:CID squenceCount:SC];
+                                   dataLength = [data length];
+                               }
+                               else if([commandType isEqualToString:KNXCommandTimmingItemsGetItemsTotalCount])
+                               {
+//                                   value = 0x01;//additional package length
+//                                   [dataWithAdditionalData replaceBytesInRange:NSMakeRange(11, 1) withBytes:&value];
+//                                   value = 0x88;//timming read all flag     12
+//                                   [dataWithAdditionalData appendBytes:&value length:1];
+//                                   [dataWithAdditionalData appendBytes:standardTPData length:9];
+//                                   dataLength = 22;
+//                                   value = dataLength;//package length
+//                                   [dataWithAdditionalData replaceBytesInRange:NSMakeRange(5, 1) withBytes:&value];
+//                                   data = [NSMutableData dataWithData:dataWithAdditionalData];
+                                   data = [networkGateEMIExtend getTimmingItemsTotalCountWithChannelID:CID squenceCount:SC];
+                                   dataLength = [data length];
+                                   //NSLog(@"data length = %lu", (unsigned long)[data length]);
+                               }
+                               
+                               
+                               
                                if (dataLength == 0)
                                {
                                    continue;
@@ -1019,6 +1143,17 @@ withFilterContext:(id)filterContext
 {
     //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:destGroupAddress, @"GroupAddress", valueLength, @"ValueLength", commangType, @"CommandType", value, @"Value", nil];
     NSDictionary *transmitDataDict = [[NSDictionary alloc]initWithObjectsAndKeys:destGroupAddress, @"GroupAddress", valueLength, @"ValueLength", commangType, @"CommandType", [NSString stringWithFormat:@"%ld",(long)value], @"Value", nil];
+    dispatch_async(tunnellingSendQueueOperateQueue,
+                   ^{
+                       //[tunnellingSendQueue queuePush:data];
+                       [[self mutableArrayValueForKey:TunnellingSendQueueKeyPath] queuePush:transmitDataDict];
+                   });
+}
+
+- (void) tunnellingSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType additionInfo:(NSDictionary *)additionInfo
+{
+    //NSDictionary *transmitDataDict = [[NSDictionary alloc] initWithObjectsAndKeys:destGroupAddress, @"GroupAddress", valueLength, @"ValueLength", commangType, @"CommandType", value, @"Value", nil];
+    NSDictionary *transmitDataDict = [[NSDictionary alloc]initWithObjectsAndKeys:destGroupAddress, @"GroupAddress", valueLength, @"ValueLength", commangType, @"CommandType", [NSString stringWithFormat:@"%ld",(long)value], @"Value", additionInfo, @"AdditionInfo", nil];
     dispatch_async(tunnellingSendQueueOperateQueue,
                    ^{
                        //[tunnellingSendQueue queuePush:data];

@@ -17,9 +17,6 @@
                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BG_Blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="6hx-bR-5VM">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="703"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="餐厅.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lsu-ME-9SQ">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="703"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-aW-4vG" userLabel="台灯2" customClass="BLUISwitch">
                     <rect key="frame" x="589" y="590" width="50" height="50"/>
                     <state key="normal" image="off.png"/>
@@ -39,6 +36,9 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="台灯1"/>
                     </userDefinedRuntimeAttributes>
                 </button>
+                <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="餐厅.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lsu-ME-9SQ">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="703"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <accessibility key="accessibilityConfiguration" label=""/>

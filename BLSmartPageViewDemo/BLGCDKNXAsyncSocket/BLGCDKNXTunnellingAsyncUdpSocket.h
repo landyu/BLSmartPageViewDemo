@@ -21,5 +21,6 @@
 - (void) tunnellingServeRestart;
 - (NSString *) serverIpAddress;
 - (void) tunnellingSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType;
+- (void) tunnellingSendWithDestGroupAddress:(NSString *)destGroupAddress value:(NSInteger)value buttonName:(NSString *)name valueLength:(NSString *)valueLength commandType:(NSString *)commangType additionInfo:(NSDictionary *)additionInfo;
 //- (NSMutableDictionary *)getOverallReceivedKnxDataDict;
 @end

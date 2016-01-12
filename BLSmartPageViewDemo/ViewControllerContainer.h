@@ -12,6 +12,7 @@
 #import "BLDimmingViewController.h"
 #import "BLCurtainViewController.h"
 #import "BLCurtain2ViewController.h"
+#import "BLRemoteControllerViewController.h"
 
 @interface ViewControllerContainer : NSObject
 + (instancetype)sharedInstance;
@@ -20,4 +21,5 @@
 - (BLDimmingViewController *) dimmingViewController;
 - (BLCurtainViewController *) curtainViewController;
 - (BLCurtain2ViewController *) curtain2ViewController;
+- (BLRemoteControllerViewController *) remoteControllerViewController;
 @end

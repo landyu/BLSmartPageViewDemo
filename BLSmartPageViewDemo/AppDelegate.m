@@ -123,7 +123,7 @@
     
     
     tunnellingShareInstance = [BLGCDKNXTunnellingAsyncUdpSocket sharedInstance];
-    [tunnellingShareInstance setTunnellingSocketWithClientBindToPort:0 deviceIpAddress:@"192.168.10.193" deviceIpPort:3671 delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    [tunnellingShareInstance setTunnellingSocketWithClientBindToPort:0 deviceIpAddress:@"192.168.10.199" deviceIpPort:3671 delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
     [tunnellingShareInstance tunnellingServeStart];
 }
 

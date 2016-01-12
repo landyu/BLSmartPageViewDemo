@@ -75,7 +75,16 @@
 		177986831B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1779867F1B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m */; };
 		177F6B741BCE38440037BDE0 /* 杰立户型图.png in Resources */ = {isa = PBXBuildFile; fileRef = 177F6B731BCE38440037BDE0 /* 杰立户型图.png */; };
 		178870E41BFC9061008B8F23 /* RoomInfo-Demo in Resources */ = {isa = PBXBuildFile; fileRef = 178870E31BFC9061008B8F23 /* RoomInfo-Demo */; };
+		178C65EA1C34C0B000D8C9AF /* BLKNXNetworkGateEMIExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 178C65E91C34C0B000D8C9AF /* BLKNXNetworkGateEMIExtend.m */; };
 		178CA92C1BD4986C0079EAFE /* BLUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 178CA92B1BD4986C0079EAFE /* BLUISlider.m */; };
+		178F3C9E1C33B3200072A99C /* TimmingAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F3C991C33B3200072A99C /* TimmingAddViewController.m */; };
+		178F3C9F1C33B3200072A99C /* TimmingItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F3C9B1C33B3200072A99C /* TimmingItemTableViewCell.m */; };
+		178F3CA01C33B3200072A99C /* TimmingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F3C9D1C33B3200072A99C /* TimmingViewController.m */; };
+		178F3CAC1C33B3520072A99C /* TimmingAddLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F3CA31C33B3520072A99C /* TimmingAddLabelViewController.m */; };
+		178F3CAD1C33B3520072A99C /* TimmingAddRepeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F3CA51C33B3520072A99C /* TimmingAddRepeatViewController.m */; };
+		178F3CAE1C33B3520072A99C /* TimmingAddSendValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F3CA71C33B3520072A99C /* TimmingAddSendValueViewController.m */; };
+		178F3CAF1C33B3520072A99C /* TimmingAddValueTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F3CA91C33B3520072A99C /* TimmingAddValueTypeViewController.m */; };
+		178F3CB01C33B3520072A99C /* TimmingAddWriteToAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 178F3CAB1C33B3520072A99C /* TimmingAddWriteToAddressViewController.m */; };
 		17B7B6421C2D0ADA006F7C36 /* BLACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B6401C2D0ADA006F7C36 /* BLACViewController.m */; };
 		17B7B6431C2D0ADA006F7C36 /* BLACViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17B7B6411C2D0ADA006F7C36 /* BLACViewController.xib */; };
 		17B7B6461C2D0AF6006F7C36 /* BLAC.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B7B6451C2D0AF6006F7C36 /* BLAC.m */; };
@@ -88,6 +97,8 @@
 		17BBA2C31C2A89CA00B1B32C /* BLCurtain.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BBA2C21C2A89CA00B1B32C /* BLCurtain.m */; };
 		17BBA2CC1C2A8A6D00B1B32C /* BLCurtainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BBA2CA1C2A8A6D00B1B32C /* BLCurtainViewController.m */; };
 		17BBA2CD1C2A8A6D00B1B32C /* BLCurtainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BBA2CB1C2A8A6D00B1B32C /* BLCurtainViewController.xib */; };
+		17D4DA281C3E084700CACA00 /* Timming.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D4DA271C3E084700CACA00 /* Timming.m */; };
+		17D4DA2B1C3E5C3500CACA00 /* TimmingAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D4DA2A1C3E5C3500CACA00 /* TimmingAdd.m */; };
 		17DA5F391B96F19D003532ED /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 17DA5F381B96F19D003532ED /* click1.mp3 */; };
 		17DBAD081B74B03B00B26A83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DBAD071B74B03B00B26A83 /* main.m */; };
 		17DBAD0B1B74B03B00B26A83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DBAD0A1B74B03B00B26A83 /* AppDelegate.m */; };
@@ -99,11 +110,16 @@
 		17DD16511B75AC1200E0858C /* homeDemo.png in Resources */ = {isa = PBXBuildFile; fileRef = 17DD16501B75AC1200E0858C /* homeDemo.png */; };
 		17DDCA0C1B787D6800AF415B /* 资源库 in Resources */ = {isa = PBXBuildFile; fileRef = 17DDCA0B1B787D6800AF415B /* 资源库 */; };
 		17DDCA141B78B6E500AF415B /* PropertyConfigPhrase.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DDCA131B78B6E500AF415B /* PropertyConfigPhrase.m */; };
+		17DFE1261C43838B003A452E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 17DFE1251C43838B003A452E /* MBProgressHUD.m */; };
 		17E82FFA1C30D54A009DA0B8 /* Curtain.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E82FF91C30D54A009DA0B8 /* Curtain.m */; };
 		17E82FFD1C30E697009DA0B8 /* BLUICurtain2Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E82FFC1C30E697009DA0B8 /* BLUICurtain2Button.m */; };
 		17E830011C30E6D8009DA0B8 /* BLCurtain2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E82FFF1C30E6D8009DA0B8 /* BLCurtain2ViewController.m */; };
 		17E830021C30E6D8009DA0B8 /* BLCurtain2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E830001C30E6D8009DA0B8 /* BLCurtain2ViewController.xib */; };
 		17E830051C30E6F4009DA0B8 /* BLCurtain2.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E830041C30E6F4009DA0B8 /* BLCurtain2.m */; };
+		17E830091C31465D009DA0B8 /* BLUIRemoteControllerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E830081C31465D009DA0B8 /* BLUIRemoteControllerButton.m */; };
+		17E8300D1C314923009DA0B8 /* BLRemoteControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E8300B1C314923009DA0B8 /* BLRemoteControllerViewController.m */; };
+		17E8300E1C314923009DA0B8 /* BLRemoteControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E8300C1C314923009DA0B8 /* BLRemoteControllerViewController.xib */; };
+		17E830121C314AAA009DA0B8 /* BLRemoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E830111C314AAA009DA0B8 /* BLRemoteController.m */; };
 		17FBA82D1C2B878700E9406D /* BLHeating.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FBA82C1C2B878700E9406D /* BLHeating.m */; };
 /* End PBXBuildFile section */
 
@@ -245,8 +261,27 @@
 		1779867F1B8D9CEE00AE0BF1 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		177F6B731BCE38440037BDE0 /* 杰立户型图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "杰立户型图.png"; path = "../../../../../../Downloads/杰立户型图.png"; sourceTree = "<group>"; };
 		178870E31BFC9061008B8F23 /* RoomInfo-Demo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "RoomInfo-Demo"; sourceTree = "<group>"; };
+		178C65E81C34C0B000D8C9AF /* BLKNXNetworkGateEMIExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLKNXNetworkGateEMIExtend.h; sourceTree = "<group>"; };
+		178C65E91C34C0B000D8C9AF /* BLKNXNetworkGateEMIExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLKNXNetworkGateEMIExtend.m; sourceTree = "<group>"; };
 		178CA92A1BD4986C0079EAFE /* BLUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUISlider.h; path = BLCustomClass/BLUISlider.h; sourceTree = "<group>"; };
 		178CA92B1BD4986C0079EAFE /* BLUISlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUISlider.m; path = BLCustomClass/BLUISlider.m; sourceTree = "<group>"; };
+		178F3C981C33B3200072A99C /* TimmingAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimmingAddViewController.h; sourceTree = "<group>"; };
+		178F3C991C33B3200072A99C /* TimmingAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimmingAddViewController.m; sourceTree = "<group>"; };
+		178F3C9A1C33B3200072A99C /* TimmingItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimmingItemTableViewCell.h; sourceTree = "<group>"; };
+		178F3C9B1C33B3200072A99C /* TimmingItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimmingItemTableViewCell.m; sourceTree = "<group>"; };
+		178F3C9C1C33B3200072A99C /* TimmingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimmingViewController.h; sourceTree = "<group>"; };
+		178F3C9D1C33B3200072A99C /* TimmingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimmingViewController.m; sourceTree = "<group>"; };
+		178F3CA21C33B3520072A99C /* TimmingAddLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimmingAddLabelViewController.h; sourceTree = "<group>"; };
+		178F3CA31C33B3520072A99C /* TimmingAddLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimmingAddLabelViewController.m; sourceTree = "<group>"; };
+		178F3CA41C33B3520072A99C /* TimmingAddRepeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimmingAddRepeatViewController.h; sourceTree = "<group>"; };
+		178F3CA51C33B3520072A99C /* TimmingAddRepeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimmingAddRepeatViewController.m; sourceTree = "<group>"; };
+		178F3CA61C33B3520072A99C /* TimmingAddSendValueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimmingAddSendValueViewController.h; sourceTree = "<group>"; };
+		178F3CA71C33B3520072A99C /* TimmingAddSendValueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimmingAddSendValueViewController.m; sourceTree = "<group>"; };
+		178F3CA81C33B3520072A99C /* TimmingAddValueTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimmingAddValueTypeViewController.h; sourceTree = "<group>"; };
+		178F3CA91C33B3520072A99C /* TimmingAddValueTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimmingAddValueTypeViewController.m; sourceTree = "<group>"; };
+		178F3CAA1C33B3520072A99C /* TimmingAddWriteToAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimmingAddWriteToAddressViewController.h; sourceTree = "<group>"; };
+		178F3CAB1C33B3520072A99C /* TimmingAddWriteToAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimmingAddWriteToAddressViewController.m; sourceTree = "<group>"; };
+		17AE98481C3CE37C0047FE02 /* GlobalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalNotification.h; sourceTree = "<group>"; };
 		17B7B63F1C2D0ADA006F7C36 /* BLACViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLACViewController.h; path = BLCustomClass/BLACViewController.h; sourceTree = "<group>"; };
 		17B7B6401C2D0ADA006F7C36 /* BLACViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLACViewController.m; path = BLCustomClass/BLACViewController.m; sourceTree = "<group>"; };
 		17B7B6411C2D0ADA006F7C36 /* BLACViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLACViewController.xib; path = BLCustomClass/BLACViewController.xib; sourceTree = "<group>"; };
@@ -268,6 +303,11 @@
 		17BBA2C91C2A8A6D00B1B32C /* BLCurtainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLCurtainViewController.h; path = BLCustomClass/BLCurtainViewController.h; sourceTree = "<group>"; };
 		17BBA2CA1C2A8A6D00B1B32C /* BLCurtainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLCurtainViewController.m; path = BLCustomClass/BLCurtainViewController.m; sourceTree = "<group>"; };
 		17BBA2CB1C2A8A6D00B1B32C /* BLCurtainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLCurtainViewController.xib; path = BLCustomClass/BLCurtainViewController.xib; sourceTree = "<group>"; };
+		17D4DA251C3E01D900CACA00 /* KNXCommandType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNXCommandType.h; sourceTree = "<group>"; };
+		17D4DA261C3E084700CACA00 /* Timming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timming.h; sourceTree = "<group>"; };
+		17D4DA271C3E084700CACA00 /* Timming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timming.m; sourceTree = "<group>"; };
+		17D4DA291C3E5C3500CACA00 /* TimmingAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimmingAdd.h; sourceTree = "<group>"; };
+		17D4DA2A1C3E5C3500CACA00 /* TimmingAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimmingAdd.m; sourceTree = "<group>"; };
 		17DA5F381B96F19D003532ED /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		17DBAD021B74B03B00B26A83 /* BLSmartPageViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLSmartPageViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DBAD061B74B03B00B26A83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -287,6 +327,8 @@
 		17DDCA0B1B787D6800AF415B /* 资源库 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "资源库"; sourceTree = "<group>"; };
 		17DDCA121B78B6E500AF415B /* PropertyConfigPhrase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyConfigPhrase.h; sourceTree = "<group>"; };
 		17DDCA131B78B6E500AF415B /* PropertyConfigPhrase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyConfigPhrase.m; sourceTree = "<group>"; };
+		17DFE1241C43838B003A452E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		17DFE1251C43838B003A452E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		17E82FF81C30D54A009DA0B8 /* Curtain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Curtain.h; path = BLCustomClass/Curtain.h; sourceTree = "<group>"; };
 		17E82FF91C30D54A009DA0B8 /* Curtain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Curtain.m; path = BLCustomClass/Curtain.m; sourceTree = "<group>"; };
 		17E82FFB1C30E697009DA0B8 /* BLUICurtain2Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUICurtain2Button.h; path = BLCustomClass/BLUICurtain2Button.h; sourceTree = "<group>"; };
@@ -296,6 +338,13 @@
 		17E830001C30E6D8009DA0B8 /* BLCurtain2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLCurtain2ViewController.xib; path = BLCustomClass/BLCurtain2ViewController.xib; sourceTree = "<group>"; };
 		17E830031C30E6F4009DA0B8 /* BLCurtain2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLCurtain2.h; path = BLCustomClass/BLCurtain2.h; sourceTree = "<group>"; };
 		17E830041C30E6F4009DA0B8 /* BLCurtain2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLCurtain2.m; path = BLCustomClass/BLCurtain2.m; sourceTree = "<group>"; };
+		17E830071C31465D009DA0B8 /* BLUIRemoteControllerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLUIRemoteControllerButton.h; path = BLCustomClass/BLUIRemoteControllerButton.h; sourceTree = "<group>"; };
+		17E830081C31465D009DA0B8 /* BLUIRemoteControllerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLUIRemoteControllerButton.m; path = BLCustomClass/BLUIRemoteControllerButton.m; sourceTree = "<group>"; };
+		17E8300A1C314923009DA0B8 /* BLRemoteControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLRemoteControllerViewController.h; path = BLCustomClass/BLRemoteControllerViewController.h; sourceTree = "<group>"; };
+		17E8300B1C314923009DA0B8 /* BLRemoteControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLRemoteControllerViewController.m; path = BLCustomClass/BLRemoteControllerViewController.m; sourceTree = "<group>"; };
+		17E8300C1C314923009DA0B8 /* BLRemoteControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BLRemoteControllerViewController.xib; path = BLCustomClass/BLRemoteControllerViewController.xib; sourceTree = "<group>"; };
+		17E830101C314AAA009DA0B8 /* BLRemoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLRemoteController.h; path = BLCustomClass/BLRemoteController.h; sourceTree = "<group>"; };
+		17E830111C314AAA009DA0B8 /* BLRemoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLRemoteController.m; path = BLCustomClass/BLRemoteController.m; sourceTree = "<group>"; };
 		17FBA82B1C2B878700E9406D /* BLHeating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLHeating.h; path = BLCustomClass/BLHeating.h; sourceTree = "<group>"; };
 		17FBA82C1C2B878700E9406D /* BLHeating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLHeating.m; path = BLCustomClass/BLHeating.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -352,6 +401,8 @@
 			children = (
 				176124C31BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.h */,
 				176124C41BB9415C006A8A83 /* BLGCDKNXTunnellingAsyncUdpSocket.m */,
+				178C65E81C34C0B000D8C9AF /* BLKNXNetworkGateEMIExtend.h */,
+				178C65E91C34C0B000D8C9AF /* BLKNXNetworkGateEMIExtend.m */,
 			);
 			name = BLGCDKNXAsyncSocket;
 			sourceTree = "<group>";
@@ -373,6 +424,7 @@
 		17736A051BF9AE7B00CF1F5F /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				17DFE1231C43838B003A452E /* MBProgressHUD */,
 				17736A971BF9B8DA00CF1F5F /* ZipArchive */,
 				17736A831BF9B06800CF1F5F /* libz.1.2.5.tbd */,
 				17736A131BF9AFEE00CF1F5F /* CocoaHTTPServer */,
@@ -556,6 +608,17 @@
 		177986861B8D9EA300AE0BF1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				178F3CA11C33B3240072A99C /* TimmingAddSubPage */,
+				178F3C981C33B3200072A99C /* TimmingAddViewController.h */,
+				178F3C991C33B3200072A99C /* TimmingAddViewController.m */,
+				17D4DA291C3E5C3500CACA00 /* TimmingAdd.h */,
+				17D4DA2A1C3E5C3500CACA00 /* TimmingAdd.m */,
+				178F3C9A1C33B3200072A99C /* TimmingItemTableViewCell.h */,
+				178F3C9B1C33B3200072A99C /* TimmingItemTableViewCell.m */,
+				178F3C9C1C33B3200072A99C /* TimmingViewController.h */,
+				178F3C9D1C33B3200072A99C /* TimmingViewController.m */,
+				17D4DA261C3E084700CACA00 /* Timming.h */,
+				17D4DA271C3E084700CACA00 /* Timming.m */,
 				17DBAD0C1B74B03B00B26A83 /* ViewController.h */,
 				17DBAD0D1B74B03B00B26A83 /* ViewController.m */,
 				17DBAD341B74B81000B26A83 /* APPChildViewController.h */,
@@ -582,6 +645,8 @@
 				1762F52D1B92D29E00B4EBE7 /* Utils.h */,
 				1762F52E1B92D29E00B4EBE7 /* Utils.m */,
 				172168071BABDF700065A213 /* GlobalMacro.h */,
+				17AE98481C3CE37C0047FE02 /* GlobalNotification.h */,
+				17D4DA251C3E01D900CACA00 /* KNXCommandType.h */,
 				17619D121BB5328B00389414 /* BLSettingData.h */,
 				17619D131BB5328B00389414 /* BLSettingData.m */,
 				17736AB11BF9BE8600CF1F5F /* ConfigFileProcess.h */,
@@ -601,6 +666,7 @@
 				17DA5F3A1B97F6DA003532ED /* BLACClass */,
 				17BBA2BA1C2A885300B1B32C /* BLCurtainClass */,
 				17DB7DFC1B9C3DD50088335A /* BLCurtain2Class */,
+				17E830061C31460C009DA0B8 /* BLRemoteController */,
 				1721680C1BABE6980065A213 /* BLUIPageJumpButton.m */,
 				1721680B1BABE6980065A213 /* BLUIPageJumpButton.h */,
 				1721680D1BABE6980065A213 /* BLUISceneButton.h */,
@@ -617,6 +683,23 @@
 				178CA92B1BD4986C0079EAFE /* BLUISlider.m */,
 			);
 			name = BLCustomClass;
+			sourceTree = "<group>";
+		};
+		178F3CA11C33B3240072A99C /* TimmingAddSubPage */ = {
+			isa = PBXGroup;
+			children = (
+				178F3CA21C33B3520072A99C /* TimmingAddLabelViewController.h */,
+				178F3CA31C33B3520072A99C /* TimmingAddLabelViewController.m */,
+				178F3CA41C33B3520072A99C /* TimmingAddRepeatViewController.h */,
+				178F3CA51C33B3520072A99C /* TimmingAddRepeatViewController.m */,
+				178F3CA61C33B3520072A99C /* TimmingAddSendValueViewController.h */,
+				178F3CA71C33B3520072A99C /* TimmingAddSendValueViewController.m */,
+				178F3CA81C33B3520072A99C /* TimmingAddValueTypeViewController.h */,
+				178F3CA91C33B3520072A99C /* TimmingAddValueTypeViewController.m */,
+				178F3CAA1C33B3520072A99C /* TimmingAddWriteToAddressViewController.h */,
+				178F3CAB1C33B3520072A99C /* TimmingAddWriteToAddressViewController.m */,
+			);
+			name = TimmingAddSubPage;
 			sourceTree = "<group>";
 		};
 		17BBA2A51C2A3A3900B1B32C /* BLDimmingClass */ = {
@@ -763,6 +846,29 @@
 			name = Image;
 			sourceTree = "<group>";
 		};
+		17DFE1231C43838B003A452E /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				17DFE1241C43838B003A452E /* MBProgressHUD.h */,
+				17DFE1251C43838B003A452E /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		17E830061C31460C009DA0B8 /* BLRemoteController */ = {
+			isa = PBXGroup;
+			children = (
+				17E830071C31465D009DA0B8 /* BLUIRemoteControllerButton.h */,
+				17E830081C31465D009DA0B8 /* BLUIRemoteControllerButton.m */,
+				17E8300A1C314923009DA0B8 /* BLRemoteControllerViewController.h */,
+				17E8300B1C314923009DA0B8 /* BLRemoteControllerViewController.m */,
+				17E8300C1C314923009DA0B8 /* BLRemoteControllerViewController.xib */,
+				17E830101C314AAA009DA0B8 /* BLRemoteController.h */,
+				17E830111C314AAA009DA0B8 /* BLRemoteController.m */,
+			);
+			name = BLRemoteController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -864,6 +970,7 @@
 				17DBAD161B74B03B00B26A83 /* LaunchScreen.xib in Resources */,
 				17DBAD131B74B03B00B26A83 /* Images.xcassets in Resources */,
 				178870E41BFC9061008B8F23 /* RoomInfo-Demo in Resources */,
+				17E8300E1C314923009DA0B8 /* BLRemoteControllerViewController.xib in Resources */,
 				17619D001BB295AE00389414 /* Icon_Activity@2x.png in Resources */,
 				17736A751BF9AFEE00CF1F5F /* About.txt in Resources */,
 			);
@@ -888,25 +995,34 @@
 				17736A6A1BF9AFEE00CF1F5F /* MultipartMessageHeaderField.m in Sources */,
 				17736A651BF9AFEE00CF1F5F /* HTTPConnection.m in Sources */,
 				17FBA82D1C2B878700E9406D /* BLHeating.m in Sources */,
+				178F3CAD1C33B3520072A99C /* TimmingAddRepeatViewController.m in Sources */,
 				177986821B8D9CEE00AE0BF1 /* GCDAsyncSocket.m in Sources */,
 				1769F09C1C28FEB000D0AB42 /* BLHeatingViewController.m in Sources */,
+				178F3CAC1C33B3520072A99C /* TimmingAddLabelViewController.m in Sources */,
 				17619D141BB5328B00389414 /* BLSettingData.m in Sources */,
 				17736A641BF9AFEE00CF1F5F /* HTTPAuthenticationRequest.m in Sources */,
 				17736A791BF9AFEE00CF1F5F /* DDLog.m in Sources */,
 				17E830011C30E6D8009DA0B8 /* BLCurtain2ViewController.m in Sources */,
 				17736A721BF9AFEE00CF1F5F /* MyHTTPConnection.m in Sources */,
 				17BBA2C31C2A89CA00B1B32C /* BLCurtain.m in Sources */,
+				17DFE1261C43838B003A452E /* MBProgressHUD.m in Sources */,
 				17BBA2A81C2A3A6600B1B32C /* BLDimmingButton.m in Sources */,
+				178F3CB01C33B3520072A99C /* TimmingAddWriteToAddressViewController.m in Sources */,
 				17736A611BF9AFEE00CF1F5F /* DDData.m in Sources */,
 				17736A6E1BF9AFEE00CF1F5F /* HTTPErrorResponse.m in Sources */,
 				17736A701BF9AFEE00CF1F5F /* HTTPRedirectResponse.m in Sources */,
+				17E830121C314AAA009DA0B8 /* BLRemoteController.m in Sources */,
+				178F3C9E1C33B3200072A99C /* TimmingAddViewController.m in Sources */,
 				17736AA61BF9B8DA00CF1F5F /* unzip.c in Sources */,
+				178F3CAF1C33B3520072A99C /* TimmingAddValueTypeViewController.m in Sources */,
 				1762F52F1B92D29E00B4EBE7 /* Utils.m in Sources */,
 				171ED0D81BA918F9006D3BAE /* REMenuItem.m in Sources */,
 				171ED0E41BA952AD006D3BAE /* BLRootNavigationController.m in Sources */,
 				17736A6C1BF9AFEE00CF1F5F /* HTTPDataResponse.m in Sources */,
 				172168141BABE6980065A213 /* BLUISceneButton.m in Sources */,
 				17736AA51BF9B8DA00CF1F5F /* mztools.c in Sources */,
+				178C65EA1C34C0B000D8C9AF /* BLKNXNetworkGateEMIExtend.m in Sources */,
+				178F3CAE1C33B3520072A99C /* TimmingAddSendValueViewController.m in Sources */,
 				17736A681BF9AFEE00CF1F5F /* MultipartFormDataParser.m in Sources */,
 				17BBA2A41C291E4200B1B32C /* ViewControllerContainer.m in Sources */,
 				17BBA2BD1C2A896B00B1B32C /* BLUICurtainButton.m in Sources */,
@@ -920,10 +1036,12 @@
 				17E830051C30E6F4009DA0B8 /* BLCurtain2.m in Sources */,
 				1769F0951C28EDD400D0AB42 /* BLUIHeatingButton.m in Sources */,
 				17DBAD0B1B74B03B00B26A83 /* AppDelegate.m in Sources */,
+				17E830091C31465D009DA0B8 /* BLUIRemoteControllerButton.m in Sources */,
 				17E82FFA1C30D54A009DA0B8 /* Curtain.m in Sources */,
 				171ED0D51BA918F9006D3BAE /* RECommonFunctions.m in Sources */,
 				17BBA2AC1C2A3A9400B1B32C /* BLDimmingViewController.m in Sources */,
 				172A19781BD0F9B50099C97E /* BLUILabel.m in Sources */,
+				178F3C9F1C33B3200072A99C /* TimmingItemTableViewCell.m in Sources */,
 				17736ABF1BFADEF000CF1F5F /* EmptyViewController.m in Sources */,
 				17DBAD081B74B03B00B26A83 /* main.m in Sources */,
 				17736A671BF9AFEE00CF1F5F /* HTTPServer.m in Sources */,
@@ -941,15 +1059,19 @@
 				17736AB31BF9BE8600CF1F5F /* ConfigFileProcess.m in Sources */,
 				1721681E1BABE6D90065A213 /* BLUIACButton.m in Sources */,
 				17736A661BF9AFEE00CF1F5F /* HTTPMessage.m in Sources */,
+				178F3CA01C33B3200072A99C /* TimmingViewController.m in Sources */,
 				17BBA2B91C2A478600B1B32C /* BLDimming.m in Sources */,
 				17736A761BF9AFEE00CF1F5F /* DDAbstractDatabaseLogger.m in Sources */,
 				17736A631BF9AFEE00CF1F5F /* DDRange.m in Sources */,
+				17E8300D1C314923009DA0B8 /* BLRemoteControllerViewController.m in Sources */,
+				17D4DA2B1C3E5C3500CACA00 /* TimmingAdd.m in Sources */,
 				17736A771BF9AFEE00CF1F5F /* DDASLLogger.m in Sources */,
 				171ED0D91BA918F9006D3BAE /* REMenuItemView.m in Sources */,
 				17DBAD371B74B81000B26A83 /* APPChildViewController.m in Sources */,
 				17736A7A1BF9AFEE00CF1F5F /* DDTTYLogger.m in Sources */,
 				17736A691BF9AFEE00CF1F5F /* MultipartMessageHeader.m in Sources */,
 				178CA92C1BD4986C0079EAFE /* BLUISlider.m in Sources */,
+				17D4DA281C3E084700CACA00 /* Timming.m in Sources */,
 				17736A7C1BF9AFEE00CF1F5F /* DispatchQueueLogFormatter.m in Sources */,
 				17BBA2CC1C2A8A6D00B1B32C /* BLCurtainViewController.m in Sources */,
 				17736A6F1BF9AFEE00CF1F5F /* HTTPFileResponse.m in Sources */,

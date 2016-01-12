@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIViewController">
@@ -17,43 +16,36 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BG_Blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="cAL-w3-N2s">
                     <rect key="frame" x="0.0" y="0.0" width="1030" height="703"/>
-                    <animations/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="管家房.png" translatesAutoresizingMaskIntoConstraints="NO" id="P3h-2N-QVq">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="703"/>
-                    <animations/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="空调1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LH-Uo-96W">
                     <rect key="frame" x="190" y="412" width="44" height="21"/>
-                    <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="空调2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0y-l7-YQD">
                     <rect key="frame" x="190" y="536" width="44" height="21"/>
-                    <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="空调3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhK-IF-PpL">
                     <rect key="frame" x="404" y="412" width="45" height="21"/>
-                    <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="空调4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SST-B1-Xcw">
                     <rect key="frame" x="395" y="536" width="45" height="21"/>
-                    <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="og0-yc-YFS" customClass="BLUIACButton">
                     <rect key="frame" x="187" y="365" width="50" height="50"/>
-                    <animations/>
                     <state key="normal" title="" image="AC-Cool.png" backgroundImage="off.png"/>
                     <state key="selected" image="AC-Cool.png" backgroundImage="on.png"/>
                     <userDefinedRuntimeAttributes>
@@ -62,7 +54,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTj-Zp-uzJ" customClass="BLUIACButton">
                     <rect key="frame" x="398" y="365" width="50" height="50"/>
-                    <animations/>
                     <state key="normal" title="" image="AC-Cool.png" backgroundImage="off.png"/>
                     <state key="selected" image="AC-Cool.png" backgroundImage="on.png"/>
                     <userDefinedRuntimeAttributes>
@@ -71,7 +62,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAM-KK-BEC" customClass="BLUIACButton">
                     <rect key="frame" x="392" y="485" width="50" height="50"/>
-                    <animations/>
                     <state key="normal" title="" image="AC-Cool.png" backgroundImage="off.png"/>
                     <state key="selected" image="AC-Cool.png" backgroundImage="on.png"/>
                     <userDefinedRuntimeAttributes>
@@ -80,7 +70,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-1v-kD5" userLabel="床头灯" customClass="BLUISwitch">
                     <rect key="frame" x="506" y="485" width="50" height="50"/>
-                    <animations/>
                     <state key="normal" image="off.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -92,7 +81,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-yU-NYT" customClass="BLUIACButton">
                     <rect key="frame" x="187" y="485" width="50" height="50"/>
-                    <animations/>
                     <state key="normal" title="" image="AC-Cool.png" backgroundImage="off.png"/>
                     <state key="selected" image="AC-Cool.png" backgroundImage="on.png"/>
                     <userDefinedRuntimeAttributes>
@@ -100,7 +88,6 @@
                     </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="426" y="388.5"/>

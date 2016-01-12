@@ -22,6 +22,7 @@ static BLHeatingViewController *_heatingViewController =  nil;
 static BLDimmingViewController *_dimmingViewController =  nil;
 static BLCurtainViewController *_curtainViewController =  nil;
 static BLCurtain2ViewController *_curtain2ViewController =  nil;
+static BLRemoteControllerViewController *_remoteControllerViewController =  nil;
 
 + (instancetype)sharedInstance
 {
@@ -49,6 +50,7 @@ static BLCurtain2ViewController *_curtain2ViewController =  nil;
         self.dimmingViewController.view;
         self.curtainViewController.view;
         self.curtain2ViewController.view;
+        self.remoteControllerViewController.view;
     }
     return self;
 }
@@ -116,6 +118,19 @@ static BLCurtain2ViewController *_curtain2ViewController =  nil;
         });
     }
     return _curtain2ViewController;
+}
+
+- (BLRemoteControllerViewController *) remoteControllerViewController
+{
+    if (!_remoteControllerViewController)
+    {
+        _remoteControllerViewController =
+        ({
+            BLRemoteControllerViewController *viewController = [BLRemoteControllerViewController sharedInstance];
+            viewController;
+        });
+    }
+    return _remoteControllerViewController;
 }
 
 @end

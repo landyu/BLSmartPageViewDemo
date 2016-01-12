@@ -24,9 +24,12 @@
 #import "BLDimming.h"
 #import "BLUICurtainButton.h"
 #import "BLCurtain.h"
+#import "BLUIRemoteControllerButton.h"
+#import "BLRemoteController.h"
 #import "BLUIPageJumpButton.h"
 #import "GlobalMacro.h"
 #import "ViewControllerContainer.h"
+
 
 
 
@@ -197,7 +200,7 @@
                                //dispatch_async([Utils GlobalBackgroundQueue], ^(void)
                                               //{
                                                   BLUICurtain2Button *curtain2Button = (BLUICurtain2Button *) subView;
-                                                  [self initCurtain2ButtonWithCurtainButtonObject:curtain2Button nibPlistDict:viewNibPlistDict];
+                                                  [self initCurtain2ButtonWithCurtain2ButtonObject:curtain2Button nibPlistDict:viewNibPlistDict];
                                                   [curtain2Button addTarget:self action:@selector(curtain2ButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
                                               //});
                            }
@@ -215,8 +218,17 @@
                                //dispatch_async([Utils GlobalBackgroundQueue], ^(void)
                                //{
                                BLDimmingButton *dimmingButton = (BLDimmingButton *) subView;
-                               [self initDimmingButtonWithHeatingButtonObject:dimmingButton nibPlistDict:viewNibPlistDict];
+                               [self initDimmingButtonWithDimmingButtonObject:dimmingButton nibPlistDict:viewNibPlistDict];
                                [dimmingButton addTarget:self action:@selector(dimmingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                               //});
+                           }
+                           else if([subView isMemberOfClass:[BLUIRemoteControllerButton class]])
+                           {
+                               //dispatch_async([Utils GlobalBackgroundQueue], ^(void)
+                               //{
+                               BLUIRemoteControllerButton *remoteControllerButton = (BLUIRemoteControllerButton *) subView;
+                               [self initRemoteControllerButtonWithRemoteControllerObject:remoteControllerButton nibPlistDict:viewNibPlistDict];
+                               [remoteControllerButton addTarget:self action:@selector(remoteControllerButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
                                //});
                            }
                            else if([subView isMemberOfClass:[BLUIPageJumpButton class]])
@@ -655,7 +667,7 @@
 //}
 
 #pragma mark Curtain2 Button
-- (void) initCurtain2ButtonWithCurtainButtonObject:(BLUICurtain2Button *)curtainButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
+- (void) initCurtain2ButtonWithCurtain2ButtonObject:(BLUICurtain2Button *)curtainButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
 {
     if (!nibPlistDict) {
         return;
@@ -783,7 +795,7 @@
     self.pageController.dataSource = nil; //avoid move the slider to change the page view
 }
 
-- (void) initDimmingButtonWithHeatingButtonObject:(BLDimmingButton *)dimmingButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
+- (void) initDimmingButtonWithDimmingButtonObject:(BLDimmingButton *)dimmingButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
 {
     if (!nibPlistDict) {
         return;
@@ -806,6 +818,56 @@
     
     
 }
+
+#pragma mark RemoteController Button
+- (void)remoteControllerButtonPressed:(BLUIRemoteControllerButton *)sender
+{
+    [self playClickSound];
+    
+    if (activeVC != nil)
+    {
+        [activeVC.view removeFromSuperview];
+        activeVC = nil;
+    }
+    
+    ViewControllerContainer *viewControllerCotainerSharedInstance = [ViewControllerContainer sharedInstance];
+    if (viewControllerCotainerSharedInstance.remoteControllerViewController == nil)
+    {
+        NSLog(@"ERROR remoteControllerViewController == NILL");
+        return;
+    }
+    BLRemoteController *remoteControllerSharedInstance = [BLRemoteController sharedInstance];
+    [remoteControllerSharedInstance updateItemsDict:sender.remoteControllerPropertyDict];
+    
+    //[sender.acViewController initACPanelView];
+    activeVC = viewControllerCotainerSharedInstance.remoteControllerViewController;
+    [self.view addSubview:activeVC.view];
+    self.pageController.dataSource = nil; //avoid move the slider to change the page view
+}
+
+
+- (void) initRemoteControllerButtonWithRemoteControllerObject:(BLUIRemoteControllerButton *)remoteControllerButton nibPlistDict:(NSMutableDictionary *)nibPlistDict
+{
+    if (!nibPlistDict) {
+        return;
+    }
+    
+    for (NSUInteger itemIndex = 0; itemIndex < [nibPlistDict count]; itemIndex++)
+    {
+        NSDictionary *itemDitc = [nibPlistDict objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)itemIndex]];
+        
+        [itemDitc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+         {
+             
+             if ([key isEqualToString:remoteControllerButton.objName])
+             {
+                 remoteControllerButton.remoteControllerPropertyDict = obj;
+                 *stop = YES;
+             }
+         }];
+    }
+}
+
 
 #pragma mark Page Jump Button
 - (void)pageJumpButtonPressd:(BLUIPageJumpButton *)sender

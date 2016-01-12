@@ -12,21 +12,43 @@
 @implementation BLSettingData
 
 static NSString* const BLSettingDataDeviceIPAddressKey = @"deviceIPAddress";
+static NSString* const BLTimmingItemsArrayKey = @"timmingItemsArray";
 
 #pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     [encoder encodeObject:self.deviceIPAddress forKey: BLSettingDataDeviceIPAddressKey];
+    [encoder encodeObject:self.timmingItemsArray forKey: BLTimmingItemsArrayKey];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
-    self = [self init];
-    if (self) {
+    self = [super init];
+    if (self)
+    {
         _deviceIPAddress = [decoder decodeObjectForKey: BLSettingDataDeviceIPAddressKey];
+        _timmingItemsArray = [[decoder decodeObjectForKey: BLTimmingItemsArrayKey] mutableCopy];
     }
     return self;
 }
+
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        if (_timmingItemsArray == nil)
+        {
+            _timmingItemsArray = [[NSMutableArray alloc] init];
+        }
+        
+        if (_deviceIPAddress == nil)
+        {
+            _deviceIPAddress = [[NSString alloc] init];
+        }
+    }
+    return self;
+}
+
 
 + (instancetype)sharedSettingData
 {
@@ -44,7 +66,7 @@ static NSString* const BLSettingDataDeviceIPAddressKey = @"deviceIPAddress";
 {
     static NSString* filePath = nil;
     if (!filePath) {
-        filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"settingdata"];
+        filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"settingdata.plist"];
     }
     return filePath;
 }
@@ -54,7 +76,10 @@ static NSString* const BLSettingDataDeviceIPAddressKey = @"deviceIPAddress";
     NSData* decodedData = [NSData dataWithContentsOfFile: [BLSettingData filePath]];
     if (decodedData) {
         BLSettingData* gameData = [NSKeyedUnarchiver unarchiveObjectWithData:decodedData];
-        return gameData;
+        if (gameData)
+        {
+            return gameData;
+        }
     }
     
     return [[BLSettingData alloc] init];

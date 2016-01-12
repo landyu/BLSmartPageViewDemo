@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIViewController">
@@ -17,46 +16,38 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BG_Blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="Txj-rZ-xnL">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="703"/>
-                    <animations/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="总鸟瞰" translatesAutoresizingMaskIntoConstraints="NO" id="C2A-Xy-F2U">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="703"/>
-                    <animations/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="首页房间注释文字" translatesAutoresizingMaskIntoConstraints="NO" id="Klv-cm-B0h">
                     <rect key="frame" x="227" y="123" width="659" height="494"/>
-                    <animations/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLx-n1-qy1" userLabel="客餐厅" customClass="BLUIPageJumpButton">
                     <rect key="frame" x="124" y="219" width="221" height="281"/>
-                    <animations/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="LivingDiningRoom"/>
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUB-t8-src" userLabel="北主卧" customClass="BLUIPageJumpButton">
                     <rect key="frame" x="165" y="8" width="263" height="194"/>
-                    <animations/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="NorthMainBedroom"/>
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkY-5m-mvO" userLabel="管家房" customClass="BLUIPageJumpButton">
                     <rect key="frame" x="652" y="493" width="216" height="124"/>
-                    <animations/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="ButleRoom"/>
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PnG-zt-vJ2" userLabel="次卧" customClass="BLUIPageJumpButton">
                     <rect key="frame" x="688" y="330" width="258" height="155"/>
-                    <animations/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="objName" value="SecondBedroom"/>
                     </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="254" y="382.5"/>

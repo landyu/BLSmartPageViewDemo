@@ -13,6 +13,7 @@
 #import "BLRootNavigationController.h"
 #import "GlobalMacro.h"
 #import "BLPadSettingViewController.h"
+#import "TimmingViewController.h"
 //#import <objc/runtime.h>
 //@import CoreData;
 #import "EmptyViewController.h"
@@ -23,9 +24,11 @@
 }
 @property (strong, readwrite, nonatomic) REMenu *menu;
 @property (strong, readwrite, nonatomic) UIBarButtonItem * settingButton;
+@property (strong, readwrite, nonatomic) UIBarButtonItem * timmingButton;
 @property (strong, readwrite, nonatomic) UIBarButtonItem * roomSelectButton;
 @property (strong, readwrite, nonatomic) UIBarButtonItem * barButtonSpacer;
 @property (strong, nonatomic) BLPadSettingViewController *settingViewController;
+@property (strong, nonatomic) TimmingViewController *timmingViewController;
 @end
 
 @implementation ViewController
@@ -36,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.rightBarButtonItems =[NSArray arrayWithObjects:self.barButtonSpacer, self.settingButton, self.barButtonSpacer, self.barButtonSpacer, self.roomSelectButton, nil];
+    self.navigationItem.rightBarButtonItems =[NSArray arrayWithObjects:self.barButtonSpacer, self.settingButton, self.barButtonSpacer, self.timmingButton, self.barButtonSpacer, self.roomSelectButton, nil];
     
     //add navigator room select button
     [self initRoomSelectButton];
@@ -70,8 +73,8 @@
     NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [documentPaths objectAtIndex:0];
     NSString* roomInfoDirPath = [documentPath stringByAppendingPathComponent:@"RoomInfo"];
-    NSString *nibFilePath = [roomInfoDirPath stringByAppendingPathComponent:[self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)0]]];;
-    NSBundle *bundle = [NSBundle bundleWithPath:nibFilePath];
+    //NSString *nibFilePath = [roomInfoDirPath stringByAppendingPathComponent:[self.sceneListDict valueForKey:[NSString stringWithFormat: @"%lu", (unsigned long)0]]];;
+    //NSBundle *bundle = [NSBundle bundleWithPath:nibFilePath];
     //[bundle load];
     
     BOOL isDir = YES;
@@ -299,6 +302,14 @@
 {
     LogInfo(@"setttingButtonPressed");
     [self.navigationController pushViewController:self.settingViewController animated:YES];
+    //[self.navigationController addChildViewController:self.settingPageNavigationController];
+    //[self.settingPageNavigationController.view show];
+}
+
+- (void)timmingButtonPressed:(UIButton *)sender
+{
+    LogInfo(@"timmingButtonPressed");
+    [self.navigationController pushViewController:self.timmingViewController animated:YES];
     //[self.navigationController addChildViewController:self.settingPageNavigationController];
     //[self.settingPageNavigationController.view show];
 }
@@ -585,6 +596,23 @@
     return _settingButton;
 }
 
+- (UIBarButtonItem *) timmingButton
+{
+    if (!_timmingButton)
+    {
+        _timmingButton =
+        ({
+            UIButton * CustomButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            CustomButton.frame = CGRectMake(0, 0, 30, 30);
+            [CustomButton setImage:[UIImage imageNamed:@"Icon_Explore.png"] forState:UIControlStateNormal];
+            [CustomButton addTarget:self action:@selector(timmingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithCustomView:CustomButton];
+            button;
+        });
+    }
+    return _timmingButton;
+}
+
 - (UIBarButtonItem *) barButtonSpacer
 {
     if (!_barButtonSpacer)
@@ -612,6 +640,21 @@
         });
     }
     return _settingViewController;
+}
+
+- (TimmingViewController *) timmingViewController
+{
+    if (!_timmingViewController)
+    {
+        _timmingViewController =
+        ({
+            TimmingViewController *viewController = [[TimmingViewController alloc] init];
+            //BLPadSettingViewController *viewController = [[BLPadSettingViewController alloc] init];
+            //[[viewController view] setFrame:CGRectMake(0, 65, 1024, 703)];
+            viewController;
+        });
+    }
+    return _timmingViewController;
 }
 
 
